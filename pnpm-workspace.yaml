@@ -123,9 +123,9 @@ catalog:
   react-loadable: npm:@docusaurus/react-loadable@6.0.0
   react-loadable-ssr-addon-v5-slorber: ^1.0.3
   react-medium-image-zoom: ^5.4.9
-  react-router: ^5.3.4
+  react-router: ^8.4.0
   react-router-config: ^5.1.1
-  react-router-dom: ^5.3.4
+  react-router-dom: ^7.18.4
   recma-mdx-displayname: ^0.4.1
   rehype-katex: ^7.0.1
   rehype-raw: ^7.0.0
