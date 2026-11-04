@@ -184,7 +184,7 @@ export default async function createConfigAsync() {
     projectName: 'docusaurus',
     baseUrl,
     baseUrlIssueBanner: true,
-    url: 'https://docusaurus.io',
+    url: process.env.SITE_URL ?? 'https://docusaurus.io',
     vcs,
     // Deprecated: dogfood the Webpack/Babel opt-out for benchmarking
     webpack: isSlower,

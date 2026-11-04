@@ -36,6 +36,12 @@ jobs:
       NODE_OPTIONS: --max_old_space_size=8192
       # Only build the locales that fit within the 1 GB Pages hard cap.
       DOCUSAURUS_LOCALES: en,fr,zh-CN
+      # Site origin + base path. For the interim GitHub project URL
+      # (https://lc-org-cn.github.io/docs/) use these. When you bind a custom
+      # domain served at the root, change BASE_URL to '/' and SITE_URL to that
+      # domain. These feed docusaurus.config.ts (url / baseUrl).
+      SITE_URL: https://lc-org-cn.github.io
+      BASE_URL: /docs/
     steps:
       - name: Checkout
         uses: actions/checkout@v7
