@@ -16,3 +16,32 @@ profilo:
 adoption:
 unlisted:
 new:
+
+文档:
+  label: 文档
+  permalink: /blog/tags/文档
+  description: "与文档相关的博客文章"
+Docusaurus:
+  label: Docusaurus
+  permalink: /blog/tags/Docusaurus
+  description: "与 Docusaurus 相关的博客文章"
+采用:
+  label: 采用
+  permalink: /blog/tags/采用
+  description: "用户采用案例"
+新功能:
+  label: 新功能
+  permalink: /blog/tags/新功能
+  description: "新功能介绍"
+回顾:
+  label: 回顾
+  permalink: /blog/tags/回顾
+  description: "年度回顾"
+发布:
+  label: 发布
+  permalink: /blog/tags/发布
+  description: "版本发布"
+搜索:
+  label: 搜索
+  permalink: /blog/tags/搜索
+  description: "搜索相关"

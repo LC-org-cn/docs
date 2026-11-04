@@ -1,3 +1,6 @@
 {
-  "sidebar.docs.category.To Docusaurus v2": "To Docusaurus v2"
+  "sidebar.docs.category.To Docusaurus v2": {
+    "message": "To Docusaurus v2",
+    "description": "The label for category To Docusaurus v2 in the sidebar"
+  }
 }
