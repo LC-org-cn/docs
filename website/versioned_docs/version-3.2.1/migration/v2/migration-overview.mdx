@@ -2,25 +2,25 @@
 slug: /migration/v2
 ---
 
-# Overview
+# 概览
 
-This doc guides you through migrating an existing Docusaurus 1 site to Docusaurus 2.
+此文档将教授您如何将现有的 Docusaurus 1 网站更新至 Docusaurus 2。
 
-We try to make this as easy as possible, and provide a migration CLI.
+我们试图尽可能简便地做到这一点，并提供一个迁移的CLI。
 
-## Main differences {/* #main-differences */}
+## 主要差异 {/* #main-differences */}
 
-Docusaurus 1 is a pure documentation site generator, using React as a server-side template engine, but not loading React on the browser.
+Docusaurus 1 是一款纯静态站点生成器，服务端使用 React 作为模板引擎，但浏览器端不加载 React。
 
-Docusaurus 2, rebuilt from the ground up, generates a single-page-application, using the full power of React in the browser. It allows for more customizability but preserved the best parts of Docusaurus 1 - easy to get started, versioned docs, and i18n.
+从零重构的 Docusaurus 2 生成单页应用，在浏览器中发挥 React 的全部潜能。 新版本可以让您深度定制，同时保留了 Docusaurus 1 的优点――易于上手、分版文档和 i18n。
 
 Beyond that, Docusaurus 2 is a **performant static site generator** and can be used to create common content-driven websites (e.g. Documentation, Blogs, Product Landing and Marketing Pages, etc) extremely quickly.
 
-While our main focus will still be helping you get your documentations right and well, it is possible to build any kind of website using Docusaurus 2 as it is just a React application. **Docusaurus can now be used to build any website, not just documentation websites.**
+虽然我们的重心仍是为您又快又好地呈现开发文档，但您也可以让 Docusaurus 2 如其他的 React 应用一般构建出任意类型的网站。 **Docusaurus can now be used to build any website, not just documentation websites.**
 
-## Docusaurus 1 structure {/* #docusaurus-1-structure */}
+## Docusaurus 1 架构 {/* #docusaurus-1-structure */}
 
-Your Docusaurus 1 site should have the following structure:
+您的 Docusaurus 1 网站结构类似如下：
 
 ```bash
 ├── docs
@@ -35,9 +35,9 @@ Your Docusaurus 1 site should have the following structure:
     └── static
 ```
 
-## Docusaurus 2 structure {/* #docusaurus-2-structure */}
+## Docusaurus 2 架构 {/* #docusaurus-2-structure */}
 
-After the migration, your Docusaurus 2 site could look like:
+迁移后，您的 Docusaurus 2 网站结构类似如下：
 
 ```sh
 ├── docs
@@ -61,24 +61,24 @@ You are free to put the `/docs` folder anywhere you want after having migrated t
 
 :::
 
-## Migration process {/* #migration-process */}
+## 迁移流程 {/* #migration-process */}
 
-There are multiple things to migrate to obtain a fully functional Docusaurus 2 website:
+您还需要迁移其他东西才能得到功能完善的 Docusaurus 2 网站：
 
-- packages
-- CLI commands
-- site configuration
-- Markdown files
-- sidebars file
-- pages, components and CSS
-- versioned docs
-- i18n support 🚧
+- 软件包
+- CLI 命令
+- 站点配置
+- Markdown 文件
+- 侧边栏文件
+- 页面、 组件和 CSS
+- 分版文档
+- i18n 支持🚧
 
-## Automated migration process {/* #automated-migration-process */}
+## 自动迁移流程 {/* #automated-migration-process */}
 
 The [migration CLI](./migration-automated.mdx) will handle many things of the migration for you.
 
-However, some parts can't easily be automated, and you will have to fallback to the manual process.
+但是，有些功能无法自动迁移，您需要手动迁移。
 
 :::note
 
@@ -86,13 +86,13 @@ We recommend running the migration CLI, and complete the missing parts thanks to
 
 :::
 
-## Manual migration process {/* #manual-migration-process */}
+## 手动迁移流程 {/* #manual-migration-process */}
 
-Some parts of the migration can't be automated (particularly the pages), and you will have to migrate them manually.
+部分迁移流程无法自动完成（特别是页面部分），您需要进行手动迁移。
 
 The [manual migration guide](./migration-manual.mdx) will give you all the manual steps.
 
-## Support {/* #support */}
+## 支持 {/* #support */}
 
 For any questions, you can ask in the [`#migration-v1-to-v2` Discord channel](https://discord.gg/C3P6CxMMxY).
 
@@ -100,6 +100,6 @@ Feel free to tag [@slorber](https://github.com/slorber) in any migration PRs if 
 
 We also have volunteers willing to [help you migrate your v1 site](https://github.com/facebook/docusaurus/issues/1834).
 
-## Example migration PRs {/* #example-migration-prs */}
+## 迁移合并请求示例 {/* #example-migration-prs */}
 
 You might want to refer to our migration PRs for [Create React App](https://github.com/facebook/create-react-app/pull/7785) and [Flux](https://github.com/facebook/flux/pull/471) as examples of how a migration for a basic Docusaurus v1 site can be done.

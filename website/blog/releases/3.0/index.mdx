@@ -2,8 +2,8 @@
 title: Announcing Docusaurus 3.0
 authors:
   - slorber
-tags: [release]
-image: ./img/social-card.png
+tags: [发布]
+image: '@site/blog/releases/3.0/img/social-card.png'
 date: 2023-10-31
 ---
 
@@ -15,7 +15,7 @@ This is a new **major version** of Docusaurus, coming with **new exciting featur
 
 In line with the [**Semantic Versioning**](https://semver.org/) principles, this release includes **breaking changes** we documented thoroughly in the [**v3 upgrade guide**](/docs/migration/v3/). Breaking changes can be bothersome, but they are necessary to set the ground for a **new wave of Docusaurus features** we plan to implement.
 
-![v3.0 social-card image](./img/social-card.png)
+![v3.0 social-card image](@site/blog/releases/3.0/img/social-card.png)
 
 {/* truncate */}
 
@@ -94,7 +94,7 @@ Apart from MDX v3, most breaking changes coming with those upgraded dependencies
 - [#9310](https://github.com/facebook/docusaurus/pull/9310): remove the legacy versioned sidebar id prefix, used for sites versioned before `v2.0.0-beta.10` (December 2021)
 - [#7966](https://github.com/facebook/docusaurus/pull/7966): refactor docs theme components, eventually requiring to you re-swizzle them
 
-## Highlights {/* #highlights */}
+## 精彩内容 {/* #highlights */}
 
 Below is a non-exhaustive list of new useful features coming with this new version. All the features are listed in the [**Docusaurus v3.0.0 release notes**](https://github.com/facebook/docusaurus/releases/tag/v3.0.0).
 
@@ -274,7 +274,7 @@ import type {Options, ThemeConfig} from '@docusaurus/preset-classic';
 import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 ```
 
-### Code blocks {/* #code-blocks */}
+### 代码块 {/* #code-blocks */}
 
 In [#9316](https://github.com/facebook/docusaurus/pull/9316), we improved on syntax highlighting thanks to the [prism-react-renderer](https://github.com/FormidableLabs/prism-react-renderer) v2 upgrade. For example, a bash param `--save` is now colored:
 
@@ -382,7 +382,7 @@ Other new features worth mentioning:
 
 Read [**Docusaurus v3.0.0 release notes**](https://github.com/facebook/docusaurus/releases/tag/v3.0.0) for an exhaustive list of changes.
 
-## Conclusion {/* #conclusion */}
+## 结语 {/* #conclusion */}
 
 This release comes with a few features, but more importantly **upgrades many pieces of the Docusaurus infrastructure**.
 

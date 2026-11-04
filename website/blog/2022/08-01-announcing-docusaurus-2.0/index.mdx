@@ -1,5 +1,5 @@
 ---
-title: Announcing Docusaurus 2.0
+title: Docusaurus 2.0 的发布
 authors:
   - slorber
   - Josh-Cena
@@ -7,9 +7,9 @@ authors:
   - lex111
   - zpao
   - key: JMarcey
-    title: Co-creator of Docusaurus 1
-tags: [release]
-image: ./img/social-card.png
+    title: Docusaurus v1 的共同创建者
+tags: [发布]
+image: '@site/blog/2022/08-01-announcing-docusaurus-2.0/img/social-card.png'
 ---
 
 ```mdx-code-block
@@ -21,7 +21,7 @@ import HackerNewsIcon from '@site/src/components/HackerNewsIcon';
 import ColorModeToggle from '@theme/Navbar/ColorModeToggle';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import ThemedImage from '@theme/ThemedImage';
-import {ShowcaseCarouselV1, ShowcaseCarouselV2, ShowcaseCarouselV2Theming} from './ShowcaseCarousel';
+import {ShowcaseCarouselV1, ShowcaseCarouselV2, ShowcaseCarouselV2Theming} from '@site/blog/2022/08-01-announcing-docusaurus-2.0/ShowcaseCarousel.tsx';
 ```
 
 Today we are extremely happy to finally **announce Docusaurus 2.0**! 🥳️
@@ -30,7 +30,7 @@ At [**Meta Open Source**](https://opensource.fb.com/), we believe Docusaurus wil
 
 After **4 years of work, [75 alphas](https://github.com/facebook/docusaurus/releases/tag/v2.0.0-alpha.75) and [22 betas](https://github.com/facebook/docusaurus/releases/tag/v2.0.0-beta.22)**, the next generation of Docusaurus is **ready for prime time**. From now on, we now plan to **respect [Semantic Versioning](https://semver.org/)** and will release **major versions more frequently**.
 
-![social-card image](./img/social-card.png)
+![social-card image](@site/blog/2022/08-01-announcing-docusaurus-2.0/img/social-card.png)
 
 {/* truncate */}
 
@@ -47,11 +47,11 @@ After **4 years of work, [75 alphas](https://github.com/facebook/docusaurus/rele
 
 :::tip
 
-In a hurry? Check [what's new in Docusaurus 2.0](#whats-new-in-20)!
+搞快点？ Check [what's new in Docusaurus 2.0](#whats-new-in-20)!
 
 :::
 
-## What is Docusaurus exactly? {/* #what-is-docusaurus-exactly */}
+## Docusaurus 到底是什么？ {/* #what-is-docusaurus-exactly */}
 
 Docusaurus is a **static site generator** that helps you ship **beautiful documentation websites** in **no time**.
 
@@ -89,7 +89,7 @@ Try Docusaurus now with our [online playgrounds](/docs/playground) and [5 minute
 
 :::
 
-## The story behind Docusaurus {/* #the-story-behind-docusaurus */}
+## Docusaurus 背后的故事 {/* #the-story-behind-docusaurus */}
 
 Docusaurus was created at **Facebook Open Source** in **2017** (now [Meta Open Source](https://opensource.fb.com/)). We had a lot of internal and open source projects to document. It's **complicated enough to write good documentation**, let alone to create the HTML, CSS, and JavaScript for a good-looking website. We wanted project leaders to be able to **focus on the content**, and **Markdown** is great for that.
 
@@ -111,7 +111,7 @@ Notice that the sample sites above use different colors, but still look quite th
 
 :::
 
-## Toward Docusaurus 2.0 {/* #toward-docusaurus-20 */}
+## 迈向 Docusaurus 2.0 {/* #toward-docusaurus-20 */}
 
 [**Docusaurus v1**](http://v1.docusaurus.io/) has been very successful, but we started to **question some architectural choices**:
 
@@ -123,8 +123,8 @@ Notice that the sample sites above use different colors, but still look quite th
 [**Docusaurus v2**](https://docusaurus.io/) was **rebuilt** from the ground up with a new **modular architecture**:
 
 - React is now also used on the client, enabling a **modern Single Page Application navigation**
-- **Plugins** empower the community to contribute useful features as third-party packages
-- **Theming** is more **flexible** than ever
+- **插件** empower the community to contribute useful features as third-party packages
+- **高亮主题** is more **flexible** than ever
 - Docs versioning is now based on snapshot copies, much easier to understand
 - We kept **everything good from v1**: docs, blog, pages, versioning, i18n...
 - We implemented **several new features**
@@ -135,11 +135,11 @@ More details in the [Docusaurus 2 project announcement](/blog/2018/09-11-Towards
 
 Despite being in pre-release, it didn't take long for **Docusaurus v2 to outgrow Docusaurus v1** in terms of NPM downloads:
 
-[![NPM downloads: v2 outgrows v1](./img/npm-downloads.png)](https://npmtrends.com/docusaurus-vs-@docusaurus/core)
+[![NPM downloads: v2 outgrows v1](@site/blog/2022/08-01-announcing-docusaurus-2.0/img/npm-downloads.png)](https://npmtrends.com/docusaurus-vs-@docusaurus/core)
 
 Our GitHub star trend is very positive, competing with major frameworks:
 
-[![GitHub stars: Docusaurus is well-positioned](./img/star-history.png)](https://star-history.com/#facebook/docusaurus&vercel/next.js&gatsbyjs/gatsby&hexojs/hexo&nuxt/nuxt.js&vuejs/vuepress&11ty/eleventy&gohugoio/hugo&remix-run/remix&mkdocs/mkdocs&Timeline)
+[![GitHub stars: Docusaurus is well-positioned](@site/blog/2022/08-01-announcing-docusaurus-2.0/img/star-history.png)](https://star-history.com/#facebook/docusaurus&vercel/next.js&gatsbyjs/gatsby&hexojs/hexo&nuxt/nuxt.js&vuejs/vuepress&11ty/eleventy&gohugoio/hugo&remix-run/remix&mkdocs/mkdocs&Timeline)
 
 Today, Docusaurus v2 has already been a great success even before its launch:
 
@@ -267,11 +267,11 @@ Let's highlight some examples:
 
 - [redocusaurus](https://github.com/rohit-gohri/redocusaurus): seamless integration with [OpenAPI](https://www.openapis.org/) and [Redoc](https://github.com/Redocly/redoc)
 
-![redocusaurus plugin example](./img/plugins/redocusaurus.png)
+![redocusaurus plugin example](@site/blog/2022/08-01-announcing-docusaurus-2.0/img/plugins/redocusaurus.png)
 
 - [docusaurus-preset-shiki-twoslash](https://www.npmjs.com/package/docusaurus-preset-shiki-twoslash): use [Shiki](https://github.com/shikijs/shiki) code block syntax highlighting with [TwoSlash](https://shikijs.github.io/twoslash/) TypeScript compiler hints
 
-![shiki-twoslash plugin example](./img/plugins/shiki-twoslash.png)
+![shiki-twoslash plugin example](@site/blog/2022/08-01-announcing-docusaurus-2.0/img/plugins/shiki-twoslash.png)
 
 <TweetQuote
   url="https://x.com/orta"
@@ -284,7 +284,7 @@ Let's highlight some examples:
 
 - [docusaurus-search-local](https://github.com/easyops-cn/docusaurus-search-local): one of the various local search alternatives to the built-in Algolia plugin
 
-![local search plugin example](./img/plugins/search.png)
+![local search plugin example](@site/blog/2022/08-01-announcing-docusaurus-2.0/img/plugins/search.png)
 
 :::tip
 
@@ -376,9 +376,9 @@ The reason is that we aim to **respect [Semantic Versioning](https://semver.org/
 It is important for multiple reasons:
 
 - It **guarantees simple minor version upgrades**, as long as you only use the [public API](/community/release-process#public-api-surface)
-- It follows front-end ecosystem conventions
-- A new major version is an opportunity to thoroughly document breaking changes
-- A new major/minor version is an opportunity to communicate new features through a blog post
+- 符合前端生态的传统
+- 发布新的大版本时，有机会完整地记录破坏性变更
+- 发布新的大版本/小版本时，有机会通过博客介绍新功能
 
 The problem is that our flexible theming system inherently creates a very **implicit API surface** on which it is **hard to know what is a breaking change** in the first place. Highly customized Docusaurus sites sometimes have a hard time upgrading Docusaurus because they achieve customizations using internal APIs. We dedicated time to extensive theme refactors and clearly defining our [public API](/community/release-process#public-api-surface), so that future code changes can be made more safely. We will continue to expand this public theming API so that the most common site customizations do not need to use any internal API.
 
@@ -443,4 +443,4 @@ At [Meta Open Source](https://opensource.fb.com/), Docusaurus is one of our **mo
 
 :::
 
-![Slash plushies](./img/slash-plushies.jpg)
+![Slash plushies](@site/blog/2022/08-01-announcing-docusaurus-2.0/img/slash-plushies.jpg)

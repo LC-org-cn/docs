@@ -1,41 +1,41 @@
 ---
 sidebar_position: 1
-sidebar_label: Configuration
+sidebar_label: 配置
 slug: /api/themes/configuration
 toc_max_heading_level: 4
 ---
 
-# Theme configuration
+# 主题配置
 
 import APITable from '@site/src/components/APITable';
 
 This configuration applies to all [main themes](./overview.mdx).
 
-## Common {/* #common */}
+## 通用 {/* #common */}
 
-### Color mode {/* #color-mode---dark-mode */}
+### 色彩模式 {/* #color-mode---dark-mode */}
 
-The classic theme provides by default light and dark mode support, with a navbar switch for the user.
+经典主题默认提供浅色主题和暗黑主题，用户可以通过导航栏切换。
 
 It is possible to customize the color mode support within the `colorMode` object.
 
-Accepted fields:
+接受的字段：
 
 ```mdx-code-block
 <APITable>
 ```
 
-| Name | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- |
-| `defaultMode` | <code>'light' \| 'dark'</code> | `'light'` | The color mode when user first visits the site. |
-| `disableSwitch` | `boolean` | `false` | Hides the switch in the navbar. Useful if you want to support a single color mode. |
+| `defaultMode` | <code>'light' \| 'dark'</code> | `'light'` | 用户首次访问网站时的色彩模式。 |
+| `disableSwitch` | `boolean` | `false` | 在导航栏隐藏按钮。 如果你想要只支持一种色彩模式很有用。 |
 | `respectPrefersColorScheme` | `boolean` | `false` | Whether to use the `prefers-color-scheme` media-query, using user system preferences, instead of the hardcoded `defaultMode`. |
 
 ```mdx-code-block
 </APITable>
 ```
 
-Example configuration:
+示例配置：
 
 ```js title="docusaurus.config.js"
 export default {
@@ -55,29 +55,29 @@ export default {
 
 With `respectPrefersColorScheme: true`, the `defaultMode` is overridden by user system preferences.
 
-If you only want to support one color mode, you likely want to ignore user system preferences.
+如果你只想支持一种色彩模式，你大概率会想要忽略用户系统的偏好设置。
 
 :::
 
-### Meta image {/* #meta-image */}
+### 元数据图像 {/* #meta-image */}
 
-You can configure a default image that will be used for your meta tag, in particular `og:image` and `twitter:image`.
+你可以配置用于元标签的默认图像，尤其是 og:image 和 twitter:image。
 
-Accepted fields:
+接受的字段：
 
 ```mdx-code-block
 <APITable>
 ```
 
-| Name | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- |
-| `image` | `string` | `undefined` | The meta image URL for the site. Relative to your site's "static" directory. Cannot be SVGs. Can be external URLs too. |
+| `image` | `string` | `undefined` | 网站的元数据图像 URL。 相对于你的网站的静态目录。 不能是 SVG。 可以是外部链接。 |
 
 ```mdx-code-block
 </APITable>
 ```
 
-Example configuration:
+示例配置：
 
 ```js title="docusaurus.config.js"
 export default {
@@ -88,17 +88,17 @@ export default {
 };
 ```
 
-### Metadata {/* #metadata */}
+### 元数据 {/* #metadata */}
 
-You can configure additional HTML metadata (and override existing ones).
+你可以配置额外的 HTML 元数据（以及覆盖现有数据）。
 
-Accepted fields:
+接受的字段：
 
 ```mdx-code-block
 <APITable>
 ```
 
-| Name | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- |
 | `metadata` | `Metadata[]` | `[]` | Any field will be directly passed to the `<meta />` tag. Possible fields include `id`, `name`, `property`, `content`, `itemprop`, etc. |
 
@@ -106,7 +106,7 @@ Accepted fields:
 </APITable>
 ```
 
-Example configuration:
+示例配置：
 
 ```js title="docusaurus.config.js"
 export default {
@@ -117,29 +117,29 @@ export default {
 };
 ```
 
-### Announcement bar {/* #announcement-bar */}
+### 告示条 {/* #announcement-bar */}
 
-Sometimes you want to announce something in your website. Just for such a case, you can add an announcement bar. This is a non-fixed and optionally dismissible panel above the navbar. All configuration are in the `announcementBar` object.
+有时候，你需要在网站上发布告示。 这种情况下，你可以添加一个告示条。 这是位于导航栏上方的一个面板，非固定而且可以关闭。 All configuration are in the `announcementBar` object.
 
-Accepted fields:
+接受的字段：
 
 ```mdx-code-block
 <APITable name="announcement-bar">
 ```
 
-| Name | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- |
-| `id` | `string` | `'announcement-bar'` | Any value that will identify this message. |
-| `content` | `string` | `''` | The text content of the announcement. HTML will be interpolated. |
-| `backgroundColor` | `string` | `'#fff'` | Background color of the entire bar. |
-| `textColor` | `string` | `'#000'` | Announcement text color. |
-| `isCloseable` | `boolean` | `true` | Whether this announcement can be dismissed with a '×' button. |
+| `id` | `string` | `'announcement-bar'` | 任何能够唯一标识此信息的值。 |
+| `content` | `string` | `''` | 告示的文字内容。 HTML 也可以识别。 |
+| `backgroundColor` | `string` | `'#fff'` | 告示条的背景颜色。 |
+| `textColor` | `string` | `'#000'` | 告示的文字颜色。 |
+| `isCloseable` | `boolean` | `true` | 是否可以用 '×' 按钮关闭告示。 |
 
 ```mdx-code-block
 </APITable>
 ```
 
-Example configuration:
+示例配置：
 
 ```js title="docusaurus.config.js"
 export default {
@@ -158,17 +158,17 @@ export default {
 };
 ```
 
-## Plugins {/* #plugins */}
+## 插件 {/* #plugins */}
 
 Our [main themes](./overview.mdx) offer additional theme configuration options for Docusaurus core content plugins.
 
-### Docs {/* #docs */}
+### 文档 {/* #docs */}
 
 ```mdx-code-block
 <APITable name="navbar-overview">
 ```
 
-| Name | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- |
 | `versionPersistence` | `'localStorage' \| 'none'` | `undefined` | Defines the browser persistence of the preferred docs version. |
 | `sidebar.hideable` | `boolean` | `false` | Show a hide button at the bottom of the sidebar. |
@@ -178,7 +178,7 @@ Our [main themes](./overview.mdx) offer additional theme configuration options f
 </APITable>
 ```
 
-Example configuration:
+示例配置：
 
 ```js title="docusaurus.config.js"
 export default {
@@ -196,21 +196,21 @@ export default {
 };
 ```
 
-### Blog {/* #blog */}
+### 博客 {/* #blog */}
 
 ```mdx-code-block
 <APITable name="navbar-overview">
 ```
 
-| Name | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- |
-| `sidebar.groupByYear` | `boolean` | `true` | Group sidebar blog posts by years. |
+| `sidebar.groupByYear` | `boolean` | `true` | 在侧边栏以年为单位将博客帖子分组。 |
 
 ```mdx-code-block
 </APITable>
 ```
 
-Example configuration:
+示例配置：
 
 ```js title="docusaurus.config.js"
 export default {
@@ -226,55 +226,55 @@ export default {
 };
 ```
 
-## Navbar {/* #navbar */}
+## 导航栏 {/* #navbar */}
 
-Accepted fields:
+接受的字段：
 
 ```mdx-code-block
 <APITable name="navbar-overview">
 ```
 
-| Name | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- |
-| `title` | `string` | `undefined` | Title for the navbar. |
-| `logo` | _See below_ | `undefined` | Customization of the logo object. |
-| `items` | `NavbarItem[]` | `[]` | A list of navbar items. See specification below. |
-| `hideOnScroll` | `boolean` | `false` | Whether the navbar is hidden when the user scrolls down. |
-| `style` | <code>'primary' \| 'dark'</code> | Same as theme | Sets the navbar style, ignoring the dark/light theme. |
+| `title` | `string` | `undefined` | 导航栏标题。 |
+| `logo` | _See below_ | `undefined` | 图标对象的自定义。 |
+| `items` | `NavbarItem[]` | `[]` | 导航栏项目列表。 见下文的说明。 |
+| `hideOnScroll` | `boolean` | `false` | 当用户向下滚动时，导航栏是否隐藏。 |
+| `style` | <code>'primary' \| 'dark'</code> | 与色彩模式一致 | 设置导航栏样式，忽略暗黑/浅色色彩模式。 |
 
 ```mdx-code-block
 </APITable>
 ```
 
-### Navbar logo {/* #navbar-logo */}
+### 导航栏图标 {/* #navbar-logo */}
 
-The logo can be placed in [static folder](static-assets.mdx). Logo URL is set to base URL of your site by default. Although you can specify your own URL for the logo, if it is an external link, it will open in a new tab. In addition, you can override a value for the target attribute of logo link, it can come in handy if you are hosting docs website in a subdirectory of your main website, and in which case you probably do not need a link in the logo to the main website will open in a new tab.
+The logo can be placed in [static folder](static-assets.mdx). 图标链接的 URL 会被默认设置为网站的 base URL。 尽管你可以为图标指定自己的 URL，但如果链接是外部的，它会打开一个新标签页。 此外，你还可以覆盖图标链接的 target 属性值，如果你把文档网站托管在主网站的一个子目录中，这个配置会很有用。这种情况下，你可能不需要在链接到主网站的时候打开新标签页。
 
-To improve dark mode support, you can also set a different logo for this mode.
+为了改善暗黑模式支持，你也可以为暗黑模式设置一个不同的图标。
 
-Accepted fields:
+接受的字段：
 
 ```mdx-code-block
 <APITable name="navbar-logo">
 ```
 
-| Name | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- |
-| `alt` | `string` | `undefined` | Alt tag for the logo image. |
-| `src` | `string` | **Required** | URL to the logo image. Base URL is appended by default. |
-| `srcDark` | `string` | `logo.src` | An alternative image URL to use in dark mode. |
-| `href` | `string` | `siteConfig.baseUrl` | Link to navigate to when the logo is clicked. |
+| `alt` | `string` | `undefined` | 图片的 alt 属性。 |
+| `src` | `string` | **Required** | 图片的 URL。 Base URL 会被默认添加。 |
+| `srcDark` | `string` | `logo.src` | 暗黑模式下使用的替代图像 URL。 |
+| `href` | `string` | `siteConfig.baseUrl` | 点击图标时跳转到的链接。 |
 | `width` | <code>string \| number</code> | `undefined` | Specifies the `width` attribute. |
 | `height` | <code>string \| number</code> | `undefined` | Specifies the `height` attribute. |
 | `target` | `string` | Calculated based on `href` (external links will open in a new tab, all others in the current one). | The `target` attribute of the link; controls whether the link is opened in a new tab, the current one, or otherwise. |
-| `className` | `string` | `undefined` | CSS class applied to the image. |
-| `style` | `object` | `undefined` | CSS inline style object. React/JSX flavor, using camelCase properties. |
+| `className` | `string` | `undefined` | 图片的 CSS 类名。 |
+| `style` | `object` | `undefined` | 内联 CSS 样式对象。 React/JSX 风格，所有属性都是驼峰格式 (camelCase)。 |
 
 ```mdx-code-block
 </APITable>
 ```
 
-Example configuration:
+示例配置：
 
 ```js title="docusaurus.config.js"
 export default {
@@ -299,9 +299,9 @@ export default {
 };
 ```
 
-### Navbar items {/* #navbar-items */}
+### 导航栏项目 {/* #navbar-items */}
 
-You can add items to the navbar via `themeConfig.navbar.items`.
+你可以通过 themeConfig.navbar.items添加项目到导航栏。
 
 ```js title="docusaurus.config.js"
 export default {
@@ -337,34 +337,34 @@ export default {
 };
 ```
 
-The items can have different behaviors based on the `type` field. The sections below will introduce you to all the types of navbar items available.
+根据 type 字段，导航栏项目的行为可能不同。 下面的部分会为你介绍所有的导航栏项目类型。
 
-#### Navbar link {/* #navbar-link */}
+#### 导航栏链接 {/* #navbar-link */}
 
-By default, Navbar items are regular links (internal or external).
+导航栏项目默认是一个普通链接（内部或外部均可）。
 
 React Router should automatically apply active link styling to links, but you can use `activeBasePath` in edge cases. For cases in which a link should be active on several different paths (such as when you have multiple doc folders under the same sidebar), you can use `activeBaseRegex`. `activeBaseRegex` is a more flexible alternative to `activeBasePath` and takes precedence over it -- Docusaurus parses it into a regular expression that is tested against the current URL.
 
 Outbound (external) links automatically get `target="_blank" rel="noopener noreferrer"` attributes.
 
-Accepted fields:
+接受的字段：
 
 ```mdx-code-block
 <APITable name="navbar-link">
 ```
 
-| Name | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- |
-| `type` | `'default'` | Optional | Sets the type of this item to a link. |
-| `label` | `string` | **Required** | The name to be shown for this item. |
-| `html` | `string` | Optional | Same as `label`, but renders pure HTML instead of text content. |
-| `to` | `string` | **Required** | Client-side routing, used for navigating within the website. The baseUrl will be automatically prepended to this value. |
-| `href` | `string` | **Required** | A full-page navigation, used for navigating outside of the website. **Only one of `to` or `href` should be used.** |
+| `type` | `'default'` | 可选 | 把这个项目的类型设置为链接。 |
+| `label` | `string` | **Required** | 项目显示的名称。 |
+| `html` | `string` | 可选 | Same as `label`, but renders pure HTML instead of text content. |
+| `to` | `string` | **Required** | 客户端路由，用于站内导航。 会自动在开头添加 base URL。 |
+| `href` | `string` | **Required** | 整页导航，用于站外跳转。 **Only one of `to` or `href` should be used.** |
 | `prependBaseUrlToHref` | `boolean` | `false` | Prepends the baseUrl to `href` values. |
-| `position` | <code>'left' \| 'right'</code> | `'left'` | The side of the navbar this item should appear on. |
-| `activeBasePath` | `string` | `to` / `href` | To apply the active class styling on all routes starting with this path. This usually isn't necessary. |
-| `activeBaseRegex` | `string` | `undefined` | Alternative to `activeBasePath` if required. |
-| `className` | `string` | `''` | Custom CSS class (for styling any item). |
+| `position` | <code>'left' \| 'right'</code> | `'left'` | 项目应该出现在导航栏的哪一侧。 |
+| `activeBasePath` | `string` | `to` / `href` | 在以此路径开始的所有路由上应用活跃类样式。 通常没有必要设置。 |
+| `activeBaseRegex` | `string` | `undefined` | 如果有需要，可以替代 activeBasePath。 |
+| `className` | `string` | `''` | 自定义 CSS 类（用于任何项目的样式）。 |
 
 ```mdx-code-block
 </APITable>
@@ -372,11 +372,11 @@ Accepted fields:
 
 :::note
 
-In addition to the fields above, you can specify other arbitrary attributes that can be applied to a HTML link.
+除了上面的字段外，你可以指定其他任何 HTML 链接接受的属性。
 
 :::
 
-Example configuration:
+示例配置：
 
 ```js title="docusaurus.config.js"
 export default {
@@ -402,7 +402,7 @@ export default {
 };
 ```
 
-#### Navbar dropdown {/* #navbar-dropdown */}
+#### 导航栏下拉菜单 {/* #navbar-dropdown */}
 
 Navbar items of the type `dropdown` has the additional `items` field, an inner array of navbar items.
 
@@ -416,24 +416,24 @@ Navbar dropdown items only accept the following **"link-like" item types**:
 
 Note that the dropdown base item is a clickable link as well, so this item can receive any of the props of a [plain navbar link](#navbar-link).
 
-Accepted fields:
+接受的字段：
 
 ```mdx-code-block
 <APITable name="navbar-dropdown">
 ```
 
-| Name | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- |
-| `type` | `'dropdown'` | Optional | Sets the type of this item to a dropdown. |
-| `label` | `string` | **Required** | The name to be shown for this item. |
-| `items` | <code>[LinkLikeItem](#navbar-dropdown)[]</code> | **Required** | The items to be contained in the dropdown. |
-| `position` | <code>'left' \| 'right'</code> | `'left'` | The side of the navbar this item should appear on. |
+| `type` | `'dropdown'` | 可选 | 把这个项目的类型设置为下拉菜单。 |
+| `label` | `string` | **Required** | 项目显示的名称。 |
+| `items` | <code>[LinkLikeItem](#navbar-dropdown)[]</code> | **Required** | 下拉菜单中包含的项目。 |
+| `position` | <code>'left' \| 'right'</code> | `'left'` | 项目应该出现在导航栏的哪一侧。 |
 
 ```mdx-code-block
 </APITable>
 ```
 
-Example configuration:
+示例配置：
 
 ```js title="docusaurus.config.js"
 export default {
@@ -465,29 +465,29 @@ export default {
 };
 ```
 
-#### Navbar doc link {/* #navbar-doc-link */}
+#### 导航栏文档链接 {/* #navbar-doc-link */}
 
 If you want to link to a specific doc, this special navbar item type will render the link to the doc of the provided `docId`. It will get the class `navbar__link--active` as long as you browse a doc of the same sidebar.
 
-Accepted fields:
+接受的字段：
 
 ```mdx-code-block
 <APITable name="navbar-doc-link">
 ```
 
-| Name | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- |
-| `type` | `'doc'` | **Required** | Sets the type of this item to a doc link. |
-| `docId` | `string` | **Required** | The ID of the doc that this item links to. |
-| `label` | `string` | `docId` | The name to be shown for this item. |
-| `position` | <code>'left' \| 'right'</code> | `'left'` | The side of the navbar this item should appear on. |
-| `docsPluginId` | `string` | `'default'` | The ID of the docs plugin that the doc belongs to. |
+| `type` | `'doc'` | **Required** | 把这个项目的类型设置为文档链接。 |
+| `docId` | `string` | **Required** | 这个项目链接到的文档的 ID。 |
+| `label` | `string` | `docId` | 项目显示的名称。 |
+| `position` | <code>'left' \| 'right'</code> | `'left'` | 项目应该出现在导航栏的哪一侧。 |
+| `docsPluginId` | `string` | `'default'` | 这篇文档所属的文档插件的 ID。 |
 
 ```mdx-code-block
 </APITable>
 ```
 
-Example configuration:
+示例配置：
 
 ```js title="docusaurus.config.js"
 export default {
@@ -508,23 +508,23 @@ export default {
 };
 ```
 
-#### Navbar linked to a sidebar {/* #navbar-doc-sidebar */}
+#### 导航栏文档侧边栏链接 {/* #navbar-doc-sidebar */}
 
-You can link a navbar item to the first document link (which can be a doc link or a generated category index) of a given sidebar without having to hardcode a doc ID.
+你可以将一个导航栏项目链接到某个给定侧边栏的第一个文档链接（可能是文档或者生成类别索引），而不需要硬编码一个文档 ID。
 
-Accepted fields:
+接受的字段：
 
 ```mdx-code-block
 <APITable name="navbar-doc-sidebar">
 ```
 
-| Name | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- |
-| `type` | `'docSidebar'` | **Required** | Sets the type of this navbar item to a sidebar's first document. |
-| `sidebarId` | `string` | **Required** | The ID of the sidebar that this item is linked to. |
-| `label` | `string` | First document link's sidebar label | The name to be shown for this item. |
-| `position` | <code>'left' \| 'right'</code> | `'left'` | The side of the navbar this item should appear on. |
-| `docsPluginId` | `string` | `'default'` | The ID of the docs plugin that the sidebar belongs to. |
+| `type` | `'docSidebar'` | **Required** | 把这个项目的类型设置为侧边栏链接。 |
+| `sidebarId` | `string` | **Required** | 这个项目链接到的侧边栏的 ID。 |
+| `label` | `string` | 第一个文档链接的侧边栏标签 | 项目显示的名称。 |
+| `position` | <code>'left' \| 'right'</code> | `'left'` | 项目应该出现在导航栏的哪一侧。 |
+| `docsPluginId` | `string` | `'default'` | 这个侧边栏所属的文档插件的 ID。 |
 
 ```mdx-code-block
 </APITable>
@@ -532,11 +532,11 @@ Accepted fields:
 
 :::tip
 
-Use this navbar item type if your sidebar is updated often and the order is not stable.
+如果你的侧边栏经常更新而且顺序不稳定，请使用这个导航栏项目类型。
 
 :::
 
-Example configuration:
+示例配置：
 
 ```js title="docusaurus.config.js"
 export default {
@@ -577,26 +577,26 @@ export default {
 };
 ```
 
-#### Navbar docs version dropdown {/* #navbar-docs-version-dropdown */}
+#### 导航栏文档版本下拉菜单 {/* #navbar-docs-version-dropdown */}
 
-If you use docs with versioning, this special navbar item type that will render a dropdown with all your site's available versions.
+如果你使用文档版本化，这个特别的导航栏项目类型会渲染一个下拉菜单，包含你的网站的所有可用版本。
 
-The user will be able to switch from one version to another, while staying on the same doc (as long as the doc ID is constant across versions).
+用户可以从一个版本切换到另一个版本。 而仍然保持在同一篇文档上（只要文档 ID 在版本之间保持不变）。
 
-Accepted fields:
+接受的字段：
 
 ```mdx-code-block
 <APITable name="navbar-docs-version-dropdown">
 ```
 
-| Name | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- |
-| `type` | `'docsVersionDropdown'` | **Required** | Sets the type of this item to a docs version dropdown. |
-| `position` | <code>'left' \| 'right'</code> | `'left'` | The side of the navbar this item should appear on. |
-| `dropdownItemsBefore` | <code>[LinkLikeItem](#navbar-dropdown)[]</code> | `[]` | Add additional dropdown items at the beginning of the dropdown. |
-| `dropdownItemsAfter` | <code>[LinkLikeItem](#navbar-dropdown)[]</code> | `[]` | Add additional dropdown items at the end of the dropdown. |
-| `docsPluginId` | `string` | `'default'` | The ID of the docs plugin that the doc versioning belongs to. |
-| `dropdownActiveClassDisabled` | `boolean` | `false` | Do not add the link active class when browsing docs. |
+| `type` | `'docsVersionDropdown'` | **Required** | 把这个项目的类型设置为文档版本下拉菜单。 |
+| `position` | <code>'left' \| 'right'</code> | `'left'` | 项目应该出现在导航栏的哪一侧。 |
+| `dropdownItemsBefore` | <code>[LinkLikeItem](#navbar-dropdown)[]</code> | `[]` | 在下拉菜单开头添加额外的项目。 |
+| `dropdownItemsAfter` | <code>[LinkLikeItem](#navbar-dropdown)[]</code> | `[]` | 在下拉菜单结尾添加额外的项目。 |
+| `docsPluginId` | `string` | `'default'` | 这个版本下拉菜单所属的文档插件的 ID。 |
+| `dropdownActiveClassDisabled` | `boolean` | `false` | 不要在浏览文档时添加链接活跃类名。 |
 | `versions` | `DropdownVersions` | `undefined` | Specify a custom list of versions to include in the dropdown. See [the versioning guide](../../guides/docs/versioning.mdx#docsVersionDropdown) for details. |
 
 ```mdx-code-block
@@ -614,7 +614,7 @@ type DropdownVersion = {
 type DropdownVersions = string[] | {[versionName: string]: DropdownVersion};
 ```
 
-Example configuration:
+示例配置：
 
 ```js title="docusaurus.config.js"
 export default {
@@ -635,29 +635,29 @@ export default {
 };
 ```
 
-#### Navbar docs version {/* #navbar-docs-version */}
+#### 导航栏文档版本 {/* #navbar-docs-version */}
 
-If you use docs with versioning, this special navbar item type will link to the active/browsed version of your doc (depends on the current URL), and fallback to the latest version.
+如果你使用文档版本化，这个特别的的导航栏项目类型会链接到你的文档的活跃版本（正浏览的版本；取决于当前的 URL）。如果没有版本处于活跃状态，则链接到最新版本。
 
-Accepted fields:
+接受的字段：
 
 ```mdx-code-block
 <APITable name="navbar-docs-version">
 ```
 
-| Name | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- |
-| `type` | `'docsVersion'` | **Required** | Sets the type of this item to a doc version link. |
-| `label` | `string` | The active/latest version label. | The name to be shown for this item. |
-| `to` | `string` | The active/latest version. | The internal link that this item points to. |
-| `position` | <code>'left' \| 'right'</code> | `'left'` | The side of the navbar this item should appear on. |
-| `docsPluginId` | `string` | `'default'` | The ID of the docs plugin that the doc versioning belongs to. |
+| `type` | `'docsVersion'` | **Required** | 把这个项目的类型设置为文档版本链接。 |
+| `label` | `string` | 活跃/最新版本的标签。 | 项目显示的名称。 |
+| `to` | `string` | 活跃/最新版本。 | 项目指向的内部链接。 |
+| `position` | <code>'left' \| 'right'</code> | `'left'` | 项目应该出现在导航栏的哪一侧。 |
+| `docsPluginId` | `string` | `'default'` | 这个版本下拉菜单所属的文档插件的 ID。 |
 
 ```mdx-code-block
 </APITable>
 ```
 
-Example configuration:
+示例配置：
 
 ```js title="docusaurus.config.js"
 export default {
@@ -678,31 +678,31 @@ export default {
 };
 ```
 
-#### Navbar locale dropdown {/* #navbar-locale-dropdown */}
+#### 导航栏语言下拉菜单 {/* #navbar-locale-dropdown */}
 
 If you use the [i18n feature](../../i18n/i18n-introduction.mdx), this special navbar item type will render a dropdown with all your site's available locales.
 
-The user will be able to switch from one locale to another, while staying on the same page.
+用户能够从一种语言切换到另一种语言，同时保持在同一个页面上。
 
-Accepted fields:
+接受的字段：
 
 ```mdx-code-block
 <APITable name="navbar-locale-dropdown">
 ```
 
-| Name | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- |
-| `type` | `'localeDropdown'` | **Required** | Sets the type of this item to a locale dropdown. |
-| `position` | <code>'left' \| 'right'</code> | `'left'` | The side of the navbar this item should appear on. |
-| `dropdownItemsBefore` | <code>[LinkLikeItem](#navbar-dropdown)[]</code> | `[]` | Add additional dropdown items at the beginning of the dropdown. |
-| `dropdownItemsAfter` | <code>[LinkLikeItem](#navbar-dropdown)[]</code> | `[]` | Add additional dropdown items at the end of the dropdown. |
-| `queryString` | `string` | `undefined` | The query string to be appended to the URL. |
+| `type` | `'localeDropdown'` | **Required** | 把这个项目的类型设置为语言下拉菜单。 |
+| `position` | <code>'left' \| 'right'</code> | `'left'` | 项目应该出现在导航栏的哪一侧。 |
+| `dropdownItemsBefore` | <code>[LinkLikeItem](#navbar-dropdown)[]</code> | `[]` | 在下拉菜单开头添加额外的项目。 |
+| `dropdownItemsAfter` | <code>[LinkLikeItem](#navbar-dropdown)[]</code> | `[]` | 在下拉菜单结尾添加额外的项目。 |
+| `queryString` | `string` | `undefined` | 要附加到URL的查询字符串。 |
 
 ```mdx-code-block
 </APITable>
 ```
 
-Example configuration:
+示例配置：
 
 ```js title="docusaurus.config.js"
 export default {
@@ -727,21 +727,21 @@ export default {
 };
 ```
 
-#### Navbar search {/* #navbar-search */}
+#### 导航栏搜索框 {/* #navbar-search */}
 
 If you use the [search](../../search.mdx), the search bar will be the rightmost element in the navbar.
 
-However, with this special navbar item type, you can change the default location.
+然而，通过这个特别的导航栏项目类型，你可以更改默认位置。
 
 ```mdx-code-block
 <APITable name="navbar-search">
 ```
 
-| Name | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- |
-| `type` | `'search'` | **Required** | Sets the type of this item to a search bar. |
-| `position` | <code>'left' \| 'right'</code> | `'left'` | The side of the navbar this item should appear on. |
-| `className` | `string` | / | Custom CSS class for this navbar item. |
+| `type` | `'search'` | **Required** | 把这个项目的类型设置为搜索框。 |
+| `position` | <code>'left' \| 'right'</code> | `'left'` | 项目应该出现在导航栏的哪一侧。 |
+| `className` | `string` | / | 项目的自定义 CSS 类名。 |
 
 ```mdx-code-block
 </APITable>
@@ -764,20 +764,20 @@ export default {
 };
 ```
 
-#### Navbar with custom HTML {/* #navbar-with-custom-html */}
+#### 导航栏自定义 HTML 项目 {/* #navbar-with-custom-html */}
 
-You can also render your own HTML markup inside a navbar item using this navbar item type.
+你也可以用这个导航栏项目类型在导航栏中渲染自己的 HTML 标记。
 
 ```mdx-code-block
 <APITable name="navbar-html">
 ```
 
-| Name | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- |
-| `type` | `'html'` | **Required** | Sets the type of this item to a HTML element. |
-| `position` | <code>'left' \| 'right'</code> | `'left'` | The side of the navbar this item should appear on. |
-| `className` | `string` | `''` | Custom CSS class for this navbar item. |
-| `value` | `string` | `''` | Custom HTML to be rendered inside this navbar item. |
+| `type` | `'html'` | **Required** | 把这个项目的类型设置为 HTML 元素。 |
+| `position` | <code>'left' \| 'right'</code> | `'left'` | 项目应该出现在导航栏的哪一侧。 |
+| `className` | `string` | `''` | 项目的自定义 CSS 类名。 |
+| `value` | `string` | `''` | 在这个项目中渲染的自定义 HTML。 |
 
 ```mdx-code-block
 </APITable>
@@ -801,9 +801,9 @@ export default {
 };
 ```
 
-### Auto-hide sticky navbar {/* #auto-hide-sticky-navbar */}
+### 自动隐藏顶部导航栏 {/* #auto-hide-sticky-navbar */}
 
-You can enable this cool UI feature that automatically hides the navbar when a user starts scrolling down the page, and show it again when the user scrolls up.
+你可以启用这个很酷的界面功能，它会在用户开始向下滚动页面时，自动隐藏导航栏，当用户向上滚动时再显示它。
 
 ```js title="docusaurus.config.js"
 export default {
@@ -816,9 +816,9 @@ export default {
 };
 ```
 
-### Navbar style {/* #navbar-style */}
+### 导航栏样式 {/* #navbar-style */}
 
-You can set the static Navbar style without disabling the theme switching ability. The selected style will always apply no matter which theme user have selected.
+你可以把导航栏样式设置为静态，而不禁用主题切换能力。 无论用户选择哪个主题，所选的样式都会被应用。
 
 Currently, there are two possible style options: `dark` and `primary` (based on the `--ifm-color-primary` color). You can see the styles preview in the [Infima documentation](https://infima.dev/docs/components/navbar/).
 
@@ -833,21 +833,21 @@ export default {
 };
 ```
 
-## CodeBlock {/* #codeblock */}
+## 代码块 {/* #codeblock */}
 
 Docusaurus uses [Prism React Renderer](https://github.com/FormidableLabs/prism-react-renderer) to highlight code blocks. All configuration are in the `prism` object.
 
-Accepted fields:
+接受的字段：
 
 ```mdx-code-block
 <APITable name="codeblock">
 ```
 
-| Name | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- |
-| `theme` | `PrismTheme` | `palenight` | The Prism theme to use for light-theme code blocks. |
-| `darkTheme` | `PrismTheme` | `palenight` | The Prism theme to use for dark-theme code blocks. |
-| `defaultLanguage` | `string` | `undefined` | The default language to use for code blocks not declaring any explicit language. |
+| `theme` | `PrismTheme` | `palenight` | 用于浅色模式下代码块的 Prism 主题。 |
+| `darkTheme` | `PrismTheme` | `palenight` | 用于暗黑模式下代码块的 Prism 主题。 |
+| `defaultLanguage` | `string` | `undefined` | 未显式声明任何语言的情况下，用于代码块的默认语言。 |
 | `magicComments` | `MagicCommentConfig[]` | _see below_ | The list of [magic comments](../../guides/markdown-features/markdown-features-code-blocks.mdx#custom-magic-comments). |
 
 ```mdx-code-block
@@ -872,11 +872,11 @@ const defaultMagicComments = [
 ];
 ```
 
-### Theme {/* #theme */}
+### 主题 {/* #theme */}
 
-By default, we use [Palenight](https://github.com/FormidableLabs/prism-react-renderer/blob/master/packages/prism-react-renderer/src/themes/palenight.ts) as syntax highlighting theme. You can specify a custom theme from the [list of available themes](https://github.com/FormidableLabs/prism-react-renderer/tree/master/packages/prism-react-renderer/src/themes). You may also use a different syntax highlighting theme when the site is in dark mode.
+By default, we use [Palenight](https://github.com/FormidableLabs/prism-react-renderer/blob/master/packages/prism-react-renderer/src/themes/palenight.ts) as syntax highlighting theme. You can specify a custom theme from the [list of available themes](https://github.com/FormidableLabs/prism-react-renderer/tree/master/packages/prism-react-renderer/src/themes). 你也可以在网站处于暗黑模式时，使用不同的语法高亮主题。
 
-Example configuration:
+示例配置：
 
 ```js title="docusaurus.config.js"
 import {themes as prismThemes} from 'prism-react-renderer';
@@ -895,15 +895,15 @@ export default {
 
 :::note
 
-If you use the line highlighting Markdown syntax, you might need to specify a different highlight background color for the dark mode syntax highlighting theme. Refer to the [docs for guidance](../../guides/markdown-features/markdown-features-code-blocks.mdx#line-highlighting).
+如果你使用了 Markdown 的行高亮语法，你可能需要为暗黑模式的语法高亮主题指定不同的行高亮背景颜色。 Refer to the [docs for guidance](../../guides/markdown-features/markdown-features-code-blocks.mdx#line-highlighting).
 
 :::
 
-### Default language {/* #default-language */}
+### 默认语言 {/* #default-language */}
 
-You can set a default language for code blocks if no language is added after the opening triple backticks (i.e. ```). Note that a valid [language name](https://prismjs.com/#supported-languages) must be passed.
+你可以设置代码块的默认语言。如果代码块开头的三个反引号（就是 ```）后没有添加语言，会使用默认语言。 Note that a valid [language name](https://prismjs.com/#supported-languages) must be passed.
 
-Example configuration:
+示例配置：
 
 ```js title="docusaurus.config.js"
 export default {
@@ -916,28 +916,28 @@ export default {
 };
 ```
 
-## Footer {/* #footer-1 */}
+## 页脚 {/* #footer-1 */}
 
-You can add logo and a copyright to the footer via `themeConfig.footer`. Logo can be placed in [static folder](static-assets.mdx). Logo URL works in the same way of the navbar logo.
+You can add logo and a copyright to the footer via `themeConfig.footer`. Logo can be placed in [static folder](static-assets.mdx). 图标 URL 的工作方式和导航栏图标相同。
 
-Accepted fields:
+接受的字段：
 
 ```mdx-code-block
 <APITable name="footer">
 ```
 
-| Name | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- |
-| `logo` | `Logo` | `undefined` | Customization of the logo object. See [Navbar logo](#navbar-logo) for details. |
-| `copyright` | `string` | `undefined` | The copyright message to be displayed at the bottom, also supports custom HTML. |
-| `style` | <code>'dark' \| 'light'</code> | `'light'` | The color theme of the footer component. |
-| `links` | <code>(Column \| FooterLink)[]</code> | `[]` | The link groups to be present. |
+| `logo` | `Logo` | `undefined` | 图标对象的自定义。 See [Navbar logo](#navbar-logo) for details. |
+| `copyright` | `string` | `undefined` | 要在底部显示的版权消息，也支持自定义 HTML。 |
+| `style` | <code>'dark' \| 'light'</code> | `'light'` | 页脚组件的色彩主题。 |
+| `links` | <code>(Column \| FooterLink)[]</code> | `[]` | 要显示的链接组。 |
 
 ```mdx-code-block
 </APITable>
 ```
 
-Example configuration:
+示例配置：
 
 ```js title="docusaurus.config.js"
 export default {
@@ -958,7 +958,7 @@ export default {
 };
 ```
 
-### Footer Links {/* #footer-links */}
+### 页脚链接 {/* #footer-links */}
 
 You can add links to the footer via `themeConfig.footer.links`. There are two types of footer configurations: **multi-column footers** and **simple footers**.
 
@@ -968,10 +968,10 @@ Multi-column footer links have a `title` and a list of `FooterItem`s for each co
 <APITable name="footer-links">
 ```
 
-| Name | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- |
-| `title` | `string` | `undefined` | Label of the section of these links. |
-| `items` | `FooterItem[]` | `[]` | Links in this section. |
+| `title` | `string` | `undefined` | 这些链接所在部分的标签。 |
+| `items` | `FooterItem[]` | `[]` | 这一部分的链接。 |
 
 ```mdx-code-block
 </APITable>
@@ -983,18 +983,18 @@ Accepted fields of each `FooterItem`:
 <APITable name="footer-items">
 ```
 
-| Name | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- |
-| `label` | `string` | **Required** | Text to be displayed for this link. |
-| `to` | `string` | **Required** | Client-side routing, used for navigating within the website. The baseUrl will be automatically prepended to this value. |
-| `href` | `string` | **Required** | A full-page navigation, used for navigating outside of the website. **Only one of `to` or `href` should be used.** |
-| `html` | `string` | `undefined` | Renders the HTML pass-through instead of a simple link. In case `html` is used, no other options should be provided. |
+| `label` | `string` | **Required** | 链接显示的文字。 |
+| `to` | `string` | **Required** | 客户端路由，用于站内导航。 会自动在开头添加 base URL。 |
+| `href` | `string` | **Required** | 整页导航，用于站外跳转。 **Only one of `to` or `href` should be used.** |
+| `html` | `string` | `undefined` | 渲染纯 HTML 而不是普通链接。 In case `html` is used, no other options should be provided. |
 
 ```mdx-code-block
 </APITable>
 ```
 
-Example multi-column configuration:
+多列页脚配置示例：
 
 ```js title="docusaurus.config.js"
 export default {
@@ -1046,7 +1046,7 @@ export default {
 
 A simple footer just has a list of `FooterItem`s displayed in a row.
 
-Example simple configuration:
+简单页脚配置示例：
 
 ```js title="docusaurus.config.js"
 export default {
@@ -1078,7 +1078,7 @@ export default {
 };
 ```
 
-## Table of Contents {/* #table-of-contents */}
+## 目录 {/* #table-of-contents */}
 
 You can adjust the default table of contents via `themeConfig.tableOfContents`.
 
@@ -1086,16 +1086,16 @@ You can adjust the default table of contents via `themeConfig.tableOfContents`.
 <APITable>
 ```
 
-| Name | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- |
-| `minHeadingLevel` | `number` | `2` | The minimum heading level shown in the table of contents. Must be between 2 and 6 and lower or equal to the max value. |
-| `maxHeadingLevel` | `number` | `3` | Max heading level displayed in the TOC. Should be an integer between 2 and 6. |
+| `minHeadingLevel` | `number` | `2` | 目录中显示的最小标题层级。 必须介于 2 到 6 之间，并且小于等于最大值。 |
+| `maxHeadingLevel` | `number` | `3` | 目录显示的最大标题层级。 必须是 2 到 6 之间的整数。 |
 
 ```mdx-code-block
 </APITable>
 ```
 
-Example configuration:
+示例配置：
 
 ```js title="docusaurus.config.js"
 export default {
@@ -1110,13 +1110,13 @@ export default {
 };
 ```
 
-## Hooks {/* #hooks */}
+## 钩子函数 {/* #hooks */}
 
 ### `useColorMode` {/* #use-color-mode */}
 
-A React hook to access the color context. This context contains functions for selecting light/dark/system mode and exposes the current color mode and the choice from the user. The color mode values **should not be used for dynamic content rendering** (see below).
+一个用于访问色彩模式 context 的 React 钩子。 This context contains functions for selecting light/dark/system mode and exposes the current color mode and the choice from the user. The color mode values **should not be used for dynamic content rendering** (see below).
 
-Usage example:
+示例用法：
 
 ```jsx
 // highlight-next-line
@@ -1221,19 +1221,19 @@ function ExamplePage() {
 
 Read the [i18n introduction](../../i18n/i18n-introduction.mdx) first.
 
-### Translation files location {/* #translation-files-location */}
+### 翻译文件位置 {/* #translation-files-location */}
 
 - **Base path**: `website/i18n/[locale]/docusaurus-theme-[themeName]`
 - **Multi-instance path**: N/A
 - **JSON files**: extracted with [`docusaurus write-translations`](../../cli.mdx#docusaurus-write-translations-sitedir)
 - **Markdown files**: N/A
 
-### Example file-system structure {/* #example-file-system-structure */}
+### 文件系统结构示例 {/* #example-file-system-structure */}
 
 ```bash
-website/i18n/[locale]/docusaurus-theme-classic
+website/i18n/[语言]/docusaurus-theme-classic
 │
-│ # translations for the theme
+│ # 主题翻译
 ├── navbar.json
 └── footer.json
 ```

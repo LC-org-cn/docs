@@ -7,7 +7,7 @@ slug: /api/themes/@docusaurus/theme-classic
 
 import APITable from '@site/src/components/APITable';
 
-The classic theme for Docusaurus.
+Docusaurus 的经典主题。
 
 You can refer to the [theme configuration page](theme-configuration.mdx) for more details on the configuration.
 
@@ -21,17 +21,17 @@ If you have installed `@docusaurus/preset-classic`, you don't need to install it
 
 :::
 
-## Configuration {/* #configuration */}
+## 配置 {/* #configuration */}
 
-Accepted fields:
+接受的字段：
 
 ```mdx-code-block
 <APITable>
 ```
 
-| Option | Type | Default | Description |
+| 选项 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- |
-| `customCss` | <code>string[] \| string</code> | `[]` | Stylesheets to be imported globally as [client modules](../../advanced/client.mdx#client-modules). Relative paths are resolved against the site directory. |
+| `customCss` | <code>string[] \| string</code> | `[]` | Stylesheets to be imported globally as [client modules](../../advanced/client.mdx#client-modules). 相对文件路径会基于站点目录解析。 |
 
 ```mdx-code-block
 </APITable>
@@ -43,21 +43,21 @@ Most configuration for the theme is done in `themeConfig`, which can be found in
 
 :::
 
-### Example configuration {/* #ex-config */}
+### 示例配置 {/* #ex-config */}
 
-You can configure this theme through preset options or plugin options.
+你可以通过预设选项或插件选项来配置这个主题。
 
 :::tip
 
-Most Docusaurus users configure this plugin through the preset options.
+大多数 Docusaurus 用户通过预设选项配置此插件。
 
 :::
 
 ```js config-tabs
-// Preset Options: theme
-// Plugin Options: @docusaurus/theme-classic
+// 预设选项：主题
+// 插件选项：@docusaurus/theme-classic
 
-const config = {
+confst config = Power
   customCss: './src/css/custom.css',
-};
+}；
 ```

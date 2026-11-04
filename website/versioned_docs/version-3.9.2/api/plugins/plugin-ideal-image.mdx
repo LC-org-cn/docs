@@ -7,7 +7,7 @@ slug: /api/plugins/@docusaurus/plugin-ideal-image
 
 import APITable from '@site/src/components/APITable';
 
-Docusaurus Plugin to generate an almost ideal image (responsive, lazy-loading, and low quality placeholder).
+生成近乎理想的图像的 Docusaurus 插件（响应式、懒加载及低像素占位图）。
 
 :::info
 
@@ -15,15 +15,15 @@ By default, the plugin is **inactive in development** so you could always view f
 
 :::
 
-## Installation {/* #installation */}
+## 安装流程 {/* #installation */}
 
 ```bash npm2yarn
 npm install --save @docusaurus/plugin-ideal-image
 ```
 
-## Usage {/* #usage */}
+## 用法 {/* #usage */}
 
-This plugin supports the PNG and JPG formats only.
+此插件仅支持 PNG 和 JPG 格式。
 
 ```jsx
 import Image from '@theme/IdealImage';
@@ -47,7 +47,7 @@ This plugin registers a [Webpack loader](https://webpack.js.org/loaders/) that c
 
 :::warning For pnpm users
 
-Starting with [pnpm 10](https://github.com/pnpm/pnpm/releases/tag/v10.0.0), running `pnpm install` won't run dependency install scripts by default. You'll need additional pnpm configuration ([issue](https://github.com/lovell/sharp/issues/4343)) for our `sharp` image resizing dependency to install correctly, such as:
+从 [pnpm 10](https://github.com/pnpm/pnpm/releases/tag/v10.0.0)开始，运行 `pnpm install` 默认不会运行依赖安装脚本。 您需要额外的 pnpm 配置([issue](https://github.com/lovell/sharp/issues/4343))才能正确安装我们的 `sharp` 图像大小依赖，比如：
 
 ```json title="package.json"
 {
@@ -59,32 +59,32 @@ Starting with [pnpm 10](https://github.com/pnpm/pnpm/releases/tag/v10.0.0), runn
 
 :::
 
-## Configuration {/* #configuration */}
+## 配置 {/* #configuration */}
 
-Accepted fields:
+接受的字段：
 
 ```mdx-code-block
 <APITable>
 ```
 
-| Option | Type | Default | Description |
+| 选项 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- |
-| `name` | `string` | `ideal-img/[name].[hash:hex:7].[width].[ext]` | Filename template for output files. |
-| `sizes` | `number[]` | _original size_ | Specify all widths you want to use. If a specified size exceeds the original image's width, the latter will be used (i.e. images won't be scaled up). |
-| `size` | `number` | _original size_ | Specify one width you want to use; if the specified size exceeds the original image's width, the latter will be used (i.e. images won't be scaled up) |
+| `name` | `string` | `ideal-img/[name].[hash:hex:7].[width].[ext]` | 输出文件的文件名模板。 |
+| `sizes` | `number[]` | _original size_ | 指定你想使用的所有宽度。 如果指定尺寸超过了原始图像宽度，则使用后者（即图像不会被放大）。 |
+| `size` | `number` | _original size_ | 指定你想使用的唯一宽度。如果指定尺寸超过了原始图像宽度，则使用后者（即图像不会被放大）。 |
 | `min` | `number` |  | As an alternative to manually specifying `sizes`, you can specify `min`, `max` and `steps`, and the sizes will be generated for you. |
 | `max` | `number` |  | See `min` above |
 | `steps` | `number` | `4` | Configure the number of images generated between `min` and `max` (inclusive) |
-| `quality` | `number` | `85` | JPEG compression quality |
+| `quality` | `number` | `85` | JPEG 压缩质量。 |
 | `disableInDev` | `boolean` | `true` | You can test ideal image behavior in dev mode by setting this to `false`. **Tip**: use [network throttling](https://www.browserstack.com/guide/how-to-perform-network-throttling-in-chrome) in your browser to simulate slow networks. |
 
 ```mdx-code-block
 </APITable>
 ```
 
-### Example configuration {/* #ex-config */}
+### 示例配置 {/* #ex-config */}
 
-Here's an example configuration:
+这是一个示例配置：
 
 ```js title="docusaurus.config.js"
 export default {

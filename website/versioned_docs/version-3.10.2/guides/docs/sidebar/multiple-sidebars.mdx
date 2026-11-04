@@ -2,20 +2,20 @@
 slug: /sidebar/multiple-sidebars
 ---
 
-# Using multiple sidebars
+# 使用多个侧边栏
 
-You can create a sidebar for each **set of Markdown files** that you want to **group together**.
+你可以为**每组想要分类到一起的 Markdown 文件**创建一个侧边栏。
 
 :::tip
 
-The Docusaurus site is a good example of using multiple sidebars:
+Docusaurus 就是使用多侧边栏的典范之一：
 
-- [Docs](../../../introduction.mdx)
+- [文档](../../../introduction.mdx)
 - [API](../../../cli.mdx)
 
 :::
 
-Consider this example:
+考虑这个例子：
 
 ```js title="sidebars.js"
 export default {
@@ -26,11 +26,11 @@ export default {
 };
 ```
 
-When browsing `doc1` or `doc2`, the `tutorialSidebar` will be displayed; when browsing `doc3` or `doc4`, the `apiSidebar` will be displayed.
+当浏览 `doc1` 或者 `doc2` 时，`tutorialSidebar` 会被显示；当浏览 `doc3` 或者 `doc4` 时，`apiSidebar` 会被显示。
 
-## Understanding sidebar association {/* #sidebar-association */}
+## 理解侧边栏绑定 {/* #sidebar-association */}
 
-Following the example above, if a `commonDoc` is included in both sidebars:
+沿用上面的例子，如果有一篇 `commonDoc` 被同时包含在了两个侧边栏里：
 
 ```js title="sidebars.js"
 export default {
@@ -41,14 +41,14 @@ export default {
 };
 ```
 
-How does Docusaurus know which sidebar to display when browsing `commonDoc`? Answer: it doesn't, and we don't guarantee which sidebar it will pick.
+Docusaurus 该怎么知道在浏览 `commonDoc` 的时候展示哪个侧边栏呢？ 答案是：它不知道，我们也不能保证它会选哪个侧边栏。
 
-When you add doc Y to sidebar X, it creates a two-way binding: sidebar X contains a link to doc Y, and when browsing doc Y, sidebar X will be displayed. But sometimes, we want to break either implicit binding:
+当你在侧边栏甲中添加一篇文档乙的时候，会创建一个双向绑定：侧边栏甲会包含一个指向乙的链接，并且当浏览乙的时候，甲会被显示。 但是有时候，我们会想要解除这两重绑定关系中的一重。比如：
 
-1. _How do I generate a link to doc Y in sidebar X without making sidebar X displayed on Y?_ For example, when I include doc Y in multiple sidebars as in the example above, and I want to explicitly tell Docusaurus to display one sidebar?
-2. _How do I make sidebar X displayed when browsing doc Y, but sidebar X shouldn't contain the link to Y?_ For example, when Y is a "doc home page" and the sidebar is purely used for navigation?
+1. _怎么在侧边栏 X 中生成一个文档 Y 的链接，但不要在浏览 Y 的时候显示 X？_ 比如，当我像上文的例子一样，有若干个侧边栏都包含了文档 Y 的时候，我希望能明确告诉 Docusaurus 显示其中某个侧边栏？
+2. _怎么在浏览文档 Y 的时候显示侧边栏 X，但 X 不包含 Y 的链接？_ 比如，如果 Y 是「文档总览页」，而侧边栏这时候只是用来导航的？
 
-Front matter option `displayed_sidebar` will forcibly set the sidebar association. For the same example, you can still use doc shorthands without any special configuration:
+前言的 `displayed_sidebar` 字段会强制设置侧边栏的绑定。 继续用上文的例子，你仍然可以用简写形式，不需要任何特别配置：
 
 ```js title="sidebars.js"
 export default {
@@ -59,7 +59,7 @@ export default {
 };
 ```
 
-And then add a front matter:
+然后加一段前言：
 
 ```md title="commonDoc.md"
 ---
@@ -67,7 +67,7 @@ displayed_sidebar: apiSidebar
 ---
 ```
 
-Which explicitly tells Docusaurus to display `apiSidebar` when browsing `commonDoc`. Using the same method, you can make sidebar X which doesn't contain doc Y appear on doc Y:
+这会显式地告诉 Docusaurus，在浏览 `commonDoc` 的时候，显示 `apiSidebar`。 用同样的方法，你可以让不包含文档乙的侧边栏甲在文档乙上显示：
 
 ```md title="home.md"
 ---
@@ -75,17 +75,17 @@ displayed_sidebar: tutorialSidebar
 ---
 ```
 
-Even when `tutorialSidebar` doesn't contain a link to `home`, it will still be displayed when viewing `home`.
+即便 `tutorialSidebar` 不包含指向 `home` 的链接，`tutorialSidebar` 还是会在浏览 `home` 的时候显示。
 
-If you set `displayed_sidebar: null`, no sidebar will be displayed whatsoever on this page, and subsequently, no pagination either.
+如果你设置了 `displayed_sidebar: null`，这一页就不会显示任何侧边栏了，因此也不会有分页导航了。
 
-## Generating pagination {/* #generating-pagination */}
+## 生成分页导航 {/* #generating-pagination */}
 
-Docusaurus uses the sidebar to generate the "next" and "previous" pagination links at the bottom of each doc page. It strictly uses the sidebar that is displayed: if no sidebar is associated, it doesn't generate pagination either. However, the docs linked as "next" and "previous" are not guaranteed to display the same sidebar: they are included in this sidebar, but in their front matter, they may have a different `displayed_sidebar`.
+Docusaurus 会用侧边栏信息，在每一页文档的末尾生成「下一页」和「上一页」的导航链接。 它严格地使用当前显示的侧边栏：如果没有绑定的侧边栏，它也不会生成分页导航。 然而，链接到的「下一篇」和「上一篇」文档并不保证会显示相同的侧边栏：它们被包含在了这个侧边栏里，但它们的前言里可能有另一个 `displayed_sidebar`。
 
-If a sidebar is displayed by setting `displayed_sidebar` front matter, and this sidebar doesn't contain the doc itself, no pagination is displayed.
+如果一个侧边栏是因为设置了 `displayed_sidebar` 前言而被显示的，而侧边栏并不包含这个文档本身，那么也不会显示分页导航。
 
-You can customize pagination with front matter `pagination_next` and `pagination_prev`. Consider this sidebar:
+你可以用 `pagination_next` 和 `pagination_prev` 自定义分页导航。 考虑这个侧边栏：
 
 ```js title="sidebars.js"
 export default {
@@ -99,7 +99,7 @@ export default {
 };
 ```
 
-The pagination next link on "windows" points to "linux", but that doesn't make sense: you would want readers to proceed to "getting started" after installation. In this case, you can set the pagination manually:
+"windows" 页面上的分页链接会指向 "linux"，但这没有意义：你应该想让读者在安装完毕后继续阅读「上手」。 在这种情况下，你可以手动设置分页导航：
 
 ```md title="windows.md"
 ---
@@ -110,17 +110,17 @@ pagination_next: getting-started
 # Installation on Windows
 ```
 
-You can also disable displaying a pagination link with `pagination_next: null` or `pagination_prev: null`.
+你也可以用 `pagination_next: null` 或者 `pagination_prev: null` 禁用分页链接。
 
-The pagination label by default is the sidebar label. You can use the front matter `pagination_label` to customize how this doc appears in the pagination.
+分页链接的标签默认为侧边栏标签。 你可以用 `pagination_label` 前言自定义这篇文档应该如何在分页链接中显示。
 
-## The `ref` item {/* #sidebar-item-ref */}
+## `ref` 项目 {/* #sidebar-item-ref */}
 
-The `ref` type is identical to the [`doc` type](./items.mdx#sidebar-item-doc) in every way, except that it doesn't participate in generating navigation metadata. It only registers itself as a link. When [generating pagination](#generating-pagination) and [displaying sidebar](#sidebar-association), `ref` items are completely ignored.
+`ref` 类型与 [`doc` 类型](./items.mdx#sidebar-item-doc)几乎一模一样，唯一的区别就是它不参与生成导航元数据。 它只会注册一个链接。 当[生成分页](#generating-pagination)并[显示侧边栏](#sidebar-association)时，`ref` 项目会被完全忽略。
 
-It is particularly useful where you wish to link to the same document from multiple sidebars. The document only belongs to one sidebar (the one where it's registered as `type: 'doc'` or from an autogenerated directory), but its link will appear in all sidebars that it's registered in.
+当你想要从若干个侧边栏链接到同一篇文档时，ref 会很有用。 文档只会属于一个侧边栏（那个它以 `type: 'doc'` 形式出现的侧边栏，或者包含在自动生成目录里），但它的链接会出现在所有包含了它的侧边栏里。
 
-Consider this example:
+考虑这个例子：
 
 ```js title="sidebars.js"
 export default {
@@ -137,7 +137,7 @@ export default {
 };
 ```
 
-You can think of the `ref` type as the equivalent to doing the following:
+你可以把 `ref` 类型看做是同时做了下面两件事：
 
-- Setting `displayed_sidebar: tutorialSidebar` for `commonDoc` (`ref` is ignored in sidebar association)
-- Setting `pagination_next: doc5` for `doc2` and setting `pagination_prev: doc2` for `doc5` (`ref` is ignored in pagination generation)
+- 为 `commonDoc` 设置了 `displayed_sidebar: tutorialSidebar`（因为 `ref` 会在侧边栏绑定时被忽略）
+- 为 `doc2` 设置了 `pagination_next: doc5`，同时为 `doc5` 设置了 `pagination_prev: doc2`（因为 `ref` 会在生成分页导航时被忽略）

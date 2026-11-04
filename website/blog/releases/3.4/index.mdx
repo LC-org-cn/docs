@@ -1,8 +1,8 @@
 ---
 title: Docusaurus 3.4
 authors: [slorber]
-tags: [release]
-image: ./img/social-card.png
+tags: [发布]
+image: '@site/blog/releases/3.4/img/social-card.png'
 date: 2024-05-31
 ---
 
@@ -10,11 +10,11 @@ We are happy to announce **Docusaurus 3.4**.
 
 Upgrading should be easy. Our [release process](/community/release-process) respects [Semantic Versioning](https://semver.org/). Minor versions do not include any breaking changes.
 
-![Docusaurus blog post social card](./img/social-card.png)
+![Docusaurus blog post social card](@site/blog/releases/3.4/img/social-card.png)
 
 {/* truncate */}
 
-## Highlights {/* #highlights */}
+## 精彩内容 {/* #highlights */}
 
 ### Tags files {/* #tags-files */}
 
@@ -52,7 +52,7 @@ Use the new `onInlineTags: 'throw'` plugin option to enforce the usage of predef
 
 :::
 
-### Hash Router - Experimental {/* #hash-router---experimental */}
+### Hash Router - 实验性功能 {/* #hash-router---experimental */}
 
 With [9859](https://github.com/facebook/docusaurus/pull/9859), we added a new **experimental** hash router config option, useful for **offline browsing** by opening your site locally through the `file://` protocol.
 
@@ -72,14 +72,14 @@ This mode is **not recommended for sites deployed through a web server**.
 
 When this mode is turned on, Docusaurus will opt out of static site rendering, and build a client-side single page application where all routes are prefixed with `/#/`. A single `index.html` file is generated. This file can be opened locally in your browser by simply clicking it, using the browser `file://` protocol. This makes it possible to distribute a Docusaurus site as a `.zip` file so that readers can browse it offline, without having to install anything complex on their computer apart a web browser.
 
-![Docusaurus hash router - local browsing using the file:// protocol](./img/hash.png)
+![Docusaurus hash router - local browsing using the file:// protocol](@site/blog/releases/3.4/img/hash.png)
 
 Try browsing our own Docusaurus site built with the hash router:
 
 - [Docusaurus website - Hash Router web deployment](https://facebook.github.io/docusaurus/#/)
 - [Docusaurus website - Hash Router downloadable GitHub artifacts](https://github.com/facebook/docusaurus/actions/workflows/build-hash-router.yml)
 
-:::warning Experimental
+:::warning 实验性功能
 
 This feature is **experimental**. If you try it out, please let us know how it works for you [here](https://github.com/facebook/docusaurus/issues/3825).
 
@@ -115,7 +115,7 @@ This feature is **experimental**. If you try it out, please let us know how it w
 
 :::
 
-## Other changes {/* #other-changes */}
+## 其他改变： {/* #other-changes */}
 
 Other notable changes include:
 

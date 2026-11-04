@@ -5,54 +5,54 @@ slug: /api/misc/create-docusaurus
 
 # 📦 create-docusaurus
 
-A scaffolding utility to help you instantly set up a functional Docusaurus app.
+一个帮助你即刻搭建 Docusaurus 网站的工具。
 
-## Usage {/* #usage */}
+## 用法 {/* #usage */}
 
 ```bash
-npx create-docusaurus@latest [name] [template] [rootDir]
+npx create-docusaurus@latest [名称] [模板] [根目录]
 ```
 
 The `name` argument will be used as the site's path as well as the `name` field in the created app's package.json. It can be an absolute path, or a path relative to `rootDir`.
 
 The `template` argument can be one of the following:
 
-- `classic`: Uses the classic template (recommended)
-- `facebook`: Uses the Facebook/Meta template, which contains some Meta-specific setup
+- `classic`：使用 classic 模板（推荐）
+- `facebook`：使用 Facebook/Meta 模板，包含了一些 Meta 专有的设置。
 - A git repo URL (beginning with `https://` or `git@`), which can be cloned to the destination
-- A local file path relative to CWD, which contains the files to be copied to destination
+- 一个相对于 CWD 的本地文件路径，该文件夹会被复制到目标路径
 
-The `rootDir` will be used to resolve the absolute path to the site directory. The default is CWD.
+The `rootDir` will be used to resolve the absolute path to the site directory. 默认为 CWD。
 
 :::warning
 
-This command should be preferably used in an interactive shell so all features are available.
+此命令最好在交互式 shell 中使用，确保所有功能都可以使用。
 
 :::
 
-## Options {/* #options */}
+## 选项 {/* #options */}
 
 ### `-t, --typescript` {/* #typescript */}
 
-Used when the template argument is a recognized name. Currently, only `classic` provides a TypeScript variant.
+当模板参数是可识别的名称（classic, facebook 等）时使用。 Currently, only `classic` provides a TypeScript variant.
 
 ### `-g, --git-strategy` {/* #git-strategy */}
 
-Used when the template argument is a git repo. It needs to be one of:
+当模板参数是 git 仓库时使用。 它必须是下列之一：
 
 - `deep`: preserves full git history
 - `shallow`: clones with `--depth=1`
 - `copy`: does a shallow clone, but does not create a git repo
-- `custom`: enter your custom git clone command. We will prompt you for it. You can write something like `git clone --depth 10`, and we will append the repository URL and destination directory.
+- `custom`: enter your custom git clone command. 我们会在命令行问询具体内容。 You can write something like `git clone --depth 10`, and we will append the repository URL and destination directory.
 
 ### `-p, --package-manager` {/* #package-manager */}
 
-Value should be one of `npm`, `yarn`, or `pnpm`. If it's not explicitly provided, Docusaurus will infer one based on:
+Value should be one of `npm`, `yarn`, or `pnpm`. 如果没有明确提供，Docusaurus 会基于以下条件推断一个：
 
-- The lockfile already present in the CWD (e.g. if you are setting up website in an existing project)
+- CWD 中已存在的 lock 文件（比如，如果你正在一个已有的项目中创建网站）
 - The command used to invoke `create-docusaurus` (e.g. `npm init`, `npx`, `yarn create`, etc.)
-- Interactive prompting, in case all heuristics are not present
+- 如果所有线索都不存在，可以通过交互式输入提供
 
 ### `-s, --skip-install` {/* #skip-install */}
 
-If provided, Docusaurus will not automatically install dependencies after creating the app. The `--package-manager` option is only useful when you are actually installing dependencies.
+如果提供了这一选项，Docusaurus 将不会在创建项目后自动安装依赖项。 The `--package-manager` option is only useful when you are actually installing dependencies.

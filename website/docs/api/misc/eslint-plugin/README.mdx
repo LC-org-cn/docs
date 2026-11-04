@@ -5,29 +5,29 @@ slug: /api/misc/@docusaurus/eslint-plugin
 
 # 📦 eslint-plugin
 
-[ESLint](https://eslint.org/) is a tool that statically analyzes your code and reports problems or suggests best practices through editor hints and command line. Docusaurus provides an ESLint plugin to enforce best Docusaurus practices.
+[ESLint](https://eslint.org/) is a tool that statically analyzes your code and reports problems or suggests best practices through editor hints and command line. Docusaurus 提供了一个 ESLint 插件来推广 Docusaurus 相关的最佳做法。
 
 This ESLint plugin supports ESLint `>= 8.57.0`, flat configs and legacy configs.
 
-## Installation {/* #installation */}
+## 安装流程 {/* #installation */}
 
 ```bash npm2yarn
 npm install --save-dev @docusaurus/eslint-plugin
 ```
 
-## Supported configs {/* #supported-configs */}
+## 支持的配置 {/* #supported-configs */}
 
 Both built-in configs exist in flat and legacy variants:
 
-- Recommended: recommended rule set for most Docusaurus sites that should be extended from.
-- All: **all** rules enabled. This will change between minor versions, so you should not use this if you want to avoid unexpected breaking changes.
+- Recommended： 推荐大多数 Docusaurus 站点使用的规则，建议继承。
+- All: **all** rules enabled. 这个配置的内容会在次要版本之间发生变化，所以如果你想避免不必要的破坏性变更，就不应使用这个配置。
 
 ## Supported rules {/* #supported-rules */}
 
-| Name | Description |  |
+| 参数 | 描述 |  |
 | --- | --- | --- |
-| [`@docusaurus/no-untranslated-text`](./no-untranslated-text.mdx) | Enforce text labels in JSX to be wrapped by translate calls |  |
-| [`@docusaurus/string-literal-i18n-messages`](./string-literal-i18n-messages.mdx) | Enforce translate APIs to be called on plain text labels | ✅ |
+| [`@docusaurus/no-untranslated-text`](./no-untranslated-text.mdx) | 确保 JSX 中的所有文本标签都被翻译 API 包裹。 |  |
+| [`@docusaurus/string-literal-i18n-messages`](./string-literal-i18n-messages.mdx) | 确保翻译 API 只用于纯文本标签。 | ✅ |
 | [`@docusaurus/no-html-links`](./no-html-links.mdx) | Ensures @docusaurus/Link is used instead of `<a>` tags | ✅ |
 | [`@docusaurus/prefer-docusaurus-heading`](./prefer-docusaurus-heading.mdx) | Ensures @theme/Heading is used instead of `<hn>` tags for headings | ✅ |
 
@@ -35,7 +35,7 @@ Both built-in configs exist in flat and legacy variants:
 
 ## Usage - Flat {/* #usage-flat */}
 
-### Recommended config {/* #recommended-config-flat */}
+### 推荐配置 {/* #recommended-config-flat */}
 
 Import `@docusaurus/eslint-plugin` and add `docusaurus.configs.flat.recommended` to your flat config array:
 
@@ -55,9 +55,9 @@ export default defineConfig(
 
 This will enable the `@docusaurus` eslint plugin and use the `recommended` config. See [Supported rules](#supported-rules) above for a list of rules that this will enable.
 
-### Manual config {/* #manual-config-flat */}
+### 手动配置 {/* #manual-config-flat */}
 
-For more fine-grained control, you can also enable the plugin manually and configure the rules you want to use directly:
+为了更精细地控制配置，你也可以手动启用插件并直接配置想使用的规则：
 
 ```js title="eslint.config.js"
 import {defineConfig} from 'eslint/config';
@@ -77,7 +77,7 @@ export default defineConfig({
 
 ## Usage - Legacy {/* #usage-legacy */}
 
-### Recommended config {/* #recommended-config-legacy */}
+### 推荐配置 {/* #recommended-config-legacy */}
 
 Add `plugin:@docusaurus/recommended` to the `extends` section of your `.eslintrc` configuration file:
 
@@ -87,11 +87,11 @@ Add `plugin:@docusaurus/recommended` to the `extends` section of your `.eslintrc
 }
 ```
 
-This will enable the `@docusaurus` eslint plugin and use the `recommended` config. See [Supported rules](#supported-rules) above for a list of rules that this will enable.
+This will enable the `@docusaurus` eslint plugin and use the `recommended` config. See [支持的规则](#supported-rules) above for a list of rules that this will enable.
 
-### Manual config {/* #manual-config-legacy */}
+### 手动配置 {/* #manual-config-legacy */}
 
-For more fine-grained control, you can also enable the plugin manually and configure the rules you want to use directly:
+为了更精细地控制配置，你也可以手动启用插件并直接配置想使用的规则：
 
 ```json title=".eslintrc"
 {

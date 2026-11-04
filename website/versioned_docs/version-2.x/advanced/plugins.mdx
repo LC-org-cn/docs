@@ -1,14 +1,14 @@
-# Plugins
+# 插件
 
-Plugins are the building blocks of features in a Docusaurus 2 site. Each plugin handles its own individual feature. Plugins may work and be distributed as part of a bundle via presets.
+插件是 Docusaurus 2 功能特性的基石。 每个插件都有其自己的独立功能。 插件可以通过预设被打包分发。
 
-## Creating plugins {/* #creating-plugins */}
+## 插件开发 {/* #creating-plugins */}
 
-A plugin is a function that takes two parameters: `context` and `options`. It returns a plugin instance object (or a promise). You can create plugins as functions or modules. For more information, refer to the [plugin method references section](../api/plugin-methods/README.mdx).
+A plugin is a function that takes two parameters: `context` and `options`. 它会返回一个插件实例对象（或者一个对象的 Promise）。 你所创建的插件可以是函数或者模块。 For more information, refer to the [plugin method references section](../api/plugin-methods/README.mdx).
 
-### Function definition {/* #function-definition */}
+### 函数定义 {/* #function-definition */}
 
-You can use a plugin as a function directly included in the Docusaurus config file:
+你可以在 Docusaurus 配置文件中直接以函数形式声明插件：
 
 ```js title="docusaurus.config.js"
 module.exports = {
@@ -33,9 +33,9 @@ module.exports = {
 };
 ```
 
-### Module definition {/* #module-definition */}
+### 模块定义 {/* #module-definition */}
 
-You can use a plugin as a module path referencing a separate file or npm package:
+你可以用一个模块路径声明插件，路径应指向一个文件或者一个 npm 包：
 
 ```js title="docusaurus.config.js"
 module.exports = {
@@ -71,26 +71,26 @@ module.exports = async function myPlugin(context, options) {
 
 You can view all plugins installed in your site using the [debug plugin's metadata panel](/__docusaurus/debug/metadata).
 
-Plugins come as several types:
+插件有几种类型：
 
 - `package`: an external package you installed
 - `project`: a plugin you created in your project, given to Docusaurus as a local file path
 - `local`: a plugin created using the function definition
-- `synthetic`: a "fake plugin" Docusaurus created internally, so we take advantage of our modular architecture and don't let the core do much special work. You won't see this in the metadata because it's an implementation detail.
+- `synthetic`: a "fake plugin" Docusaurus created internally, so we take advantage of our modular architecture and don't let the core do much special work. 你不会在元数据中看到这些插件，因为这是一个实现细节。
 
 You can access them on the client side with `useDocusaurusContext().siteMetadata.pluginVersions`.
 
-## Plugin design {/* #plugin-design */}
+## 插件设计 {/* #plugin-design */}
 
-Docusaurus' implementation of the plugins system provides us with a convenient way to hook into the website's lifecycle to modify what goes on during development/build, which involves (but is not limited to) extending the webpack config, modifying the data loaded, and creating new components to be used in a page.
+Docusaurus 所实现的插件系统可以让你轻松地在网站的各个生命周期环节更改开发/构建时的行为，包括但不限于扩展 Webpack 配置、修改所加载的数据，以及创建新组件供页面使用。
 
-### Theme design {/* #theme-design */}
+### 主题设计 {/* #theme-design */}
 
 When plugins have loaded their content, the data is made available to the client side through actions like [`createData` + `addRoute`](../api/plugin-methods/lifecycle-apis.mdx#addRoute) or [`setGlobalData`](../api/plugin-methods/lifecycle-apis.mdx#setGlobalData). This data has to be _serialized_ to plain strings, because [plugins and themes run in different environments](./architecture.mdx). Once the data arrives on the client side, the rest becomes familiar to React developers: data is passed along components, components are bundled with Webpack, and rendered to the window through `ReactDOM.render`...
 
-**Themes provide the set of UI components to render the content.** Most content plugins need to be paired with a theme in order to be actually useful. The UI is a separate layer from the data schema, which makes swapping designs easy.
+**Themes provide the set of UI components to render the content.** Most content plugins need to be paired with a theme in order to be actually useful. UI 是一个独立于数据的层级，这样使得调换界面设计变得简单。
 
-For example, a Docusaurus blog may consist of a blog plugin and a blog theme.
+举个例子，一个 Docusaurus 博客可能由一个博客插件和一个博客主题组成。
 
 :::note
 
@@ -118,12 +118,12 @@ module.exports = {
 
 Now, although the theme receives the same data from the plugin, how the theme chooses to _render_ the data as UI can be drastically different.
 
-While themes share the exact same lifecycle methods with plugins, themes' implementations can look very different from those of plugins based on themes' designed objectives.
+虽然主题与插件有完全相同的生命周期方法，但基于主题的设计目标，主题的实现可能与插件的实现大不相同。
 
-Themes are designed to complete the build of your Docusaurus site and supply the components used by your site, plugins, and the themes themselves. A theme still acts like a plugin and exposes some lifecycle methods, but most likely they would not use [`loadContent`](../api/plugin-methods/lifecycle-apis.mdx#loadContent), since they only receive data from plugins, but don't generate data themselves; themes are typically also accompanied by an `src/theme` directory full of components, which are made known to the core through the [`getThemePath`](../api/plugin-methods/extend-infrastructure.mdx#getThemePath) lifecycle.
+主题旨在完成你的 Docusaurus 网站的构建，并提供你的网站、插件和主题本身所使用的组件。 A theme still acts like a plugin and exposes some lifecycle methods, but most likely they would not use [`loadContent`](../api/plugin-methods/lifecycle-apis.mdx#loadContent), since they only receive data from plugins, but don't generate data themselves; themes are typically also accompanied by an `src/theme` directory full of components, which are made known to the core through the [`getThemePath`](../api/plugin-methods/extend-infrastructure.mdx#getThemePath) lifecycle.
 
-To summarize:
+总地来说：
 
-- Themes share the same lifecycle methods with Plugins
-- Themes are run after all existing Plugins
+- 主题与插件共享相同的生命周期方法
+- 主题在所有现有插件后运行
 - Themes add component aliases by providing `getThemePath`.

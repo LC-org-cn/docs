@@ -3,23 +3,23 @@ slug: /migration/manual
 toc_max_heading_level: 4
 ---
 
-# Manual migration
+# 手动迁移
 
 This manual migration process should be run after the [automated migration process](./migration-automated.mdx), to complete the missing parts, or debug issues in the migration CLI output.
 
-## Project setup {/* #project-setup */}
+## 项目设置 {/* #project-setup */}
 
 ### `package.json` {/* #packagejson */}
 
-#### Scoped package names {/* #scoped-package-names */}
+#### 包命名空间 {/* #scoped-package-names */}
 
-In Docusaurus 2, we use scoped package names:
+在 Docusaurus 2 中，我们的包名都是有命名空间的：
 
 - `docusaurus` → `@docusaurus/core`
 
-This provides a clear distinction between Docusaurus' official packages and community maintained packages. In another words, all Docusaurus' official packages are namespaced under `@docusaurus/`.
+这允许我们把 Docusaurus 官方包和社区维护的包明确区分开来。 In another words, all Docusaurus' official packages are namespaced under `@docusaurus/`.
 
-Meanwhile, the default doc site functionalities provided by Docusaurus 1 are now provided by `@docusaurus/preset-classic`. Therefore, we need to add this dependency as well:
+Meanwhile, the default doc site functionalities provided by Docusaurus 1 are now provided by `@docusaurus/preset-classic`. 所以我们也需要添加这个依赖项：
 
 ```diff title="package.json"
 {
@@ -37,7 +37,7 @@ Please use the most recent Docusaurus 2 version, which you can check out [here](
 
 :::
 
-#### CLI commands {/* #cli-commands */}
+#### CLI 命令 {/* #cli-commands */}
 
 Meanwhile, CLI commands are renamed to `docusaurus <command>` (instead of `docusaurus-command`).
 
@@ -99,17 +99,17 @@ If you are deploying to GitHub pages, make sure to run `yarn deploy` instead of 
 The `.gitignore` in your `website` should contain:
 
 ```bash title=".gitignore"
-# dependencies
+# 依赖项
 /node_modules
 
-# production
+# 构建
 /build
 
-# generated files
+# 生成文件
 .docusaurus
 .cache-loader
 
-# misc
+# 其他
 .DS_Store
 .env.local
 .env.development.local
@@ -123,15 +123,15 @@ yarn-error.log*
 
 ### `README` {/* #readme */}
 
-The D1 website may have an existing README file. You can modify it to reflect the D2 changes, or copy the default [Docusaurus v2 README](https://github.com/facebook/docusaurus/blob/main/packages/create-docusaurus/templates/shared/README.md).
+D1 网站可能已经有一个 README 文件了。 You can modify it to reflect the D2 changes, or copy the default [Docusaurus v2 README](https://github.com/facebook/docusaurus/blob/main/packages/create-docusaurus/templates/shared/README.md).
 
-## Site configurations {/* #site-configurations */}
+## 站点配置 {/* #site-configurations */}
 
 ### `docusaurus.config.js` {/* #docusaurusconfigjs */}
 
 Rename `siteConfig.js` to `docusaurus.config.js`.
 
-In Docusaurus 2, we split each functionality (blog, docs, pages) into plugins for modularity. Presets are bundles of plugins and for backward compatibility we built a `@docusaurus/preset-classic` preset which bundles most of the essential plugins present in Docusaurus 1.
+在 Docusaurus 2 中，我们把每个功能（博客、文档、页面）都模块化成了一个插件。 Presets are bundles of plugins and for backward compatibility we built a `@docusaurus/preset-classic` preset which bundles most of the essential plugins present in Docusaurus 1.
 
 Add the following preset configuration to your `docusaurus.config.js`.
 
@@ -161,15 +161,15 @@ If you are migrating your Docusaurus v1 website, and there are pending documenta
 
 Refer to migration guide below for each field in `siteConfig.js`.
 
-### Updated fields {/* #updated-fields */}
+### 已更新字段 {/* #updated-fields */}
 
 #### `baseUrl`, `tagline`, `title`, `url`, `favicon`, `organizationName`, `projectName`, `githubHost`, `scripts`, `stylesheets` {/* #baseurl-tagline-title-url-favicon-organizationname-projectname-githubhost-scripts-stylesheets */}
 
-No actions needed, these configuration fields were not modified.
+无需操作，这些配置字段没有变化。
 
 #### `colors` {/* #colors */}
 
-Deprecated. We wrote a custom CSS framework for Docusaurus 2 called [Infima](https://infima.dev/) which uses CSS variables for theming. The docs are not quite ready yet and we will update here when it is. To overwrite Infima's CSS variables, create your own CSS file (e.g. `./src/css/custom.css`) and import it globally by passing it as an option to `@docusaurus/preset-classic`:
+已废弃。 We wrote a custom CSS framework for Docusaurus 2 called [Infima](https://infima.dev/) which uses CSS variables for theming. 文档还没有完工，完成后我们会在这里更新链接。 To overwrite Infima's CSS variables, create your own CSS file (e.g. `./src/css/custom.css`) and import it globally by passing it as an option to `@docusaurus/preset-classic`:
 
 ```js {7-9} title="docusaurus.config.js"
 module.exports = {
@@ -187,7 +187,7 @@ module.exports = {
 };
 ```
 
-Infima uses 7 shades of each color.
+Infima 每种颜色都使用 7 种色度。
 
 ```css title="/src/css/custom.css"
 /**
@@ -215,7 +215,7 @@ import ColorGenerator from '@site/src/components/ColorGenerator';
 
 #### `footerIcon`, `copyright`, `ogImage`, `twitterImage`, `docsSideNavCollapsible` {/* #footericon-copyright-ogimage-twitterimage-docssidenavcollapsible */}
 
-Site meta info such as assets, SEO, copyright info are now handled by themes. To customize them, use the `themeConfig` field in your `docusaurus.config.js`:
+网站元信息，比如资源、SEO、版权信息等，现在由主题处理。 To customize them, use the `themeConfig` field in your `docusaurus.config.js`:
 
 ```js title="docusaurus.config.js"
 module.exports = {
@@ -242,14 +242,14 @@ In Docusaurus 1, header icon and header links were root fields in `siteConfig`:
 ```js title="siteConfig.js"
 headerIcon: 'img/docusaurus.svg',
 headerLinks: [
-  { doc: "doc1", label: "Getting Started" },
-  { page: "help", label: "Help" },
+  { doc: "doc1", label: "上手" },
+  { page: "help", label: "帮助" },
   { href: "https://github.com/", label: "GitHub" },
-  { blog: true, label: "Blog" },
+  { blog: true, label: "博客" },
 ],
 ```
 
-Now, these two fields are both handled by the theme:
+现在，这些字段都是由主题处理的：
 
 ```js {6-19} title="docusaurus.config.js"
 module.exports = {
@@ -297,13 +297,13 @@ module.exports = {
 
 Your Algolia DocSearch v1 config (found [here](https://github.com/algolia/docsearch-configs/blob/master/configs)) should be updated for Docusaurus v2 ([example](https://github.com/algolia/docsearch-configs/tree/master/configs/docusaurus-2.json)).
 
-You can contact the DocSearch team (@shortcuts, @s-pace) for support. They can update it for you and trigger a recrawl of your site to restore the search (otherwise you will have to wait up to 24h for the next scheduled crawl)
+你可以联系 DocSearch 团队 (@shortcuts, @s-pace) 获取支持。 他们可以帮你更新它，并触发你的网站的重新索引来恢复搜索（否则 24 小时后才能等到下次排定的索引）。
 
 :::
 
 #### `blogSidebarCount` {/* #blogsidebarcount */}
 
-Deprecated. Pass it as a blog option to `@docusaurus/preset-classic` instead:
+已废弃。 Pass it as a blog option to `@docusaurus/preset-classic` instead:
 
 ```js {8} title="docusaurus.config.js"
 module.exports = {
@@ -324,13 +324,13 @@ module.exports = {
 
 #### `cname` {/* #cname */}
 
-Deprecated. Create a `CNAME` file in your `static` folder instead with your custom domain. Files in the `static` folder will be copied into the root of the `build` folder during execution of the build command.
+已废弃。 Create a `CNAME` file in your `static` folder instead with your custom domain. Files in the `static` folder will be copied into the root of the `build` folder during execution of the build command.
 
 #### `customDocsPath`, `docsUrl`, `editUrl`, `enableUpdateBy`, `enableUpdateTime` {/* #customdocspath-docsurl-editurl-enableupdateby-enableupdatetime */}
 
 **BREAKING**: `editUrl` should point to (website) Docusaurus project instead of `docs` directory.
 
-Deprecated. Pass it as an option to `@docusaurus/preset-classic` docs instead:
+已废弃。 Pass it as an option to `@docusaurus/preset-classic` docs instead:
 
 ```js {8-20} title="docusaurus.config.js"
 module.exports = {
@@ -403,13 +403,13 @@ module.exports = {
 };
 ```
 
-### Removed fields {/* #removed-fields */}
+### 已移除字段 {/* #removed-fields */}
 
-The following fields are all deprecated, you may remove from your configuration file.
+以下字段都已废弃，你可以从配置文件中移除。
 
 - `blogSidebarTitle`
 - `cleanUrl` - Clean URL is used by default now.
-- `defaultVersionShown` - Versioning is not ported yet. You'd be unable to migration to Docusaurus 2 if you are using versioning. Stay tuned.
+- `defaultVersionShown` - Versioning is not ported yet. 如果你有文档分版，你还不能迁移到 Docusaurus 2。 敬请期待。
 - `disableHeaderTitle`
 - `disableTitleTagline`
 - `docsSideNavCollapsible` is available at `docsPluginOptions.sidebarCollapsible`, and this is turned on by default now.
@@ -418,8 +418,8 @@ The following fields are all deprecated, you may remove from your configuration 
 - `facebookPixelId`
 - `fonts`
 - `highlight` - We now use [Prism](https://prismjs.com/) instead of [highlight.js](https://highlightjs.org/).
-- `markdownOptions` - We use MDX in v2 instead of Remarkable. Your Markdown options have to be converted to Remark/Rehype plugins.
-- `markdownPlugins` - We use MDX in v2 instead of Remarkable. Your Markdown plugins have to be converted to Remark/Rehype plugins.
+- `markdownOptions` - We use MDX in v2 instead of Remarkable. 你的 Markdown 选项必须转换为 Remak/Rehype 插件。
+- `markdownPlugins` - We use MDX in v2 instead of Remarkable. 你的 Markdown 插件必须转换为 Remak/Rehype 插件。
 - `manifest`
 - `onPageNav` - This is turned on by default now.
 - `separateCss` - It can imported in the same manner as `custom.css` mentioned above.
@@ -433,13 +433,13 @@ The following fields are all deprecated, you may remove from your configuration 
 - `usePrism` - We now use [Prism](https://prismjs.com/) instead of [highlight.js](https://highlightjs.org/)
 - `wrapPagesHTML`
 
-We intend to implement many of the deprecated config fields as plugins in future. Help will be appreciated!
+我们打算在今后把许多废弃的配置字段作为插件实现。 如果你愿意帮忙，我们不胜感激！
 
-## Urls {/* #urls */}
+## 链接 {/* #urls */}
 
 In v1, all pages were available with or without the `.html` extension.
 
-For example, these 2 pages exist:
+例如，这两种页面都存在：
 
 - [`https://v1.docusaurus.io/docs/en/installation`](https://v1.docusaurus.io/docs/en/installation)
 - [`https://v1.docusaurus.io/docs/en/installation.html`](https://v1.docusaurus.io/docs/en/installation.html)
@@ -453,7 +453,7 @@ In v2, by default, the canonical page is `/installation`, and not `/installation
 
 If you had `cleanUrl: false` in v1, it's possible that people published links to `/installation.html`.
 
-For SEO reasons, and avoiding breaking links, you should configure server-side redirect rules on your hosting provider.
+出于 SEO 原因，并避免链接失效，你应该在你的托管服务提供商上配置服务器端重定向规则。
 
 As an escape hatch, you could use [@docusaurus/plugin-client-redirects](../api/plugins/plugin-client-redirects.mdx) to create client-side redirects from `/installation.html` to `/installation`.
 
@@ -472,13 +472,13 @@ module.exports = {
 
 If you want to keep the `.html` extension as the canonical URL of a page, docs can declare a `slug: installation.html` front matter.
 
-## Components {/* #components */}
+## 组件 {/* #components */}
 
-### Sidebar {/* #sidebar */}
+### 侧边栏 {/* #sidebar */}
 
-In previous version, nested sidebar category is not allowed and sidebar category can only contain doc ID. However, v2 allows infinite nested sidebar and we have many types of [Sidebar Item](../guides/docs/sidebar/items.mdx) other than document.
+在之前的版本中，不允许嵌套侧边栏类别，侧边栏类别只能包含文档 ID。 However, v2 allows infinite nested sidebar and we have many types of [Sidebar Item](../guides/docs/sidebar/items.mdx) other than document.
 
-You'll have to migrate your sidebar if it contains category type. Rename `subcategory` to `category` and `ids` to `items`.
+如果你的侧边栏包含类别类型，你将需要迁移你的侧边栏。 Rename `subcategory` to `category` and `ids` to `items`.
 
 ```diff title="sidebars.json"
 {
@@ -490,7 +490,7 @@ You'll have to migrate your sidebar if it contains category type. Rename `subcat
 },
 ```
 
-### Footer {/* #footer */}
+### 页脚 {/* #footer */}
 
 `website/core/Footer.js` is no longer needed. If you want to modify the default footer provided by Docusaurus, [swizzle](../swizzling.mdx) it:
 
@@ -500,7 +500,7 @@ npm run swizzle @docusaurus/theme-classic Footer
 
 This will copy the current `<Footer />` component used by the theme to a `src/theme/Footer` directory under the root of your site, you may then edit this component for customization.
 
-Do not swizzle the Footer just to add the logo on the left. The logo is intentionally removed in v2 and moved to the bottom. Just configure the footer in `docusaurus.config.js` with `themeConfig.footer`:
+不要仅仅为了在左侧添加 logo 而 swizzle 页脚组件。 在 v2 版本中，logo 被有意移除并移动到了底部。 Just configure the footer in `docusaurus.config.js` with `themeConfig.footer`:
 
 ```js
 module.exports = {
@@ -516,7 +516,7 @@ module.exports = {
 };
 ```
 
-### Pages {/* #pages */}
+### 页面 {/* #pages */}
 
 Please refer to [creating pages](guides/creating-pages.mdx) to learn how Docusaurus 2 pages work. After reading that, notice that you have to move `pages/en` files in v1 to `src/pages` instead.
 
@@ -569,13 +569,13 @@ The following code could be helpful for migration of various pages:
 - Index page - [Flux](https://github.com/facebook/flux/blob/master/website/src/pages/index.js/) (recommended), [Docusaurus 2](https://github.com/facebook/docusaurus/blob/main/website/src/pages/index.js/), [Hermes](https://github.com/facebook/hermes/blob/main/website/src/pages/index.js/)
 - Help/Support page - [Docusaurus 2](https://github.com/facebook/docusaurus/blob/main/website/src/pages/help.js/), [Flux](http://facebook.github.io/flux/support)
 
-## Content {/* #content */}
+## 内容 {/* #content */}
 
-### Replace AUTOGENERATED_TABLE_OF_CONTENTS {/* #replace-autogenerated_table_of_contents */}
+### 替换 AUTOGENERATED_TABLE_OF_CONTENTS {/* #replace-autogenerated_table_of_contents */}
 
 This feature is replaced by [inline table of content](../guides/markdown-features/markdown-features-toc.mdx#inline-table-of-contents)
 
-### Update Markdown syntax to be MDX-compatible {/* #update-markdown-syntax-to-be-mdx-compatible */}
+### 更新 Markdown 语法为 MDX 兼容语法 {/* #update-markdown-syntax-to-be-mdx-compatible */}
 
 In Docusaurus 2, the Markdown syntax has been changed to [MDX](https://mdxjs.com/). Hence there might be some broken syntax in the existing docs which you would have to update. A common example is self-closing tags like `<img>` and `<br>` which are valid in HTML would have to be explicitly closed now ( `<img/>` and `<br/>`). All tags in MDX documents have to be valid JSX.
 
@@ -583,23 +583,23 @@ Front matter is parsed by [gray-matter](https://github.com/jonschlinkert/gray-ma
 
 **Tips**: You might want to use some online tools like [HTML to JSX](https://transform.tools/html-to-jsx) to make the migration easier.
 
-### Language-specific code tabs {/* #language-specific-code-tabs */}
+### 多语言代码选项 {/* #language-specific-code-tabs */}
 
 Refer to the [multi-language support code blocks](../guides/markdown-features/markdown-features-code-blocks.mdx#multi-language-support-code-blocks) section.
 
-### Front matter {/* #front-matter */}
+### 前言 {/* #front-matter */}
 
 The Docusaurus front matter fields for the blog have been changed from camelCase to snake_case to be consistent with the docs.
 
 The fields `authorFBID` and `authorTwitter` have been deprecated. They are only used for generating the profile image of the author which can be done via the `authors` field.
 
-## Deployment {/* #deployment */}
+## 部署 {/* #deployment */}
 
 The `CNAME` file used by GitHub Pages is not generated anymore, so be sure you have created it in `/static/CNAME` if you use a custom domain.
 
 The blog RSS feed is now hosted at `/blog/rss.xml` instead of `/blog/feed.xml`. You may want to configure server-side redirects so that users' subscriptions keep working.
 
-## Test your site {/* #test-your-site */}
+## 测试网站 {/* #test-your-site */}
 
 After migration, your folder structure should look like this:
 

@@ -2,13 +2,13 @@
 sidebar_position: 3
 ---
 
-# I18n lifecycles
+# I18n 生命周期
 
-Plugins use these lifecycles to load i18n-related data.
+插件用这些生命周期来加载国际化 (i18n) 相关的数据。
 
 ## `getTranslationFiles({content})` {/* #getTranslationFiles */}
 
-Plugins declare the JSON translation files they want to use.
+插件需要声明它们想要使用的 JSON 翻译文件。
 
 Returns translation files `{path: string, content: ChromeI18nJSON}`:
 
@@ -17,7 +17,7 @@ Returns translation files `{path: string, content: ChromeI18nJSON}`:
 
 These files will be written by the [`write-translations` CLI](../../cli.mdx#docusaurus-write-translations-sitedir) to the plugin i18n subfolder, and will be read in the appropriate locale before calling [`translateContent()`](#translateContent) and [`translateThemeConfig()`](#translateThemeConfig)
 
-Example:
+示例：
 
 ```js title="my-plugin.js"
 export default function (context, options) {
@@ -45,13 +45,13 @@ export default function (context, options) {
 
 ## `translateContent({content,translationFiles})` {/* #translateContent */}
 
-Translate the plugin content, using the localized translation files.
+使用本地化完毕的翻译文件翻译插件内容。
 
-Returns the localized plugin content.
+返回本地化的插件内容。
 
 The `contentLoaded()` lifecycle will be called with the localized plugin content returned by `translateContent()`.
 
-Example:
+示例：
 
 ```js title="my-plugin.js"
 export default function (context, options) {
@@ -78,7 +78,7 @@ Translate the site `themeConfig` labels, using the localized translation files.
 
 Returns the localized `themeConfig`.
 
-Example:
+示例：
 
 ```js title="my-plugin.js"
 export default function (context, options) {
@@ -105,7 +105,7 @@ Themes using the `<Translate>` API can provide default code translation messages
 
 It should return messages in `Record<string, string>`, where keys are translation IDs and values are messages (without the description) localized using the site's current locale.
 
-Example:
+示例：
 
 ```js title="my-plugin.js"
 export default function (context, options) {

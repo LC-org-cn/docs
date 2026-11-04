@@ -7,7 +7,7 @@ slug: /api/plugins/@docusaurus/plugin-css-cascade-layers
 
 import APITable from '@site/src/components/APITable';
 
-:::warning Experimental
+:::warning 实验性功能
 
 This plugin is mostly designed to be used internally by the classic preset, although it can also be used as a standalone plugin. Please [let us know here](https://github.com/facebook/docusaurus/pull/11142) if you have a use case for it and help us design an API that makes sense for the future of Docusaurus.
 
@@ -26,7 +26,7 @@ To use this plugin properly, it's recommended to have a solid understanding of [
 
 :::
 
-## Installation {/* #installation */}
+## 安装流程 {/* #installation */}
 
 ```bash npm2yarn
 npm install --save @docusaurus/plugin-css-cascade-layers
@@ -38,15 +38,15 @@ If you use the preset `@docusaurus/preset-classic`, you don't need to install it
 
 :::
 
-## Configuration {/* #configuration */}
+## 配置 {/* #configuration */}
 
-Accepted fields:
+接受的字段：
 
 ```mdx-code-block
 <APITable>
 ```
 
-| Name | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- |
 | `layers` | `Layers` | **Built-in layers** | An object representing all the CSS cascade layers you want to use, and whether the layer should be applied to a given file path. See examples and types below. |
 
@@ -54,7 +54,7 @@ Accepted fields:
 </APITable>
 ```
 
-### Types {/* #types */}
+### 类型 {/* #types */}
 
 #### `Layers` {/* #EditUrlFunction */}
 
@@ -79,13 +79,13 @@ The object order matters:
 
 :::
 
-### Example configuration {/* #ex-config */}
+### 示例配置 {/* #ex-config */}
 
-You can configure this plugin through preset options or plugin options.
+你可以通过预设选项或插件选项来配置这个插件。
 
 :::tip
 
-Most Docusaurus users configure this plugin through the preset options.
+大多数 Docusaurus 用户通过预设选项配置此插件。
 
 :::
 

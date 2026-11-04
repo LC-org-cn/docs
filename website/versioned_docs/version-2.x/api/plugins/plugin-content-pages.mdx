@@ -7,9 +7,9 @@ slug: /api/plugins/@docusaurus/plugin-content-pages
 
 import APITable from '@site/src/components/APITable';
 
-The default pages plugin for Docusaurus. The classic template ships with this plugin with default configurations. This plugin provides [creating pages](guides/creating-pages.mdx) functionality.
+Docusaurus 的默认页面插件。 经典模板自带此插件并做了默认配置。 此插件提供了[创建页面](guides/creating-pages.mdx)功能。
 
-## Installation {/* #installation */}
+## 安装流程 {/* #installation */}
 
 ```bash npm2yarn
 npm install --save @docusaurus/plugin-content-pages
@@ -23,37 +23,37 @@ You can configure this plugin through the [preset options](../../using-plugins.m
 
 :::
 
-## Configuration {/* #configuration */}
+## 配置 {/* #configuration */}
 
-Accepted fields:
+接受的字段：
 
 ```mdx-code-block
 <APITable>
 ```
 
-| Name | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- |
-| `path` | `string` | `'src/pages'` | Path to data on filesystem relative to site dir. Components in this directory will be automatically converted to pages. |
-| `routeBasePath` | `string` | `'/'` | URL route for the pages section of your site. **DO NOT** include a trailing slash. |
-| `include` | `string[]` | `['**/*.{js,jsx,ts,tsx,md,mdx}']` | Matching files will be included and processed. |
-| `exclude` | `string[]` | _See example configuration_ | No route will be created for matching files. |
-| `mdxPageComponent` | `string` | `'@theme/MDXPage'` | Component used by each MDX page. |
-| `remarkPlugins` | `[]` | `any[]` | Remark plugins passed to MDX. |
-| `rehypePlugins` | `[]` | `any[]` | Rehype plugins passed to MDX. |
-| `beforeDefaultRemarkPlugins` | `any[]` | `[]` | Custom Remark plugins passed to MDX before the default Docusaurus Remark plugins. |
-| `beforeDefaultRehypePlugins` | `any[]` | `[]` | Custom Rehype plugins passed to MDX before the default Docusaurus Rehype plugins. |
+| `path` | `string` | `'src/pages'` | 数据的文件系统路径，相对于站点目录。 这个目录中的组件会被自动转换为页面。 |
+| `routeBasePath` | `string` | `'/'` | 站点页面部分的 URL 前缀。 **DO NOT** include a trailing slash. |
+| `include` | `string[]` | `['**/*.{js,jsx,ts,tsx,md,mdx}']` | 匹配到的文件会被包含并处理。 |
+| `exclude` | `string[]` | _See example configuration_ | 匹配到的文件不会有对应路径创建。 |
+| `mdxPageComponent` | `string` | `'@theme/MDXPage'` | 每个 MDX 页面使用的组件。 |
+| `remarkPlugins` | `[]` | `any[]` | 传递给 MDX 的 Remark 插件。 |
+| `rehypePlugins` | `[]` | `any[]` | 传递给 MDX 的 Rehype 插件。 |
+| `beforeDefaultRemarkPlugins` | `any[]` | `[]` | 在 Docusaurus 默认 Remark 插件之前传递给 MDX 的自定义 Remark 插件。 |
+| `beforeDefaultRehypePlugins` | `any[]` | `[]` | 在 Docusaurus 默认 Rehype 插件之前传递给 MDX 的自定义 Rehype 插件。 |
 
 ```mdx-code-block
 </APITable>
 ```
 
-### Example configuration {/* #ex-config */}
+### 示例配置 {/* #ex-config */}
 
-You can configure this plugin through preset options or plugin options.
+你可以通过预设选项或插件选项来配置这个插件。
 
 :::tip
 
-Most Docusaurus users configure this plugin through the preset options.
+大多数 Docusaurus 用户通过预设选项配置此插件。
 
 :::
 
@@ -83,19 +83,19 @@ const config = {
 
 Read the [i18n introduction](../../i18n/i18n-introduction.mdx) first.
 
-### Translation files location {/* #translation-files-location */}
+### 翻译文件位置 {/* #translation-files-location */}
 
-- **Base path**: `website/i18n/[locale]/docusaurus-plugin-content-pages`
-- **Multi-instance path**: `website/i18n/[locale]/docusaurus-plugin-content-pages-[pluginId]`
+- **基础路径**: `website/i18n/[locale]/docusaurus-plugin-content-pages`
+- **多实例路径**: `website/i18n/[locale]/docusaurus-plugin-content-pages-[pluginId]`
 - **JSON files**: extracted with [`docusaurus write-translations`](../../cli.mdx#docusaurus-write-translations-sitedir)
-- **Markdown files**: `website/i18n/[locale]/docusaurus-plugin-content-pages`
+- **Markdown 文件**: `website/i18n/[locale]/docusaurus-plugin-content-pages`
 
-### Example file-system structure {/* #example-file-system-structure */}
+### 文件系统结构示例 {/* #example-file-system-structure */}
 
 ```bash
-website/i18n/[locale]/docusaurus-plugin-content-pages
+website/i18n/[语言]/docusaurus-plugin-content-pages
 │
-│ # translations for website/src/pages
+│ # website/src/pages 的翻译
 ├── first-markdown-page.md
 └── second-markdown-page.md
 ```

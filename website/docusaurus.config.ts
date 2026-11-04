@@ -694,7 +694,7 @@ export default async function createConfigAsync() {
             type: 'doc',
             position: 'left',
             docId: 'introduction',
-            label: 'Docs',
+            label: '文档',
           },
           {
             type: 'docSidebar',
@@ -702,11 +702,11 @@ export default async function createConfigAsync() {
             sidebarId: 'api',
             label: 'API',
           },
-          {to: 'blog', label: 'Blog', position: 'left'},
-          {to: 'showcase', label: 'Showcase', position: 'left'},
+          {to: 'blog', label: '博客', position: 'left'},
+          {to: 'showcase', label: '案例展示', position: 'left'},
           {
             to: '/community/support',
-            label: 'Community',
+            label: '社区',
             position: 'left',
             activeBaseRegex: `/community/`,
           },
@@ -714,10 +714,10 @@ export default async function createConfigAsync() {
           {
             type: 'doc',
             docId: 'index',
-            label: 'Tests',
+            label: '测试',
             docsPluginId: 'docs-tests',
           },
-          isDev && {to: '/__docusaurus/debug', label: 'Debug'},
+          isDev && {to: '/__docusaurus/debug', label: '调试'},
           // Custom item for dogfooding: only displayed in /tests/ routes
           {
             type: 'custom-dogfood-navbar-item',
@@ -791,15 +791,15 @@ export default async function createConfigAsync() {
             title: 'Learn',
             items: [
               {
-                label: 'Introduction',
+                label: '介绍',
                 to: 'docs',
               },
               {
-                label: 'Installation',
+                label: '安装',
                 to: 'docs/installation',
               },
               {
-                label: 'Upgrading',
+                label: '升级',
                 to: 'docs/migration',
               },
             ],
@@ -812,7 +812,7 @@ export default async function createConfigAsync() {
                 href: 'https://stackoverflow.com/questions/tagged/docusaurus',
               },
               {
-                label: 'Feature Requests',
+                label: '功能建议',
                 to: '/feature-requests',
               },
               {
@@ -820,7 +820,7 @@ export default async function createConfigAsync() {
                 href: 'https://discordapp.com/invite/docusaurus',
               },
               {
-                label: 'Help',
+                label: '帮助',
                 to: '/community/support',
               },
             ],
@@ -829,11 +829,11 @@ export default async function createConfigAsync() {
             title: 'More',
             items: [
               {
-                label: 'Blog',
+                label: '博客',
                 to: 'blog',
               },
               {
-                label: 'Changelog',
+                label: '更新日志',
                 to: '/changelog',
               },
               {

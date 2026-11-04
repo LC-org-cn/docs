@@ -1,21 +1,21 @@
-# Plugin Method References
+# 插件方法总览
 
 :::warning
 
-This section is a work in progress. Anchor links or even URLs are not guaranteed to be stable.
+此章节尚未完成。 锚点链接，甚至是 URL，都不保证稳定。
 
 :::
 
-Plugin APIs are shared by themes and plugins—themes are loaded just like plugins.
+插件 API 由主题和插件共享——主题的加载与插件是一样的。
 
-## Plugin module {/* #plugin-module */}
+## 插件模块 {/* #plugin-module */}
 
-Every plugin is imported as a module. The module is expected to have the following members:
+每个插件都被作为模块导入。 模块应该有以下成员：
 
 - A **default export**: the constructor function for the plugin.
 - **Named exports**: the [static methods](./static-methods.mdx) called before plugins are initialized, and the [`getSwizzleConfig()`](./extend-infrastructure.mdx#getSwizzleConfig) static method for themes.
 
-## Plugin constructor {/* #plugin-constructor */}
+## 插件构造函数 {/* #plugin-constructor */}
 
 The plugin module's default export is a constructor function with the signature `(context: LoadContext, options: PluginOptions) => Plugin | Promise<Plugin>`.
 
@@ -37,11 +37,11 @@ type LoadContext = {
 
 `options` are the [second optional parameter when the plugins are used](../../using-plugins.mdx#configuring-plugins). `options` are plugin-specific and are specified by users when they use them in `docusaurus.config.js`. If there's a [`validateOptions`](./static-methods.mdx#validateOptions) function exported, the `options` will be validated and normalized beforehand.
 
-Alternatively, if a preset contains the plugin, the preset will then be in charge of passing the correct options into the plugin. It is up to the individual plugin to define what options it takes.
+另外，如果插件是被预设包含的，那么预设就会负责为插件提供正确配置选项。 插件本身会决定需要哪些设置。
 
-## Example {/* #example */}
+## 示例 {/* #example */}
 
-Here's a mental model for a presumptuous plugin implementation.
+这是一个假想的插件实现。
 
 ```js
 // A JavaScript function that returns an object.

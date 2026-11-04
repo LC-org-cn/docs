@@ -1,23 +1,23 @@
 ---
 slug: /migration/v3
-sidebar_label: To Docusaurus v3
+sidebar_label: 到 Docusaurus v3
 ---
 
-# Upgrading to Docusaurus v3
+# 升级到 Docusaurus v3
 
-This documentation will help you upgrade your site from Docusaurus v2 to Docusaurus v3.
+此文档将会帮助你将站点从 Docusaurus v2 升级到 Docusaurus v3。
 
-Docusaurus v3 is a new **major version**, including **breaking changes** requiring you to adjust your site accordingly. We will guide to during this process, and also mention a few optional recommendations.
+Docusaurus v3 是一个新的**主要版本**，包含**破坏性更改**，需要你相应地调整你的站点。 我们将在这一过程中提供指导，并提供一些可选项建议。
 
 This is not a full rewrite, and the breaking changes are relatively easy to handle. The simplest sites will eventually upgrade by simply updating their npm dependencies.
 
-The main breaking change is the upgrade from MDX v1 to MDX v3. Read the [**MDX v2**](https://mdxjs.com/blog/v2/) and [**MDX v3**](https://mdxjs.com/blog/v3/) release notes for details. MDX will now compile your Markdown content **more strictly** and with **subtle differences**.
+主要的突破变化是从 MDX v1 升级到 MDX v3 。 请阅读 [**MDX v2**](https://mdxjs.com/blog/v2/) 和 [**MDX v3**](https://mdxjs.com/blog/v3/) 的版本说明获取更详细的信息。 MDX will now compile your Markdown content **more strictly** and with **subtle differences**.
 
-:::tip Before upgrading
+:::tip 升级前
 
-Before upgrading, we recommend [**preparing your site for Docusaurus v3**](/blog/preparing-your-site-for-docusaurus-v3). There are changes that you can already **handle incrementally, under Docusaurus v2**. Doing so will help reduce the work needed to finally upgrade to Docusaurus v3.
+在升级以前，我们建议[**为站点升级到 Docusaurus v3 做好准备**](/blog/preparing-your-site-for-docusaurus-v3)。 There are changes that you can already **handle incrementally, under Docusaurus v2**. 这样做将有助于减少最终升级到 Docusaurus v3 所需的工作。
 
-For complex sites, we also recommend to set up [**visual regression tests**](/blog/upgrading-frontend-dependencies-with-confidence-using-visual-regression-testing), a good way to ensure your site stays visually identical. Docusaurus v3 mainly upgrades dependencies, and is not expected to produce any visual changes.
+For complex sites, we also recommend to set up [**visual regression tests**](/blog/upgrading-frontend-dependencies-with-confidence-using-visual-regression-testing), a good way to ensure your site stays visually identical. Docusaurus v3 主要是升级依赖关系，预期中不会产生任何视觉变化。
 
 :::
 
@@ -27,11 +27,11 @@ Check the release notes for [**Docusaurus v3.0.0**](https://github.com/facebook/
 
 :::
 
-## Upgrading Dependencies {/* #upgrading-dependencies */}
+## 升级依赖关系 {/* #upgrading-dependencies */}
 
-Upgrading to Docusaurus v3 requires upgrading core Docusaurus dependencies (`@docusaurus/name`), but also other related packages.
+升级到 Docusaurus v3 需要升级核心的 Docusaurus 依赖关系(`@docusaurus/name`)，但也需要其他相关的软件包。
 
-Docusaurus v3 now uses the following dependencies:
+Docusaurus v3 现在使用以下依赖：
 
 - Node.js v18.0+
 - React v18.0+
@@ -42,11 +42,11 @@ Docusaurus v3 now uses the following dependencies:
 - remark-emoji v4.0+
 - mermaid v10.4+
 
-:::warning Upgrading community plugins
+:::warning 升级社区插件
 
-If your site uses third-party community plugins and themes, you might need to upgrade them.
+如果您的网站使用第三方社区插件和主题，您可能需要升级它们。
 
-Make sure those plugins are compatible with Docusaurus v3 before attempting an upgrade.
+在尝试升级之前，请确保这些插件与 Docusaurus v3 兼容。
 
 :::
 
@@ -123,7 +123,7 @@ This command is also a good way to estimate the amount of work to be done to mak
 
 Other documents might also **render differently**.
 
-:::tip Use visual regression tests
+:::tip 使用视觉回归测试
 
 For large sites where a manual review of all pages is complicated, we recommend you to setup [visual regression tests](https://docusaurus.io/blog/upgrading-frontend-dependencies-with-confidence-using-visual-regression-testing).
 
@@ -137,8 +137,8 @@ Make sure to also read our updated [**MDX and React**](../guides/markdown-featur
 
 The MDX playground is your new best friend. It permits to understand how your content is **compiled to React components**, and troubleshoot compilation or rendering issues in isolation.
 
-- [MDX playground - current version](https://mdxjs.com/playground/)
-- [MDX playground - v1](https://mdx-git-renovate-babel-monorepo-mdx.vercel.app/playground/)
+- [MDX 游乐场 - 当前版本](https://mdxjs.com/playground/)
+- [MDX 游乐场 - v1](https://mdx-git-renovate-babel-monorepo-mdx.vercel.app/playground/)
 
 <details>
   <summary>Configuring the MDX playground options for Docusaurus</summary>
@@ -207,7 +207,7 @@ The object shape looks like {username: string, age: number}
 
 :::
 
-:::tip How to upgrade
+:::tip 如何升级
 
 Available options to fix this error:
 
@@ -239,7 +239,7 @@ Follow the template "Road to <YOUR_MINOR_VERSION>"
 
 :::
 
-:::tip How to upgrade
+:::tip 如何升级
 
 Available options to fix this error:
 
@@ -267,7 +267,7 @@ Docusaurus supports [GitHub Flavored Markdown (GFM)](https://github.github.com/g
 
 :::
 
-:::tip How to upgrade
+:::tip 如何升级
 
 Use regular Markdown links, or remove the `<` and `>`. MDX and GFM are able to autolink literals already.
 
@@ -282,12 +282,12 @@ http://localhost:3000
 
 :::
 
-#### Lower-case MDXComponent mapping {/* #lower-case-mdxcomponent-mapping */}
+#### 小写 MDXComponent 映射 {/* #lower-case-mdxcomponent-mapping */}
 
 For users providing a [custom `MDXComponent`mapping](../guides/markdown-features/markdown-features-react.mdx#mdx-component-scope), components are now "sandboxed":
 
-- a `MDXComponent` mapping for `h1` only gets used for `# hi` but not for `<h1>hi</h1>`
-- a **lower-cased** custom element name will not be substituted by its respective `MDXComponent` component anymore
+- `h1` 的映射 `MDXComponent` 仅用于`# hi` ，而不是用于`<h1>hi</h1>`
+- **小写** 自定义元素名称将不再被相应的 `MDXComponent` 组件所替代。
 
 :::danger visual difference
 
@@ -295,7 +295,7 @@ Your [`MDXComponent` component mapping](../guides/markdown-features/markdown-fea
 
 :::
 
-:::tip How to upgrade
+:::tip 如何升级
 
 For native Markdown elements, you can keep using **lower-case**: `p`, `h1`, `img`, `a`...
 
@@ -343,7 +343,7 @@ See how this content is rendered differently by MDX v1 and v3.
 
 :::
 
-:::tip How to upgrade
+:::tip 如何升级
 
 If you don't want an extra `<p>` tag, refactor content on a case by case basis to use a single-line JSX tag.
 
@@ -405,7 +405,7 @@ conf is great
 
 :::
 
-:::tip How to upgrade
+:::tip 如何升级
 
 - Use the HTML code: `&#58;`
 - Add a space after `:` (if it makes sense): `: text`
@@ -427,7 +427,7 @@ The upgrade does not generally produce new MDX compilation errors, but can lead 
 
 :::
 
-:::tip How to upgrade
+:::tip 如何升级
 
 Use the regular code block syntax instead of indentation:
 
@@ -474,7 +474,7 @@ On the contrary, if `*` or `**` matches either of the following conditions, it w
 
 “A punctuation character” includes non-ASCII ones, brackets, quotation marks and some symbols including `%` and `@`. More strictly speaking, a character whose 2-letters Unicode category starts with `P` is treated as a punctuation character here.
 
-:::tip How to upgrade
+:::tip 如何升级
 
 If the offending emphasis mark is next to a space, move the space out of the range of emphasis:
 
@@ -518,7 +518,7 @@ All the official packages (Unified, Remark, Rehype...) in the MDX ecosystem are 
 
 In practice this means that you can't do `require("remark-plugin")` anymore.
 
-:::tip How to upgrade
+:::tip 如何升级
 
 Docusaurus v3 now supports [**ES Modules**](https://flaviocopes.com/es-modules/) configuration files. We recommend that you migrate your config file to ES module, that enables you to import the Remark plugins easily:
 
@@ -565,7 +565,7 @@ If you get tired of too many `{/* prettier-ignore */}` insertions, you can consi
 *.mdx
 ```
 
-## Other Breaking Changes {/* #other-breaking-changes */}
+## 其他破坏性变更 {/* #other-breaking-changes */}
 
 Apart the MDX v3 upgrade, here is an exhaustive list of breaking changes coming with Docusaurus v3.
 
@@ -573,7 +573,7 @@ Apart the MDX v3 upgrade, here is an exhaustive list of breaking changes coming 
 
 Node.js 16 [reached End-of-Life](https://nodejs.org/en/blog/announcements/nodejs16-eol), and Docusaurus v3 now requires **Node.js >= 18.0**.
 
-:::tip How to upgrade
+:::tip 如何升级
 
 Install Node.js 18.0+ on your computer.
 
@@ -598,9 +598,9 @@ Upgrade your Docusaurus v2 site to Node.js 18 before upgrading to Docusaurus v3.
 
 Docusaurus v3 now requires **React >= 18.0**.
 
-React 18 comes with its own breaking changes that should be relatively easy to handle, depending on the amount of custom React code you created for your site. The official themes and plugins are compatible with React 18.
+React 18 comes with its own breaking changes that should be relatively easy to handle, depending on the amount of custom React code you created for your site. 官方主题和插件与 React 18 兼容。
 
-:::info How to upgrade
+:::info 如何升级
 
 Read the official [React v18.0](https://react.dev/blog/2022/03/29/react-v18) and [How to Upgrade to React 18](https://react.dev/blog/2022/03/08/react-18-upgrade-guide), and look at your own React code to figure out which components might be affected this upgrade.
 
@@ -627,7 +627,7 @@ Their Docusaurus support is considered as experimental. We might have to adjust 
 
 Docusaurus v3 upgrades [`prism-react-renderer`](https://github.com/FormidableLabs/prism-react-renderer) to v2.0+. This library is used for code block syntax highlighting.
 
-:::info How to upgrade
+:::info 如何升级
 
 This is a new major library version containing breaking changes, and we can't guarantee a strict retro-compatibility. The [`prism-react-renderer` v2 release notes](https://github.com/FormidableLabs/prism-react-renderer/releases/tag/prism-react-renderer%402.0.0) are not super exhaustive, but there are 3 major changes to be aware of for Docusaurus users.
 
@@ -670,19 +670,19 @@ const siteConfig = {
 
 For users of the `@docusaurus/theme-live-codeblock` package, Docusaurus v3 upgrades [`react-live`](https://github.com/FormidableLabs/react-live) to v4.0+.
 
-:::info How to upgrade
+:::info 如何升级
 
-In theory, you have nothing to do, and your existing interactive code blocks should keep working as before.
+理论上，您不需要做些什么，您现有的交互代码块应该像以前一样继续工作。
 
-However, this is a new major library version containing breaking changes, and we can't guarantee a strict retro-compatibility. Read the [v3](https://github.com/FormidableLabs/react-live/releases/tag/v3.0.0) and [v4](https://github.com/FormidableLabs/react-live/releases/tag/v4.0.0) changelogs in case of problems.
+However, this is a new major library version containing breaking changes, and we can't guarantee a strict retro-compatibility. 如果遇到问题，请阅读 [v3](https://github.com/FormidableLabs/react-live/releases/tag/v3.0.0) 和 [v4](https://github.com/FormidableLabs/react-live/releases/tag/v4.0.0) 变更日志。
 
 :::
 
 ### remark-emoji v4.0+ {/* #remark-emoji-v40 */}
 
-Docusaurus v3 upgrades [`remark-emoji`](https://github.com/rhysd/remark-emoji) to v4.0+. This library is to support `:emoji:` shortcuts in Markdown.
+Docusaurus v3 将 [`remark-emoji`](https://github.com/rhysd/remark-emoji) 升级到 v4.0+ 。 这一库支持在 Markdown 使用 `:emoji:` 的快捷方式。
 
-:::info How to upgrade
+:::info 如何升级
 
 Most Docusaurus users have nothing to do. Users of emoji shortcodes should read the [changelog](https://github.com/rhysd/remark-emoji/blob/master/CHANGELOG.md) and double-check their emojis keep rendering as expected.
 
@@ -694,7 +694,7 @@ Most Docusaurus users have nothing to do. Users of emoji shortcodes should read 
 
 For users of the `@docusaurus/theme-mermaid` package, Docusaurus v3 upgrades [`mermaid`](https://github.com/mermaid-js/mermaid) to v10.4+.
 
-:::info How to upgrade
+:::info 如何升级
 
 In theory, you have nothing to do, and your existing diagrams should keep working as before.
 
@@ -704,11 +704,11 @@ However, this is a new major library version containing breaking changes, and we
 
 ### TypeScript v5.1+ {/* #typescript-v51 */}
 
-Docusaurus v3 now requires **TypeScript >= 5.1**.
+Docusaurus v3 现在需要 **TypeScript >= 5.1** 。
 
-:::info How to upgrade
+:::info 如何升级
 
-Upgrade your dependencies to use TypeScript 5+
+升级您的依赖关系以使用 TypeScript 5+
 
 ```diff title="package.json"
  {
@@ -727,7 +727,7 @@ The official Docusaurus TypeScript config has been re-internalized from the exte
 
 This new package is versioned alongside all the other Docusaurus core packages, and will be used to ensure TypeScript retro-compatibility and breaking changes on major version upgrades.
 
-:::info How to upgrade
+:::info 如何升级
 
 Swap the external TypeScript config package for the new official one
 
@@ -754,11 +754,11 @@ Use it in your `tsconfig.json` file:
 
 :::
 
-### New Config Loader {/* #new-config-loader */}
+### 新的配置加载器 {/* #new-config-loader */}
 
 Docusaurus v3 changes its internal config loading library from [`import-fresh`](https://github.com/sindresorhus/import-fresh) to [`jiti`](https://github.com/unjs/jiti). It is responsible for loading files such as `docusaurus.config.js` or `sidebars.js`, and Docusaurus plugins.
 
-:::info How to upgrade
+:::info 如何升级
 
 In theory, you have nothing to do, and your existing config files should keep working as before.
 
@@ -784,7 +784,7 @@ This is a Docusaurus v3 `:::warning` admonition.
 
 :::
 
-:::info How to upgrade
+:::info 如何升级
 
 If you previously used the undocumented `:::warning` admonition, make sure to verify for each usage if yellow is now an appropriate color. If you want to keep the red color, use `:::danger` instead.
 
@@ -809,7 +809,7 @@ When creating version `v1.0.0`, the sidebar file contained a prefix `version-v1.
 }
 ```
 
-:::info How to upgrade
+:::info 如何升级
 
 Remove the useless versioned prefix from your versioned sidebars.
 
@@ -825,7 +825,7 @@ Remove the useless versioned prefix from your versioned sidebars.
 
 The `@docusaurus/plugin-content-blog` now limits the RSS feed to the last 20 entries by default. For large Docusaurus blogs, this is a more sensible default value to avoid an increasingly large RSS file.
 
-:::info How to upgrade
+:::info 如何升级
 
 In case you don't like this new default behavior, you can revert to the former "unlimited feed" behavior with the new `limit: false` feed option:
 
@@ -846,7 +846,7 @@ For users that swizzled docs-related theme components (like `@theme/DocPage`), t
 
 Technically, **this is not a breaking change** because these components are **flagged as unsafe to swizzle**, however many Docusaurus sites ejected docs-related components, and will be interested to know their customizations might break Docusaurus.
 
-:::info How to upgrade
+:::info 如何升级
 
 Delete all your swizzled components, re-swizzle them, and re-apply your customizations on top of the newly updated components.
 
@@ -880,7 +880,7 @@ Docusaurus v3 supports ESM and TypeScript config files, and it might be a good i
 export default {
   title: 'Docusaurus',
   url: 'https://docusaurus.io',
-  // your site config ...
+  // 你的站点配置……
 };
 ```
 
@@ -995,7 +995,7 @@ This syntax is now invalid MDX, and would require to escape the `{` character: `
 
 We recommend to keep this compatibility option on for now, until we provide a new syntax compatible with newer versions of MDX.
 
-## Troubleshooting {/* #troubleshooting */}
+## 疑难解答 {/* #troubleshooting */}
 
 In case of any upgrade problem, the first things to try are:
 
@@ -1009,11 +1009,11 @@ Once you have tried that, you can ask for support through the following support 
 
 - [Docusaurus v3 - Upgrade Support](https://github.com/facebook/docusaurus/discussions/9336)
 - [Docusaurus v3 - Discord channel #migration-v2-to-v3](https://discord.com/channels/398180168688074762/1154771869094912090)
-- [MDX v3 - Upgrade Support](https://github.com/facebook/docusaurus/discussions/9053)
-- [MDX v3 - Remark/Rehype Plugins Support](https://github.com/facebook/docusaurus/discussions/9337)
-- [MDX v3 - Discord channel #migration-mdx-v3](https://discord.com/channels/398180168688074762/1116724556976111616)
+- [MDX v3 - 升级支持](https://github.com/facebook/docusaurus/discussions/9053)
+- [MDX v3 - Remark/Rehype 插件支持](https://github.com/facebook/docusaurus/discussions/9337)
+- [MDX v3 - Discord 频道 #migration-mdx-v3](https://discord.com/channels/398180168688074762/1116724556976111616)
 
-Please consider **our time is precious**. To ensure that your support request is not ignored, we kindly ask you to:
+Please consider **our time is precious**. 为了确保您的支持请求不被忽视，我们敬请您：
 
 - provide a **minimal** reproduction that we can easily run, ideally created with [docusaurus.new](https://docusaurus.new)
 - provide a live deployment url showing the problem in action (if your site can build)

@@ -1,10 +1,10 @@
 ---
 id: assets
-description: Handling assets in Docusaurus Markdown
+description: 在 Docusaurus Markdown 中处理资源
 slug: /markdown-features/assets
 ---
 
-# Assets
+# 资源
 
 import BrowserWindow from '@site/src/components/BrowserWindow';
 import Tabs from '@theme/Tabs';
@@ -12,30 +12,30 @@ import TabItem from '@theme/TabItem';
 
 Sometimes you want to link to assets (e.g. docx files, images...) directly from Markdown files, and it is convenient to co-locate the asset next to the Markdown file using it.
 
-Let's imagine the following file structure:
+请思考如下文件结构：
 
 ```
-# Your doc
+# 你的文档
 /website/docs/myFeature.mdx
 
-# Some assets you want to use
+# 你想用的一些静态资源
 /website/docs/assets/docusaurus-asset-example-banner.png
 /website/docs/assets/docusaurus-asset-example.docx
 ```
 
-## Images {/* #images */}
+## 图像 {/* #images */}
 
-You can display images in three different ways: Markdown syntax, CJS require, or ES imports syntax.
+你可以用三种不同的方式展示图像：Markdown 语法、CJS require、ES import 语法。
 
 ```mdx-code-block
 <Tabs>
 <TabItem value="Markdown syntax">
 ```
 
-Display images using simple Markdown syntax:
+用简单的 Markdown 语法显示图像：
 
 ```md
-![Example banner](./assets/docusaurus-asset-example-banner.png)
+![示例横幅](./assets/docusaurus-asset-example-banner.png)
 ```
 
 ```mdx-code-block
@@ -70,11 +70,11 @@ import myImageUrl from './assets/docusaurus-asset-example-banner.png';
 </Tabs>
 ```
 
-All of the above result in displaying the image:
+上述所有方法最后都会显示这样的图像：
 
 <BrowserWindow>
 
-![My image alternative text](../../assets/docusaurus-asset-example-banner.png)
+![示例横幅](@site/versioned_docs/version-3.4.0/assets/docusaurus-asset-example-banner.png)
 
 </BrowserWindow>
 
@@ -84,7 +84,7 @@ If you are using [@docusaurus/plugin-ideal-image](../../api/plugins/plugin-ideal
 
 :::
 
-## Files {/* #files */}
+## 文件 {/* #files */}
 
 In the same way, you can link to existing assets by `require`'ing them and using the returned URL in `video`s, `a` anchor links, etc.
 
@@ -102,11 +102,11 @@ or
 
 <a
   target="_blank"
-  href={require('../../assets/docusaurus-asset-example.docx')}>
+  href={require('@site/versioned_docs/version-3.4.0/assets/docusaurus-asset-example.docx')}>
   {'Download this docx'}
 </a>
 
-[Download this docx using Markdown](../../assets/docusaurus-asset-example.docx)
+[Download this docx using Markdown](@site/versioned_docs/version-3.4.0/assets/docusaurus-asset-example.docx)
 
 </BrowserWindow>
 
@@ -116,9 +116,9 @@ If you use the Markdown image or link syntax, all asset paths will be resolved a
 
 :::
 
-## Inline SVGs {/* #inline-svgs */}
+## 内联 SVG {/* #inline-svgs */}
 
-Docusaurus supports inlining SVGs out of the box.
+Docusaurus 原生支持内嵌 SVG。
 
 ```jsx
 import DocusaurusSvg from './docusaurus.svg';
@@ -134,7 +134,7 @@ import DocusaurusSvg from '@site/static/img/docusaurus.svg';
 
 </BrowserWindow>
 
-This can be useful if you want to alter the part of the SVG image via CSS. For example, you can change one of the SVG colors based on the current theme.
+这在你需要通过 CSS 调整 SVG 图片中的某些部分时会很有用。 举个例子，你可以基于当前主题更改 SVG 的颜色。
 
 ```jsx
 import DocusaurusSvg from './docusaurus.svg';
@@ -156,7 +156,7 @@ import DocusaurusSvg from './docusaurus.svg';
   <DocusaurusSvg className="themedDocusaurus" />
 </BrowserWindow>
 
-## Themed Images {/* #themed-images */}
+## 主题化图像 {/* #themed-images */}
 
 Docusaurus supports themed images: the `ThemedImage` component (included in the themes) allows you to switch the image source based on the current theme.
 
@@ -190,7 +190,7 @@ import ThemedImage from '@theme/ThemedImage';
 </BrowserWindow>
 ```
 
-### GitHub-style themed images {/* #github-style-themed-images */}
+### GitHub 式的主题图像 {/* #github-style-themed-images */}
 
 GitHub uses its own [image theming approach](https://github.blog/changelog/2021-11-24-specify-theme-context-for-images-in-markdown/) with path fragments, which you can easily implement yourself.
 
@@ -204,32 +204,32 @@ To toggle the visibility of an image using the path fragment (for GitHub, it's `
 ```
 
 ```md
-![Docusaurus themed image](/img/docusaurus_keytar.svg#gh-light-mode-only)![Docusaurus themed image](/img/docusaurus_speed.svg#gh-dark-mode-only)
+![Docusaurus 主题图像](/img/docusaurus_keytar.svg#gh-light-mode-only)![Docusaurus 主题图像](/img/docusaurus_speed.svg#gh-dark-mode-only)
 ```
 
 <BrowserWindow>
 
-![Docusaurus themed image](/img/docusaurus_keytar.svg#gh-light-mode-only)![Docusaurus themed image](/img/docusaurus_speed.svg#gh-dark-mode-only)
+![Docusaurus 主题图像](/img/docusaurus_keytar.svg#gh-light-mode-only)![Docusaurus 主题图像](/img/docusaurus_speed.svg#gh-dark-mode-only)
 
 </BrowserWindow>
 
-## Static assets {/* #static-assets */}
+## 静态资源 {/* #static-assets */}
 
-If a Markdown link or image has an absolute path, the path will be seen as a file path and will be resolved from the static directories. For example, if you have configured [static directories](../../static-assets.mdx) to be `['public', 'static']`, then for the following image:
+如果 Markdown 链接或图像使用了绝对路径， 这条路径将被视为一个文件路径，并将从静态目录下解析。 For example, if you have configured [static directories](../../static-assets.mdx) to be `['public', 'static']`, then for the following image:
 
 ```md title="my-doc.md"
-![An image from the static](/img/docusaurus.png)
+![来自静态目录的图像](/img/docusaurus.png)
 ```
 
-Docusaurus will try to look for it in both `static/img/docusaurus.png` and `public/img/docusaurus.png`. The link will then be converted to a `require()` call instead of staying as a URL. This is desirable in two regards:
+Docusaurus will try to look for it in both `static/img/docusaurus.png` and `public/img/docusaurus.png`. The link will then be converted to a `require()` call instead of staying as a URL. 这么做有两个好处：
 
-1. You don't have to worry about the base URL, which Docusaurus will take care of when serving the asset;
-2. The image enters Webpack's build pipeline and its name will be appended by a hash, which enables browsers to aggressively cache the image and improves your site's performance.
+1. 你不必操心 base URL，因为 Docusaurus 会在打包资产时考虑到这一点；
+2. 图像会进入 Webpack 的构建系统，在文件名后多一个散列化的后缀，有助于让浏览器积极缓存图像，提高网站的性能。
 
 If you intend to write URLs, you can use the `pathname://` protocol to disable automatic asset linking.
 
 ```md
-![banner](pathname:///img/docusaurus-asset-example-banner.png)
+![横幅](pathname:///img/docusaurus-asset-example-banner.png)
 ```
 
 This link will be generated as `<img src="/img/docusaurus-asset-example-banner.png" alt="banner" />`, without any processing or file existence checking.

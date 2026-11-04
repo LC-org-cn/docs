@@ -1,16 +1,16 @@
 ---
 id: tabs
-description: Using tabs inside Docusaurus Markdown
+description: 在 Docusaurus Markdown 中使用选项卡
 slug: /markdown-features/tabs
 ---
 
-# Tabs
+# 选项卡
 
 ```mdx-code-block
 import BrowserWindow from '@site/src/components/BrowserWindow';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import styles from './markdown-features-tabs-styles.module.css';
+import styles from '@site/versioned_docs/version-3.8.1/guides/markdown-features/markdown-features-tabs-styles.module.css';
 ```
 
 Docusaurus provides the `<Tabs>` component that you can use in Markdown thanks to [MDX](./markdown-features-react.mdx):
@@ -120,19 +120,19 @@ It is also possible to provide `values` and `defaultValue` props to `Tabs`:
 
 :::tip
 
-By default, all tabs are rendered eagerly during the build process, and search engines can index hidden tabs.
+通常，所有选项卡都会在构建过程中被预渲染，以便搜索引擎爬取未显示的选项卡。
 
 It is possible to only render the default tab with `<Tabs lazy />`.
 
 :::
 
-## Displaying a default tab {/* #displaying-a-default-tab */}
+## 显示默认选项卡 {/* #displaying-a-default-tab */}
 
 The first tab is displayed by default, and to override this behavior, you can specify a default tab by adding `default` to one of the tab items. You can also set the `defaultValue` prop of the `Tabs` component to the label value of your choice. For example, in the example above, either setting `default` for the `value="apple"` tab or setting `defaultValue="apple"` for the tabs forces the "Apple" tab to be open by default.
 
 Docusaurus will throw an error if a `defaultValue` is provided for the `Tabs` but it refers to a non-existing value. If you want none of the tabs to be shown by default, use `defaultValue={null}`.
 
-## Syncing tab choices {/* #syncing-tab-choices */}
+## 同步选项 {/* #syncing-tab-choices */}
 
 You may want choices of the same kind of tabs to sync with each other. For example, you might want to provide different instructions for users on Windows vs users on macOS, and you want to change all OS-specific instructions tabs in one click. To achieve that, you can give all related tabs the same `groupId` prop. Note that doing this will persist the choice in `localStorage` and all `<Tab>` instances with the same `groupId` will update automatically when the value of one of them is changed. Note that group IDs are globally namespaced.
 
@@ -164,7 +164,7 @@ You may want choices of the same kind of tabs to sync with each other. For examp
 </BrowserWindow>
 ```
 
-For all tab groups that have the same `groupId`, the possible values do not need to be the same. If one tab group is chosen a value that does not exist in another tab group with the same `groupId`, the tab group with the missing value won't change its tab. You can see that from the following example. Try to select Linux, and the above tab groups don't change.
+For all tab groups that have the same `groupId`, the possible values do not need to be the same. If one tab group is chosen a value that does not exist in another tab group with the same `groupId`, the tab group with the missing value won't change its tab. 您可以从下面的例子中看到这一点。 尝试选择 Linux，上面的标签组不会改变。
 
 ```jsx
 <Tabs groupId="operating-systems">
@@ -192,7 +192,7 @@ For all tab groups that have the same `groupId`, the possible values do not need
 
 ---
 
-Tab choices with different group IDs will not interfere with each other:
+带有不同 groupId 的选项卡不会互相干涉：
 
 ```jsx
 // highlight-next-line
@@ -222,7 +222,7 @@ Tab choices with different group IDs will not interfere with each other:
 </BrowserWindow>
 ```
 
-## Customizing tabs {/* #customizing-tabs */}
+## 自定义选项卡外观 {/* #customizing-tabs */}
 
 You might want to customize the appearance of a certain set of tabs. You can pass the string in `className` prop, and the specified CSS class will be added to the `Tabs` component:
 
@@ -245,7 +245,7 @@ You might want to customize the appearance of a certain set of tabs. You can pas
 </BrowserWindow>
 ```
 
-### Customizing tab headings {/* #customizing-tab-headings */}
+### 自定义选项标题外观 {/* #customizing-tab-headings */}
 
 You can also customize each tab heading independently by using the `attributes` field. The extra props can be passed to the headings either through the `values` prop in `Tabs`, or props of each `TabItem`—in the same way as you declare `label`.
 

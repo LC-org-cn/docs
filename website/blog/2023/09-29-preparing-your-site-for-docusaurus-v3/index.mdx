@@ -4,12 +4,12 @@ authors:
   - slorber
 tags: [maintenance]
 slug: /preparing-your-site-for-docusaurus-v3
-image: ./img/social-card.png
+image: '@site/blog/2023/09-29-preparing-your-site-for-docusaurus-v3/img/social-card.png'
 ---
 
 :::warning
 
-This blog post was written when Docusaurus v3 was in beta. There are some changes in dependency versions and upgrade steps you should be aware of if upgrading to Docusaurus v3 current stable releases. Use the [upgrade guide](https://docusaurus.io/docs/next/migration/v3) for the most up-to-date migration steps.
+这篇博文是在 Docusaurus v3 还处于测试时写的。 在升级到 Docusaurus v3 当前稳定版本时，请留意依赖项版本的变更以及相应的升级步骤。 请使用[升级指南](https://docusaurus.io/docs/next/migration/v3)了解最新的迁移步骤。
 
 :::
 
@@ -17,11 +17,11 @@ This blog post was written when Docusaurus v3 was in beta. There are some change
 
 Docusaurus v3 comes with a few **breaking changes**, many of which can be **handled today under Docusaurus v2**. Preparing your site ahead of time can be done incrementally, and will make it easier to upgrade to v3.
 
-The main breaking change is the upgrade from MDX v1 to MDX v3. Read the [**MDX v2**](https://mdxjs.com/blog/v2/) and [**MDX v3**](https://mdxjs.com/blog/v3/) release notes for details. MDX will now compile your Markdown content **more strictly** and with **subtle differences**.
+主要的突破变化是从 MDX v1 升级到 MDX v3 。 请阅读 [**MDX v2**](https://mdxjs.com/blog/v2/) 和 [**MDX v3**](https://mdxjs.com/blog/v3/) 的版本说明获取更详细的信息。 MDX will now compile your Markdown content **more strictly** and with **subtle differences**.
 
 This article will mostly focus on how to prepare your content for this new MDX version, and will also list a few other breaking changes that you can handle today.
 
-![Preparing your site for Docusaurus v3 - social card](./img/social-card.png)
+![Preparing your site for Docusaurus v3 - social card](@site/blog/2023/09-29-preparing-your-site-for-docusaurus-v3/img/social-card.png)
 
 {/* truncate */}
 
@@ -47,19 +47,19 @@ Depending on the complexity of your site, it may be a good idea to adopt the [vi
 
 We also recommend using the `.mdx` extension whenever you use JSX, `import`, or `export` (i.e. MDX features) inside a Markdown file. It is semantically more correct and improves compatibility with external tools (IDEs, formatters, linters, etc.). In future versions of Docusaurus, `.md` files will be parsed as standard [CommonMark](https://commonmark.org/), which does not support these features. In Docusaurus v3, `.md` files keep being compiled as MDX files, but it will be possible to [opt-in for CommonMark](https://github.com/facebook/docusaurus/issues/3018).
 
-## Preparing content for MDX v3 {/* #preparing-content-for-mdx-v3 */}
+## 为MDX v3做准备 {/* #preparing-content-for-mdx-v3 */}
 
 MDX is a major dependency of Docusaurus responsible for compiling your `.md` and `.mdx` files to React components.
 
-MDX v3 is much better, but also comes with changes that probably require you to refactor your content a bit. MDX v3 is stricter, and some components that compiled fine under v1 might now fail to compile under v3, most likely because of `{` and `<` characters.
+MDX v3更加强大，但也带来了一些变化，可能需要您对内容进行一些重构。 MDX v3更加严格，一些在v1下编译良好的组件现在可能在v3下无法编译，最有可能的原因是`{`和`<`字符。
 
-Upgrading MDX comes with all the breaking changes documented on the [MDX v2](https://mdxjs.com/blog/v2/) and [MDX v3](https://mdxjs.com/blog/v3/) release blog posts. Most breaking changes come from MDX v2. The [MDX v2 migration guide](https://mdxjs.com/migrating/v2/) has a section on how to [update MDX files](https://mdxjs.com/migrating/v2/#update-mdx-files) that will be particularly relevant to us. Also make sure to read the [Troubleshooting MDX](https://mdxjs.com/docs/troubleshooting-mdx/) page that can help you interpret common MDX error messages.
+Upgrading MDX comes with all the breaking changes documented on the [MDX v2](https://mdxjs.com/blog/v2/) and [MDX v3](https://mdxjs.com/blog/v3/) release blog posts. 大多数重大变更来自MDX v2。 The [MDX v2 migration guide](https://mdxjs.com/migrating/v2/) has a section on how to [update MDX files](https://mdxjs.com/migrating/v2/#update-mdx-files) that will be particularly relevant to us. Also make sure to read the [Troubleshooting MDX](https://mdxjs.com/docs/troubleshooting-mdx/) page that can help you interpret common MDX error messages.
 
-Make sure to also read our updated [**MDX and React**](/docs/markdown-features/react) documentation page.
+还请确保阅读我们更新的 [**MDX 和 React**](/docs/markdown-features/react) 文档页面。
 
 :::tip Ask for help
 
-We have a dedicated [MDX v3 - Upgrade Support](https://github.com/facebook/docusaurus/discussions/9053) discussion.
+我们有一个专门的 [MDX v3 - 升级支持](https://github.com/facebook/docusaurus/discussions/9053) 讨论版。
 
 :::
 
@@ -69,8 +69,8 @@ The MDX playground is your new best friend. It permits to understand how your co
 
 Each MDX version comes with its own playground:
 
-- [MDX playground - current version](https://mdxjs.com/playground/)
-- [MDX playground - v1](https://mdx-git-renovate-babel-monorepo-mdx.vercel.app/playground/)
+- [MDX 游乐场 - 当前版本](https://mdxjs.com/playground/)
+- [MDX 游乐场 - v1](https://mdx-git-renovate-babel-monorepo-mdx.vercel.app/playground/)
 
 <details>
   <summary>Configuring the MDX playground options for Docusaurus</summary>
@@ -81,11 +81,11 @@ To obtain a compilation behavior similar to what Docusaurus v2 uses, please turn
 - Use `remark-gfm`
 - Use `remark-directive`
 
-![Screenshot of the MDX playground's options panel, with only the "Use `MDX`", "Use `remark-gfm`", and "Use `remark-directive`" options checked](./img/mdx2-playground-options.png)
+![Screenshot of the MDX playground's options panel, with only the "Use `MDX`", "Use `remark-gfm`", and "Use `remark-directive`" options checked](@site/blog/2023/09-29-preparing-your-site-for-docusaurus-v3/img/mdx2-playground-options.png)
 
 </details>
 
-Using the two MDX playgrounds side-by-side, you will soon notice that some content is compiled differently or fails to compile in v3.
+一起使用这两个MDX Playground，您很快就会注意到一些内容的编译不同或未能编译到 v3。
 
 :::tip Making your content future-proof
 
@@ -95,7 +95,7 @@ The goal will be to refactor your problematic content so that it **works fine wi
 
 ### Using the MDX checker CLI {/* #using-the-mdx-checker-cli */}
 
-We provide a [docusaurus-mdx-checker](https://github.com/slorber/docusaurus-mdx-checker) CLI that permits to easily spot problematic content. Run this command today on your Docusaurus v2 site to obtain a list of files that will fail to compile under MDX v3.
+We provide a [docusaurus-mdx-checker](https://github.com/slorber/docusaurus-mdx-checker) CLI that permits to easily spot problematic content. 您可以在您的 Docusaurus v2 网站上运行这个命令来获取一个 MDX v3 下无法编译的文件列表。
 
 ```bash
 npx docusaurus-mdx-checker
@@ -103,7 +103,7 @@ npx docusaurus-mdx-checker
 
 For each compilation issue, the CLI will log the file path and a line number to look at.
 
-![Screenshot of the terminal showing an example MDX checker CLI output, with a few error messages](./img/mdx-checker-output.png)
+![Screenshot of the terminal showing an example MDX checker CLI output, with a few error messages](@site/blog/2023/09-29-preparing-your-site-for-docusaurus-v3/img/mdx-checker-output.png)
 
 :::tip
 
@@ -121,7 +121,7 @@ It will not report subtle compilation changes that do not produce errors but can
 
 ### Common MDX problems {/* #common-mdx-problems */}
 
-We upgraded a few Docusaurus sites to Docusaurus v3 and MDX v3:
+我们将一些Docusaurus网站升级到 Docusaurus v3 和 MDX v3：
 
 - [Docusaurus PR](https://github.com/facebook/docusaurus/pull/8288)
 - [React-Native PR](https://github.com/facebook/react-native-website/pull/3780)
@@ -218,12 +218,12 @@ http://localhost:3000
 
 :::
 
-#### Lower-case MDXComponent mapping {/* #lower-case-mdxcomponent-mapping */}
+#### 小写 MDXComponent 映射 {/* #lower-case-mdxcomponent-mapping */}
 
-For users providing a [custom `MDXComponent`mapping](/docs/markdown-features/react#mdx-component-scope), components are now "sandboxed":
+对于提供[自定义 `MDXComponent`mapping](/docs/markdown-features/react#mdx-component-scope) 的用户，组件现在是 "sandboxed"：
 
-- a `MDXComponent` mapping for `h1` only gets used for `# hi` but not for `<h1>hi</h1>`
-- a **lower-cased** custom element name will not be substituted by its respective `MDXComponent` component anymore
+- `h1` 的映射 `MDXComponent` 仅用于`# hi` ，而不是用于`<h1>hi</h1>`
+- **小写** 自定义元素名称将不再被相应的 `MDXComponent` 组件所替代。
 
 :::danger visual difference
 
@@ -570,13 +570,13 @@ We will be there to help you upgrade through the following support channels:
 
 - [Docusaurus v3 - Upgrade Support](https://github.com/facebook/docusaurus/discussions/9336)
 - [Docusaurus v3 - Discord channel #migration-v2-to-v3](https://discord.com/channels/398180168688074762/1154771869094912090)
-- [MDX v3 - Upgrade Support](https://github.com/facebook/docusaurus/discussions/9053)
-- [MDX v3 - Remark/Rehype Plugins Support](https://github.com/facebook/docusaurus/discussions/9337)
-- [MDX v3 - Discord channel #migration-mdx-v3](https://discord.com/channels/398180168688074762/1116724556976111616)
+- [MDX v3 - 升级支持](https://github.com/facebook/docusaurus/discussions/9053)
+- [MDX v3 - Remark/Rehype 插件支持](https://github.com/facebook/docusaurus/discussions/9337)
+- [MDX v3 - Discord 频道 #migration-mdx-v3](https://discord.com/channels/398180168688074762/1116724556976111616)
 
 Alternatively, you can look for a paid [Docusaurus Service Provider](https://github.com/facebook/docusaurus/discussions/9281) to execute this upgrade for you. If your site is open source, you can also ask our community for [free, benevolent help](https://github.com/facebook/docusaurus/discussions/9283).
 
-## Conclusion {/* #conclusion */}
+## 结语 {/* #conclusion */}
 
 Docusaurus v3 is ready to try, and will be released soon. This article already gives you a good idea of all the major changes required to upgrade.
 

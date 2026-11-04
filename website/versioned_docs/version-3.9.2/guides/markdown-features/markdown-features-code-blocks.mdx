@@ -1,17 +1,17 @@
 ---
 id: code-blocks
-description: Handling code blocks in Docusaurus Markdown
+description: 在 Docusaurus Markdown 中处理代码块
 slug: /markdown-features/code-blocks
 ---
 
-# Code blocks
+# 代码块
 
 import BrowserWindow from '@site/src/components/BrowserWindow';
 import CodeBlock from '@theme/CodeBlock';
 
-Code blocks within documentation are super-powered 💪.
+文档中的代码块超级厉害 💪。
 
-## Code title {/* #code-title */}
+## 代码标题 {/* #code-title */}
 
 You can add a title to the code block by adding a `title` key after the language (leave a space between them).
 
@@ -37,13 +37,13 @@ function HelloCodeTitle(props) {
 </BrowserWindow>
 ```
 
-## Syntax highlighting {/* #syntax-highlighting */}
+## 语法高亮 {/* #syntax-highlighting */}
 
-Code blocks are text blocks wrapped around by strings of 3 backticks. You may check out [this reference](https://mdxjs.com/docs/) for the specifications of MDX.
+代码块是使用 3 个反引号包裹的文本块。 You may check out [this reference](https://mdxjs.com/docs/) for the specifications of MDX.
 
 ````md
 ```js
-console.log('Every repo must come with a mascot.');
+console.log('每个仓库都应该有个吉祥物。');
 ```
 ````
 
@@ -52,12 +52,12 @@ Use the matching language meta string for your code block, and Docusaurus will p
 <BrowserWindow>
 
 ```js
-console.log('Every repo must come with a mascot.');
+console.log('每个仓库都应该有个吉祥物。');
 ```
 
 </BrowserWindow>
 
-### Theming {/* #theming */}
+### 高亮主题 {/* #theming */}
 
 By default, the Prism [syntax highlighting theme](https://github.com/FormidableLabs/prism-react-renderer#theming) we use is [Palenight](https://github.com/FormidableLabs/prism-react-renderer/blob/master/packages/prism-react-renderer/src/themes/palenight.ts). You can change this to another theme by passing `theme` field in `prism` as `themeConfig` in your docusaurus.config.js.
 
@@ -76,15 +76,15 @@ export default {
 };
 ```
 
-Because a Prism theme is just a JS object, you can also write your own theme if you are not satisfied with the default. Docusaurus enhances the `github` and `vsDark` themes to provide richer highlight, and you can check our implementations for the [light](https://github.com/facebook/docusaurus/blob/main/website/src/utils/prismLight.ts) and [dark](https://github.com/facebook/docusaurus/blob/main/website/src/utils/prismDark.ts) code block themes.
+因为每个 Prism 主题都只是一个 JS 对象，所以如果你对默认值不满意，也可以写一个自己的主题。 Docusaurus enhances the `github` and `vsDark` themes to provide richer highlight, and you can check our implementations for the [light](https://github.com/facebook/docusaurus/blob/main/website/src/utils/prismLight.ts) and [dark](https://github.com/facebook/docusaurus/blob/main/website/src/utils/prismDark.ts) code block themes.
 
-### Supported Languages {/* #supported-languages */}
+### 支持的语言 {/* #supported-languages */}
 
 By default, Docusaurus comes with a subset of [commonly used languages](https://github.com/FormidableLabs/prism-react-renderer/blob/master/packages/generate-prism-languages/index.ts#L10-L25).
 
 :::warning
 
-Some popular languages like Java, C#, or PHP are not enabled by default.
+一些流行语言，包括 Java、C#、PHP 在内，默认未启用。
 
 :::
 
@@ -92,11 +92,11 @@ To add syntax highlighting for any of the other [Prism-supported languages](http
 
 :::note
 
-Each additional language has to be a valid Prism component name. For example, Prism would map the _language_ `cs` to `csharp`, but only `prism-csharp.js` exists as a _component_, so you need to use `additionalLanguages: ['csharp']`. You can look into `node_modules/prismjs/components` to find all components (languages) available.
+每个附加语言都必须是有效的 Prism 组件名称。 For example, Prism would map the _language_ `cs` to `csharp`, but only `prism-csharp.js` exists as a _component_, so you need to use `additionalLanguages: ['csharp']`. You can look into `node_modules/prismjs/components` to find all components (languages) available.
 
 :::
 
-For example, if you want to add highlighting for the PowerShell language:
+举个例子，如果你想要支持 PowerShell 语言的高亮：
 
 ```js title="docusaurus.config.js"
 export default {
@@ -140,9 +140,9 @@ You can refer to [Prism's official language definitions](https://github.com/Pris
 
 When adding a custom language definition, you do not need to add the language to the `additionalLanguages` config array, since Docusaurus only looks up the `additionalLanguages` strings in languages that Prism provides. Adding the language import in `prism-include-languages.js` is sufficient.
 
-## Line highlighting {/* #line-highlighting */}
+## 行高亮 {/* #line-highlighting */}
 
-### Highlighting with comments {/* #highlighting-with-comments */}
+### 用注释实现行高亮 {/* #highlighting-with-comments */}
 
 You can use comments with `highlight-next-line`, `highlight-start`, and `highlight-end` to select which lines are highlighted.
 
@@ -151,20 +151,20 @@ You can use comments with `highlight-next-line`, `highlight-start`, and `highlig
 function HighlightSomeText(highlight) {
   if (highlight) {
     // highlight-next-line
-    return 'This text is highlighted!';
+    return '这行被高亮了！';
   }
 
-  return 'Nothing highlighted';
+  return '这里不会';
 }
 
 function HighlightMoreText(highlight) {
   // highlight-start
   if (highlight) {
-    return 'This range is highlighted!';
+    return '这块被高亮了！';
   }
   // highlight-end
 
-  return 'Nothing highlighted';
+  return '这里不会';
 }
 ```
 ````
@@ -177,20 +177,20 @@ function HighlightMoreText(highlight) {
 function HighlightSomeText(highlight) {
   if (highlight) {
     // highlight-next-line
-    return 'This text is highlighted!';
+    return '这行被高亮了！';
   }
 
-  return 'Nothing highlighted';
+  return '这里不会';
 }
 
 function HighlightMoreText(highlight) {
   // highlight-start
   if (highlight) {
-    return 'This range is highlighted!';
+    return '这段被高亮了！';
   }
   // highlight-end
 
-  return 'Nothing highlighted';
+  return '这里不会';
 }
 ```
 
@@ -198,18 +198,18 @@ function HighlightMoreText(highlight) {
 </BrowserWindow>
 ```
 
-Supported commenting syntax:
+受支持的注释语法：
 
-| Style      | Syntax                   |
+| 样式      | 语法                   |
 | ---------- | ------------------------ |
-| C-style    | `/* ... */` and `// ...` |
-| JSX-style  | `{/* ... */}`            |
-| Bash-style | `# ...`                  |
-| HTML-style | `<!-- ... -->`           |
+| C 样式    | `/* ... */` and `// ...` |
+| JSX 样式  | `{/* ... */}`            |
+| Bash 样式 | `# ...`                  |
+| HTML 样式 | `<!-- ... -->`           |
 
-We will do our best to infer which set of comment styles to use based on the language, and default to allowing _all_ comment styles. If there's a comment style that is not currently supported, we are open to adding them! Pull requests welcome. Note that different comment styles have no semantic difference, only their content does.
+We will do our best to infer which set of comment styles to use based on the language, and default to allowing _all_ comment styles. 如果有任何注释风格暂时没有被支持，我们乐意去添加对它们的支持。 欢迎发起拉取请求。 需要注意的是，不同注释风格不会有语义上的差别，只会有内容上的。
 
-You can set your own background color for highlighted code line in your `src/css/custom.css` which will better fit to your selected syntax highlighting theme. The color given below works for the default highlighting theme (Palenight), so if you are using another theme, you will have to tweak the color accordingly.
+You can set your own background color for highlighted code line in your `src/css/custom.css` which will better fit to your selected syntax highlighting theme. 下方的颜色适用于默认的语法高亮主题（Palenight）。如果你使用其他的主题，也需要做出相应的颜色调整。
 
 ```css title="/src/css/custom.css"
 :root {
@@ -225,9 +225,9 @@ You can set your own background color for highlighted code line in your `src/css
 
 If you also need to style the highlighted code line in some other way, you can target on `theme-code-block-highlighted-line` CSS class.
 
-### Highlighting with metadata string {/* #highlighting-with-metadata-string */}
+### 用元数据字符串实现高亮 {/* #highlighting-with-metadata-string */}
 
-You can also specify highlighted line ranges within the language meta string (leave a space after the language). To highlight multiple lines, separate the line numbers by commas or use the range syntax to select a chunk of lines. This feature uses the `parse-number-range` library and you can find [more syntax](https://www.npmjs.com/package/parse-numeric-range) on their project details.
+你也可以在元数据字符串中指定高亮行的范围（需要在语言种类后留一个空格）。 要高亮多行内容，请使用英文半角逗号来分隔行号，或使用范围语法来选择多行代码块以高亮。 This feature uses the `parse-number-range` library and you can find [more syntax](https://www.npmjs.com/package/parse-numeric-range) on their project details.
 
 ````md
 ```jsx {1,4-6,11}
@@ -269,31 +269,31 @@ export default MyComponent;
 
 :::tip prefer comments
 
-Prefer highlighting with comments where you can. By inlining highlight in the code, you don't have to manually count the lines if your code block becomes long. If you add/remove lines, you also don't have to offset your line ranges.
+推荐你使用注释来实现语法高亮。 如果你把通过内嵌的注释来高亮代码，你就不需要在代码块内容很长时手动去数代码行数了。 即使你添加/删除了某几行，你也不需要去调整行号的偏移范围。
 
 ````diff
 - ```jsx {3}
 + ```jsx {4}
   function HighlightSomeText(highlight) {
     if (highlight) {
-+     console.log('Highlighted text found');
-      return 'This text is highlighted!';
++     console.log('找到了高亮文本');
+      return '这个文本高亮了！';
     }
 
-    return 'Nothing highlighted';
+    return '没啥被高亮了';
   }
   ```
 ````
 
-Below, we will introduce how the magic comment system can be extended to define custom directives and their functionalities. The magic comments would only be parsed if a highlight metastring is not present.
+下面我们将介绍可扩展的魔法注释是如何实现自定义指令及和功能的。 只有在不使用元数据字符串的数字范围时，魔法注释才会被解析。
 
 :::
 
-### Custom magic comments {/* #custom-magic-comments */}
+### 自定义魔法注释 {/* #custom-magic-comments */}
 
 `// highlight-next-line` and `// highlight-start` etc. are called "magic comments", because they will be parsed and removed, and their purposes are to add metadata to the next line, or the section that the pair of start- and end-comments enclose.
 
-You can declare custom magic comments through theme config. For example, you can register another magic comment that adds a `code-block-error-line` class name:
+你可以通过主题配置来设定你的自定义魔法注释。 For example, you can register another magic comment that adds a `code-block-error-line` class name:
 
 ```mdx-code-block
 <Tabs>
@@ -344,7 +344,7 @@ export default {
 ```
 
 ````md
-In JavaScript, trying to access properties on `null` will error.
+在 JavaScript 中，试图访问 `null` 的属性会报错。
 
 ```js
 const name = null;
@@ -378,7 +378,7 @@ console.log(name.toUpperCase());
 
 If you use number ranges in metastring (the `{1,3-4}` syntax), Docusaurus will apply the **first `magicComments` entry**'s class name. This, by default, is `theme-code-block-highlighted-line`, but if you change the `magicComments` config and use a different entry as the first one, the meaning of the metastring range will change as well.
 
-You can disable the default line highlighting comments with `magicComments: []`. If there's no magic comment config, but Docusaurus encounters a code block containing a metastring range, it will error because there will be no class name to apply—the highlighting class name, after all, is just a magic comment entry.
+You can disable the default line highlighting comments with `magicComments: []`. 如果魔法注释的配置是空数组，但使用了一个包含数字范围的代码块时，Docusaurus 就会报错，因为没有可以应用给类名的配置项——高亮的类名毕竟只是一个魔法注释配置的项目而已。
 
 Every magic comment entry will contain three keys: `className` (required), `line`, which applies to the directly next line, or `block` (containing `start` and `end`), which applies to the entire block enclosed by the two comments.
 
@@ -390,7 +390,7 @@ npm run swizzle @docusaurus/theme-classic CodeBlock/Line
 
 The `Line` component will receive the list of class names, based on which you can conditionally render different markup.
 
-## Line numbering {/* #line-numbering */}
+## 行号 {/* #line-numbering */}
 
 You can enable line numbering for your code block by using `showLineNumbers` key within the language meta string (don't forget to add space directly before the key).
 
@@ -420,7 +420,7 @@ export default function MyComponent(props) {
 </BrowserWindow>
 ```
 
-By default, the counter starts at line number 1. It's possible to pass a custom counter start value to split large code blocks for readability:
+默认情况下，计数器以行号1开始。 可以传递一个自定义计数器开始值来拆分大型代码块以便增强可读性：
 
 ````md
 ```jsx showLineNumbers=3
@@ -444,11 +444,11 @@ export default function MyComponent(props) {
 </BrowserWindow>
 ```
 
-## Interactive code editor {/* #interactive-code-editor */}
+## 交互式代码编辑器 {/* #interactive-code-editor */}
 
 (Powered by [React Live](https://github.com/FormidableLabs/react-live))
 
-You can create an interactive coding editor with the `@docusaurus/theme-live-codeblock` plugin. First, add the plugin to your package.
+You can create an interactive coding editor with the `@docusaurus/theme-live-codeblock` plugin. 首先，将插件添加到您的项目依赖。
 
 ```bash npm2yarn
 npm install --save @docusaurus/theme-live-codeblock
@@ -491,7 +491,7 @@ function Clock(props) {
 ```
 ````
 
-The code block will be rendered as an interactive editor. Changes to the code will reflect on the result panel live.
+这个代码块会被渲染成一个可交互的代码编辑器。 代码的变更结果将会实时显示在结果的预览区域。
 
 ```mdx-code-block
 <BrowserWindow>
@@ -524,15 +524,15 @@ function Clock(props) {
 </BrowserWindow>
 ```
 
-### Imports {/* #imports */}
+### 导入 {/* #imports */}
 
 :::warning react-live and imports
 
-It is not possible to import components directly from the react-live code editor, you have to define available imports upfront.
+你不能从 react-live 的代码编辑器中直接导入组件。你得显式地预先定义好所有组件导入项。
 
 :::
 
-By default, all React imports are available. If you need more imports available, swizzle the react-live scope:
+默认情况下，你可以使用 React 的所有导入项。 如果你需要更多可导入项，你通过 swizzle 组件 react-live scope 来获取：
 
 ```bash npm2yarn
 npm run swizzle @docusaurus/theme-live-codeblock ReactLiveScope -- --eject
@@ -589,7 +589,7 @@ function MyPlayground(props) {
 </BrowserWindow>
 ```
 
-### Imperative Rendering (noInline) {/* #imperative-rendering-noinline */}
+### 命令式渲染 (noInline) {/* #imperative-rendering-noinline */}
 
 The `noInline` option should be used to avoid errors when your code spans multiple components or variables.
 
@@ -625,9 +625,9 @@ render(
 </BrowserWindow>
 ````
 
-## Using JSX markup in code blocks {/* #using-jsx-markup */}
+## 在代码块中使用 JSX 标记 {/* #using-jsx-markup */}
 
-Code block in Markdown always preserves its content as plain text, meaning you can't do something like:
+Markdown 中的代码块总是将其内容作为纯文本保留，这意味着你不能像下面这样这么写：
 
 ```ts
 type EditUrlFunction = (params: {
@@ -660,23 +660,23 @@ If you want to embed HTML markup such as anchor links or bold type, you can use 
 
 :::warning MDX is whitespace insensitive
 
-MDX is in line with JSX behavior: line break characters, even when inside `<pre>`, are turned into spaces. You have to explicitly write the new line character for it to be printed out.
+MDX is in line with JSX behavior: line break characters, even when inside `<pre>`, are turned into spaces. 你必须显式地写一个换行符，它才会真的显示成换行效果。
 
 :::
 
 :::warning
 
-Syntax highlighting only works on plain strings. Docusaurus will not attempt to parse code block content containing JSX children.
+语法高亮只适用于纯字符串。 Docusaurus 不会试图解析代码块里包含的 JSX 子元素中的内容。
 
 :::
 
-## Multi-language support code blocks {/* #multi-language-support-code-blocks */}
+## 支持多语言的代码块 {/* #multi-language-support-code-blocks */}
 
-With MDX, you can easily create interactive components within your documentation, for example, to display code in multiple programming languages and switch between them using a tabs component.
+你可以通过 MDX 的能力在文档中创造可交互的组件。例如，你可以用选项卡组件来切换并展示包含多种编程语言的代码示例。
 
 Instead of implementing a dedicated component for multi-language support code blocks, we've implemented a general-purpose [`<Tabs>`](./markdown-features-tabs.mdx) component in the classic theme so that you can use it for other non-code scenarios as well.
 
-The following example is how you can have multi-language code tabs in your docs. Note that the empty lines above and below each language block are **intentional**. This is a [current limitation of MDX](./markdown-features-react.mdx#markdown-and-jsx-interoperability): you have to leave empty lines around Markdown syntax for the MDX parser to know that it's Markdown syntax and not JSX.
+下面的例子介绍了如何在文档中使用选项卡展示多个编程语言的代码块。 Note that the empty lines above and below each language block are **intentional**. This is a [current limitation of MDX](./markdown-features-react.mdx#markdown-and-jsx-interoperability): you have to leave empty lines around Markdown syntax for the MDX parser to know that it's Markdown syntax and not JSX.
 
 ````jsx
 import Tabs from '@theme/Tabs';
@@ -714,7 +714,7 @@ class HelloWorld {
 </Tabs>
 ````
 
-And you will get the following:
+你将看到以下的效果：
 
 ```mdx-code-block
 <BrowserWindow>
@@ -759,9 +759,9 @@ class HelloWorld {
 
 If you have multiple of these multi-language code tabs, and you want to sync the selection across the tab instances, refer to the [Syncing tab choices section](markdown-features-tabs.mdx#syncing-tab-choices).
 
-### Docusaurus npm2yarn remark plugin {/* #npm2yarn-remark-plugin */}
+### Docusaurus npm2yarn remark 插件 {/* #npm2yarn-remark-plugin */}
 
-Displaying CLI commands in both npm and Yarn is a very common need, for example:
+需要同时显示 npm 和 Yarn 的 CLI 命令很常见，比如：
 
 ```bash npm2yarn
 npm install @docusaurus/remark-plugin-npm2yarn
@@ -812,14 +812,14 @@ npm install @docusaurus/remark-plugin-npm2yarn
 ```
 ````
 
-#### Configuration {/* #npm2yarn-remark-plugin-configuration */}
+#### 配置 {/* #npm2yarn-remark-plugin-configuration */}
 
-| Option | Type | Default | Description |
+| 选项 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- |
-| `sync` | `boolean` | `false` | Whether to sync the selected converter across all code blocks. |
-| `converters` | `array` | `'yarn'`, `'pnpm'` | The list of converters to use. The order of the converters is important, as the first converter will be used as the default choice. |
+| `sync` | `boolean` | `false` | 是否在所有代码块中同步所选转换器。 |
+| `converters` | `array` | `'yarn'`, `'pnpm'` | 要使用的转换器列表。 转换器的顺序很重要，因为第一个转换器将作为默认选择。 |
 
-## Usage in JSX {/* #usage-in-jsx */}
+## JSX 中的用法 {/* #usage-in-jsx */}
 
 Outside of Markdown, you can use the `@theme/CodeBlock` component to get the same output.
 

@@ -7,7 +7,7 @@ slug: /api/plugins/@docusaurus/plugin-sitemap
 
 import APITable from '@site/src/components/APITable';
 
-This plugin creates sitemaps for your site so that search engine crawlers can crawl your site more accurately.
+这个插件会为你的站点创建一个站点地图，以便搜索引擎的爬虫能够更准确地爬取你的网站。
 
 :::warning production only
 
@@ -15,7 +15,7 @@ This plugin is always inactive in development and **only active in production** 
 
 :::
 
-## Installation {/* #installation */}
+## 安装流程 {/* #installation */}
 
 ```bash npm2yarn
 npm install --save @docusaurus/plugin-sitemap
@@ -29,26 +29,26 @@ You can configure this plugin through the [preset options](../../using-plugins.m
 
 :::
 
-## Configuration {/* #configuration */}
+## 配置 {/* #configuration */}
 
-Accepted fields:
+接受的字段：
 
 ```mdx-code-block
 <APITable>
 ```
 
-| Name | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- |
 | `lastmod` | `'date' \| 'datetime' \| null` | `'date'` | `date` is YYYY-MM-DD. `datetime` is a ISO 8601 datetime. `null` is disabled. See [sitemap docs](https://www.sitemaps.org/protocol.html#xmlTagDefinitions). |
-| `ignorePatterns` | `string[]` | `[]` | A list of glob patterns; matching route paths will be filtered from the sitemap. Note that you may need to include the base URL in here. |
-| `filename` | `string` | `sitemap.xml` | The path to the created sitemap file, relative to the output directory. Useful if you have two plugin instances outputting two files. |
+| `ignorePatterns` | `string[]` | `[]` | 一列 glob 模式。匹配成功的路径不会出现在站点地图中。 注意你可能要在这里加上 base URL。 |
+| `filename` | `string` | `sitemap.xml` | 创建的站点地图的路径，相对于输出目录。 如果你有两个插件实例输出两个文件，会很有用。 |
 | `createSitemapItems` | <code>[CreateSitemapItemsFn](#CreateSitemapItemsFn) \| undefined</code> | `undefined` | An optional function which can be used to transform and / or filter the items in the sitemap. |
 
 ```mdx-code-block
 </APITable>
 ```
 
-### Types {/* #types */}
+### 类型 {/* #types */}
 
 #### `CreateSitemapItemsFn` {/* #CreateSitemapItemsFn */}
 
@@ -83,7 +83,7 @@ See the [sitemap protocol docs](https://www.sitemaps.org/protocol.html#xmlTagDef
 
 :::info
 
-This plugin also respects some site config:
+这个插件会读取某些站点配置：
 
 - [`noIndex`](../docusaurus.config.js.mdx#noIndex): results in no sitemap generated
 - [`trailingSlash`](../docusaurus.config.js.mdx#trailingSlash): determines if the URLs in the sitemap have trailing slashes
@@ -98,13 +98,13 @@ All the official content plugins provide the metadata for routes backed by a con
 
 :::
 
-### Example configuration {/* #ex-config */}
+### 示例配置 {/* #ex-config */}
 
-You can configure this plugin through preset options or plugin options.
+你可以通过预设选项或插件选项来配置这个插件。
 
 :::tip
 
-Most Docusaurus users configure this plugin through the preset options.
+大多数 Docusaurus 用户通过预设选项配置此插件。
 
 :::
 

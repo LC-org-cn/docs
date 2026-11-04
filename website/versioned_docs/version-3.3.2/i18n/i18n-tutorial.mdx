@@ -1,10 +1,10 @@
 ---
 id: tutorial
-description: This tutorial will walk you through the basics of the Docusaurus i18n system.
+description: 本教程将为你阐述 Docusaurus i18n 系统的基础。
 slug: /i18n/tutorial
 ---
 
-# i18n - Tutorial
+# i18n - 教程
 
 ```mdx-code-block
 import Tabs from '@theme/Tabs';
@@ -17,11 +17,11 @@ We will add **French** translations to a **newly initialized English Docusaurus 
 
 Initialize a new site with `npx create-docusaurus@latest website classic` (like [this one](https://github.com/facebook/docusaurus/tree/main/examples/classic)).
 
-## Configure your site {/* #configure-your-site */}
+## 配置你的站点 {/* #configure-your-site */}
 
 Modify `docusaurus.config.js` to add the i18n support for the French language.
 
-### Site configuration {/* #site-configuration */}
+### 站点配置 {/* #site-configuration */}
 
 Use the [site i18n configuration](./../api/docusaurus.config.js.mdx#i18n) to declare the i18n locales:
 
@@ -29,13 +29,13 @@ Use the [site i18n configuration](./../api/docusaurus.config.js.mdx#i18n) to dec
 export default {
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'fr', 'fa'],
+    locales: ['en', 'fr', 'zh-Hans'],
     localeConfigs: {
       en: {
         htmlLang: 'en-GB',
       },
-      // You can omit a locale (e.g. fr) if you don't need to override the defaults
-      fa: {
+      // 如果不需要重写默认值，可以忽略 locale (例如 fr)
+      'zh-Hans': {
         direction: 'rtl',
       },
     },
@@ -43,11 +43,11 @@ export default {
 };
 ```
 
-The locale names are used for the translation files' locations, as well as your translated locales' base URL. When building all locales, only the default locale will have its name omitted in the base URL.
+语言名称会被用于翻译文件的位置以及你的本地化网站的 base URL。 构建所有语言时，只有默认语言才会在 base URL 中省略它的名字。
 
 Docusaurus uses the locale names to provide **sensible defaults**: the `<html lang="...">` attribute, locale label, calendar format, etc. You can customize these defaults with the `localeConfigs`.
 
-### Theme configuration {/* #theme-configuration */}
+### 主题配置 {/* #theme-configuration */}
 
 Add a **navbar item** of type `localeDropdown` so that users can select the locale they want:
 
@@ -72,21 +72,21 @@ export default {
 
 You can pass a query parameter that will be appended to the URL when a user changes the locale using the dropdown (e.g. `queryString: '?persistLocale=true'`).
 
-This is useful for implementing an automatic locale detection on your server. For example, you can use this parameter to store the user's preferred locale in a cookie.
+这对于在服务器上实现自动区域设置检测非常有用。 譬如，您可以使用此参数将用户的首选区域设置存储在 cookie 中。
 
 :::
 
-### Start your site {/* #start-your-site */}
+### 启动网站 {/* #start-your-site */}
 
-Start your localized site in dev mode, using the locale of your choice:
+以开发模式启动你的本地化站点，并使用你所选择的语言：
 
 ```bash npm2yarn
-npm run start -- --locale fr
+npm run start -- --locale zh-Hans
 ```
 
 Your site is accessible at [`http://localhost:3000/fr/`](http://localhost:3000/fr/).
 
-We haven't provided any translation yet, so the site is mostly untranslated.
+由于我们尚未添加任何译文，所以站点的大部分内容都没有被翻译。
 
 :::tip
 
@@ -102,26 +102,26 @@ Each locale is a **distinct standalone single-page application**: it is not poss
 
 :::
 
-## Translate your site {/* #translate-your-site */}
+## 翻译你的站点 {/* #translate-your-site */}
 
 All translation data for the French locale is stored in `website/i18n/fr`. Each plugin sources its own translated content under the corresponding folder, while the `code.json` file defines all text labels used in the React code.
 
 :::note
 
-After copying files around, restart your site with `npm run start -- --locale fr`. Hot-reload will work better when editing existing files.
+After copying files around, restart your site with `npm run start -- --locale fr`. 当编辑现有文件时，热刷新将会更加有效。
 
 :::
 
-### Translate your React code {/* #translate-your-react-code */}
+### 翻译 React 代码 {/* #translate-your-react-code */}
 
 For any React code you've written yourself: React pages, React components, etc., you will use the [**translation APIs**](../docusaurus-core.mdx#translate).
 
-Locate all text labels in your React code that will be visible to your users, and mark them with the translation APIs. There are two kinds of APIs:
+在你的 React 代码中找到所有用户可见的文本标签，用翻译 API 标记它们。 API 有两种：
 
 - The `<Translate>` component wraps a string as a JSX element;
 - The `translate()` callback takes a message and returns a string.
 
-Use the one that better fits the context semantically. For example, the `<Translate>` can be used as React children, while for props that expect a string, the callback can be used.
+复制文件后，请用 <code>npm run start -- --locale zh-Hans</code> 重新启动站点。 For example, the `<Translate>` can be used as React children, while for props that expect a string, the callback can be used.
 
 :::warning
 
@@ -234,7 +234,7 @@ The `docusaurus write-translations` command will statically analyze all React co
 
 :::warning text labels must be static
 
-The `docusaurus write-translations` command only does **static analysis** of your code. It doesn't actually run your site. Therefore, dynamic messages can't be extracted, as the message is an _expression_, not a _string_:
+The `docusaurus write-translations` command only does **static analysis** of your code. 如果有更高级的需要，请使用如 <a href="https://www.npmjs.com/package/react-intl">react-intl</a> 一类的库。 Therefore, dynamic messages can't be extracted, as the message is an _expression_, not a _string_:
 
 ```jsx
 const items = [
@@ -280,7 +280,7 @@ You can see the calls to the translation APIs as purely _markers_ that tell Docu
 
 :::
 
-#### Pluralization {/* #pluralization */}
+#### 复数形式 {/* #pluralization */}
 
 When you run `write-translations`, you will notice that some labels are pluralized:
 
@@ -294,7 +294,7 @@ When you run `write-translations`, you will notice that some labels are pluraliz
 
 Every language will have a list of [possible plural categories](https://unicode-org.github.io/cldr-staging/charts/37/supplemental/language_plural_rules.html). Docusaurus will arrange them in the order of `["zero", "one", "two", "few", "many", "other"]`. For example, because English (`en`) has two plural forms ("one" and "other"), the translation message has two labels separated by a pipe (`|`). For Polish (`pl`) which has three plural forms ("one", "few", and "many"), you would provide three labels in that order, joined by pipes.
 
-You can pluralize your own code's messages as well:
+你可以把翻译 API 的调用看作是纯<em x-id="4">标记</em>，告诉 Docusaurus「这里有一个文本标签，把它替换成翻译好的信息」。
 
 ```jsx
 import {translate} from '@docusaurus/Translate';
@@ -326,23 +326,23 @@ Docusaurus uses [`Intl.PluralRules`](https://developer.mozilla.org/en-US/docs/We
 
 :::
 
-### Translate plugin data {/* #translate-plugin-data */}
+### 翻译插件数据 {/* #translate-plugin-data */}
 
-JSON translation files are used for everything that is interspersed in your code:
+你也可以给你自己的代码提供复数形式：
 
-- React code, including the translated labels you have marked above
-- Navbar and footer labels in theme config
+- React 代码，包括你在上面标记的待翻译文本
+- 主题配置中的导航栏和页脚标签
 - Docs sidebar category labels in `sidebars.js`
-- Blog sidebar title in plugin options
-- ...
+- 插件选项中的博客侧边栏标题
+- ……
 
 Run the [write-translations](../cli.mdx#docusaurus-write-translations-sitedir) command:
 
 ```bash npm2yarn
-npm run write-translations -- --locale fr
+npm run write-translations -- --locale zh-Hans
 ```
 
-It will extract and initialize the JSON translation files that you need to translate. The `code.json` file at the root includes all translation API calls extracted from the source code, which could either be written by you or provided by the themes, some of which may already be translated by default.
+Docusaurus 使用 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules"><code>Intl.PluralRules</code></a> 来解析并选择复数形式。 The `code.json` file at the root includes all translation API calls extracted from the source code, which could either be written by you or provided by the themes, some of which may already be translated by default.
 
 ```json title="i18n/fr/code.json"
 {
@@ -390,11 +390,11 @@ Plugins and themes will also write their own JSON translation files, such as:
 
 Translate the `message` attribute in the JSON files of `i18n/fr`, and your site layout and homepage should now be translated.
 
-### Translate Markdown files {/* #translate-markdown-files */}
+### 翻译 Markdown 文件 {/* #translate-markdown-files */}
 
-Official Docusaurus content plugins extensively use Markdown/MDX files and allow you to translate them.
+运行 <a href="../cli.mdx#docusaurus-write-translations-sitedir">写入翻译</a> 命令：
 
-#### Translate the docs {/* #translate-the-docs */}
+#### 翻译文档 {/* #translate-the-docs */}
 
 Copy your docs Markdown files from `docs/` to `i18n/fr/docusaurus-plugin-content-docs/current`, and translate them:
 
@@ -409,7 +409,7 @@ Notice that the `docusaurus-plugin-content-docs` plugin always divides its conte
 
 :::
 
-#### Translate the blog {/* #translate-the-blog */}
+#### 翻译博客 {/* #translate-the-blog */}
 
 Copy your blog Markdown files to `i18n/fr/docusaurus-plugin-content-blog`, and translate them:
 
@@ -418,7 +418,7 @@ mkdir -p i18n/fr/docusaurus-plugin-content-blog
 cp -r blog/. i18n/fr/docusaurus-plugin-content-blog
 ```
 
-#### Translate the pages {/* #translate-the-pages */}
+#### 翻译页面 {/* #translate-the-pages */}
 
 Copy your pages Markdown files to `i18n/fr/docusaurus-plugin-content-pages`, and translate them:
 
@@ -437,7 +437,7 @@ We only copy `.md` and `.mdx` files, as React pages are translated through JSON 
 
 By default, a Markdown heading `### Hello World` will have a generated ID `hello-world`. Other documents can link it with `[link](#hello-world)`. However, after translation, the heading becomes `### Bonjour le Monde`, with ID `bonjour-le-monde`.
 
-Generated IDs are not always a good fit for localized sites, as it requires you to localize all the anchor links:
+我们只复制了 <code>.md</code> 与 <code>.mdx</code> 文件，因为 React 页面已经在前文中用 JSON 文件翻译好了。
 
 ```diff
 - [link](#hello-world).
@@ -448,13 +448,13 @@ For localized sites, it is recommended to use **[explicit heading IDs](../guides
 
 :::
 
-## Deploy your site {/* #deploy-your-site */}
+## 部署站点 {/* #deploy-your-site */}
 
 You can choose to deploy your site under a **single domain** or use **multiple (sub)domains**.
 
-### Single-domain deployment {/* #single-domain-deployment */}
+### 单域名部署 {/* #single-domain-deployment */}
 
-Run the following command:
+这样，你就得本地化所有锚点链接。所以，自动生成 ID 通常不适合本地化站点。
 
 ```bash npm2yarn
 npm run build
@@ -469,7 +469,7 @@ You can now [deploy](../deployment.mdx) the `build` folder to the static hosting
 
 :::note
 
-The Docusaurus website uses this strategy:
+Docusaurus  网站使用这个方案：
 
 - [`https://docusaurus.io`](https://docusaurus.io)
 - [`https://docusaurus.io/fr`](https://docusaurus.io/fr)
@@ -486,21 +486,21 @@ This is not always possible, and depends on your host: GitHub Pages can't do thi
 
 :::
 
-### Multi-domain deployment {/* #multi-domain-deployment */}
+### 多域名部署 {/* #multi-domain-deployment */}
 
-You can also build your site for a single locale:
+静态托管商通常会按惯例把 <code>/unknown/url</code> 重定向到 <code>/404.html</code>，这样就会始终显示<strong x-id="1">英文版 404 错误页面</strong>。
 
 ```bash npm2yarn
-npm run build -- --locale fr
+npm run build -- --locale zh-Hans
 ```
 
 Docusaurus will not add the `/fr/` URL prefix.
 
 On your [static hosting provider](../deployment.mdx):
 
-- create one deployment per locale
+- 为每种语言做一份部署
 - configure the appropriate build command, using the `--locale` option
-- configure the (sub)domain of your choice for each deployment
+- 为每份部署配置一个（子）域名
 
 :::warning
 
@@ -508,17 +508,17 @@ This strategy is **not possible** with GitHub Pages, as it is only possible to *
 
 :::
 
-### Hybrid {/* #hybrid */}
+### 混合部署 {/* #hybrid */}
 
-It is possible to have some locales using sub-paths, and others using subdomains.
+在你的<a href="../deployment.mdx">静态托管商</a>上：
 
-It is also possible to deploy each locale as a separate subdomain, assemble the subdomains in a single unified domain at the CDN level:
+你也可以把每个语言部署在单独的子域名上，然后在 CDN 层面把子域名合并成单一域名：
 
 - Deploy your site as `fr.docusaurus.io`
 - Configure a CDN to serve it from `docusaurus.io/fr`
 
-## Managing translations {/* #managing-translations */}
+## 管理翻译 {/* #managing-translations */}
 
-Docusaurus doesn't care about how you manage your translations: all it needs is that all translation files (JSON, Markdown, or other data files) are available in the file system during building. However, as site creators, you would need to consider how translations are managed so your translation contributors could collaborate well.
+Docusaurus不关心如何管理您的翻译：所有翻译文件都需要(JSON) Markdown 或其他数据文件可在构建过程中在文件系统中查阅。 然而，作为网站创建者，您需要考虑如何管理翻译，这样您的翻译贡献者能够很好地合作。
 
 We will share two common translation collaboration strategies: [**using git**](./i18n-git.mdx) and [**using Crowdin**](./i18n-crowdin.mdx).

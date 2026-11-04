@@ -7,13 +7,13 @@ slug: /api/plugins/@docusaurus/plugin-pwa
 
 Docusaurus Plugin to add PWA support using [Workbox](https://developers.google.com/web/tools/workbox). This plugin generates a [Service Worker](https://developers.google.com/web/fundamentals/primers/service-workers) in production build only, and allows you to create fully PWA-compliant documentation site with offline and installation support.
 
-## Installation {/* #installation */}
+## 安装流程 {/* #installation */}
 
 ```bash npm2yarn
 npm install --save @docusaurus/plugin-pwa
 ```
 
-## Configuration {/* #configuration */}
+## 配置 {/* #configuration */}
 
 Create a [PWA manifest](https://web.dev/add-manifest/) at `./static/manifest.json`.
 
@@ -54,68 +54,68 @@ export default {
 };
 ```
 
-## Progressive Web App {/* #progressive-web-app */}
+## 渐进式网页应用 {/* #progressive-web-app */}
 
-Having a service worker installed is not enough to make your application a PWA. You'll need to at least include a [Web App Manifest](https://developer.mozilla.org/en-US/docs/Web/Manifest) and have the correct tags in `<head>` ([Options > pwaHead](#pwahead)).
+安装 Service Worker 还不足以让你的应用成为渐进式 Web 应用 (PWA)。 You'll need to at least include a [Web App Manifest](https://developer.mozilla.org/en-US/docs/Web/Manifest) and have the correct tags in `<head>` ([Options > pwaHead](#pwahead)).
 
 After deployment, you can use [Lighthouse](https://developers.google.com/web/tools/lighthouse) to run an audit on your site.
 
 For a more exhaustive list of what it takes for your site to be a PWA, refer to the [PWA Checklist](https://developers.google.com/web/progressive-web-apps/checklist)
 
-## App installation support {/* #app-installation-support */}
+## 应用安装支持 {/* #app-installation-support */}
 
-If your browser supports it, you should be able to install a Docusaurus site as an app.
+如果你的浏览器支持，就可以把 Docusaurus 当作应用安装了。
 
 ![A screen recording of the installation process. A button appears in the address bar of the browser, which displays a dialog asking "install this application?" when clicked. After clicking the "Install" button, a new application is opened in the operating system, opening to the Docusaurus homepage.](/img/pwa_install.gif)
 
 :::note
 
-App installation requires the HTTPS protocol and a valid manifest.
+安装应用需要 HTTPS 协议及有效的 Manifest。
 
 :::
 
-## Offline mode (precaching) {/* #offline-mode-precaching */}
+## 离线模式（预缓存） {/* #offline-mode-precaching */}
 
-We enable users to browse a Docusaurus site offline, by using service-worker precaching.
+我们通过 Service Worker 预缓存的方式支持用户离线访问 Docusaurus 站点。
 
 The [workbox-precaching](https://developers.google.com/web/tools/workbox/modules/workbox-precaching) page explains the idea:
 
-> One feature of service workers is the ability to save a set of files to the cache when the service worker is installing. This is often referred to as "precaching", since you are caching content ahead of the service worker being used.
+> Service Worker 的功能之一是在安装过程中把一些文件保存到缓存。 因为你在 Service Worker 工作之前就开始缓存内容了，所以这一般被称为「预缓存」。
 >
-> The main reason for doing this is that it gives developers control over the cache, meaning they can determine when and how long a file is cached as well as serve it to the browser without going to the network, meaning it can be used to create web apps that work offline.
+> 使用此功能的主要原因是让开发者控制缓存，即决定何时缓存、缓存多长时间、以及在离线时向浏览器提供内容，也就是创建离线网页应用。
 >
-> Workbox takes a lot of the heavy lifting out of precaching by simplifying the API and ensuring assets are downloaded efficiently.
+> Workbox 为你完成了预缓存期间的诸多复杂工作，简化了 API 的同时还确保能高效率地下载资源。
 
-By default, offline mode is enabled when the site is installed as an app. See the `offlineModeActivationStrategies` option for details.
+默认情况下，当网站作为应用程序安装时，将默认启用离线模式。 See the `offlineModeActivationStrategies` option for details.
 
-After the site has been precached, the service worker will serve cached responses for later visits. When a new build is deployed along with a new service worker, the new one will begin installing and eventually move to a waiting state. During this waiting state, a reload popup will show and ask the user to reload the page for new content. Until the user either clears the application cache or clicks the `reload` button on the popup, the service worker will continue serving the old content.
+网站预缓存完毕后，Service Worker 将为之后的请求提供缓存好的响应。 当新构建的版本随着新的 Service Worker 一起部署后，新版本会自动开始安装并变成等待状态。 在此期间，网站会弹出刷新弹窗，提示用户刷新页面查看新内容。 Until the user either clears the application cache or clicks the `reload` button on the popup, the service worker will continue serving the old content.
 
 :::warning
 
-Offline mode / precaching requires downloading all the static assets of the site ahead of time, and can consume unnecessary bandwidth. It may not be a good idea to activate it for all kind of sites.
+离线模式/预缓存需要提前下载网站上的所有静态资源，可能会导致不必要的流量消耗。 并非每个站点都有必要开启此选项。
 
 :::
 
-## Options {/* #options */}
+## 选项 {/* #options */}
 
 ### `debug` {/* #debug */}
 
 - Type: `boolean`
 - Default: `false`
 
-Turn debug mode on:
+打开调试模式，包含以下功能：
 
-- Workbox logs
-- Additional Docusaurus logs
-- Unoptimized SW file output
-- Source maps
+- Workbox 日志
+- 额外的 Docusaurus 日志
+- 未优化的 SW 文件输出
+- Source Map
 
 ### `offlineModeActivationStrategies` {/* #offlinemodeactivationstrategies */}
 
 - Type: `('appInstalled' | 'mobile' | 'saveData'| 'queryString' | 'always')[]`
 - Default: `['appInstalled', 'queryString', 'standalone']`
 
-Strategies used to turn the offline mode on:
+开启离线模式的策略有：
 
 - `appInstalled`: activates for users having installed the site as an app (not 100% reliable)
 - `standalone`: activates for users running the app as standalone (often the case once a PWA is installed)
@@ -126,7 +126,7 @@ Strategies used to turn the offline mode on:
 
 :::warning
 
-Use this carefully: some users may not like to be forced to use the offline mode.
+用这个功能要小心：某些用户可能不喜欢强制使用离线模式。
 
 :::
 
@@ -142,7 +142,7 @@ The [`standalone` strategy](https://petelepage.com/blog/2019/07/is-my-pwa-instal
 
 ### `injectManifestConfig` {/* #injectmanifestconfig */}
 
-[Workbox options](https://developer.chrome.com/docs/workbox/reference/workbox-build/#type-InjectManifestOptions) to pass to `workbox.injectManifest()`. This gives you control over which assets will be precached, and be available offline.
+[Workbox options](https://developer.chrome.com/docs/workbox/reference/workbox-build/#type-InjectManifestOptions) to pass to `workbox.injectManifest()`. 这个选项允许你筛选需要预缓存，且可离线浏览的资源。
 
 - Type: `InjectManifestOptions`
 - Default: `{}`
@@ -176,7 +176,7 @@ export default {
 - Type: `({ tagName: string; [attributeName: string]: string })[]`
 - Default: `[]`
 
-Array of objects containing `tagName` and key-value pairs for attributes to inject into the `<head>` tag. Technically you can inject any head tag through this, but it's ideally used for tags to make your site PWA compliant. Here's a list of tag to make your app fully compliant:
+Array of objects containing `tagName` and key-value pairs for attributes to inject into the `<head>` tag. 理论上说，你可以通过这个选项注入任何 head 标签，但最好注入那些能让你的网站兼容 PWA 的标签。 下面列出了能让你的应用程序完全兼容 PWA 的标签：
 
 ```js
 export default {
@@ -243,9 +243,9 @@ export default {
 - Type: `string | undefined`
 - Default: `undefined`
 
-Useful for additional Workbox rules. You can do whatever a service worker can do here, and use the full power of workbox libraries. The code is transpiled, so you can use modern ES6+ syntax here.
+适用于额外的 Workbox 规则。 你可以在此处编写任何想让 Service Worker 做的事，让 Workbox 物尽其用。 代码会被自动转译，所以你可以在这里用最新的 ES6+ 语法。
 
-For example, to cache files from external routes:
+举个例子，假设我们要从外部路径缓存文件：
 
 ```js
 import {registerRoute} from 'workbox-routing';
@@ -276,13 +276,13 @@ The module should have a `default` function export, and receives some params.
 - Type: `string | false`
 - Default: `'docusaurus-plugin-pwa/src/registerSW.js'`
 
-Adds an entry before the Docusaurus app so that registration can happen before the app runs. The default `registerSW.js` file is enough for simple registration.
+在 Docusaurus 应用前添加入口，在应用运行前触发注册。 The default `registerSW.js` file is enough for simple registration.
 
 Passing `false` will disable registration entirely.
 
-## Manifest example {/* #manifest-example */}
+## Manifest 示例 {/* #manifest-example */}
 
-The Docusaurus site manifest can serve as an inspiration:
+Docusaurus 网站的 Manifest 可以给你一些启发：
 
 ```mdx-code-block
 import CodeBlock from '@theme/CodeBlock';
@@ -292,9 +292,9 @@ import CodeBlock from '@theme/CodeBlock';
 </CodeBlock>
 ```
 
-## Customizing reload popup {/* #customizing-reload-popup */}
+## 个性化刷新提示框 {/* #customizing-reload-popup */}
 
-The `@theme/PwaReloadPopup` component is rendered when a new service worker is waiting to be installed, and we suggest a reload to the user. You can [swizzle](../../swizzling.mdx) this component and implement your own UI. It will receive an `onReload` callback as props, which should be called when the `reload` button is clicked. This will tell the service worker to install the waiting service worker and reload the page.
+The `@theme/PwaReloadPopup` component is rendered when a new service worker is waiting to be installed, and we suggest a reload to the user. You can [swizzle](../../swizzling.mdx) this component and implement your own UI. It will receive an `onReload` callback as props, which should be called when the `reload` button is clicked. 这会告诉 Service Worker 安装等待中的新版 Service Worker，并刷新页面。
 
 The default theme includes an implementation for the reload popup and uses [Infima Alerts](https://infima.dev/docs/components/alert).
 

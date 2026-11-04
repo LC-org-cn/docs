@@ -1,7 +1,7 @@
 ---
 id: diagrams
 title: Diagrams
-description: Writing diagrams with Mermaid
+description: 使用 Mermaid 语法构建图表
 slug: /markdown-features/diagrams
 ---
 
@@ -11,7 +11,7 @@ import BrowserWindow from '@site/src/components/BrowserWindow';
 
 Diagrams can be rendered using [Mermaid](https://mermaid-js.github.io/mermaid/) in a code block.
 
-## Installation {/* #installation */}
+## 安装流程 {/* #installation */}
 
 ```bash npm2yarn
 npm install --save @docusaurus/theme-mermaid
@@ -28,7 +28,7 @@ export default {
 };
 ```
 
-## Usage {/* #usage */}
+## 用法 {/* #usage */}
 
 Add a code block with language `mermaid`:
 
@@ -56,9 +56,9 @@ graph TD;
 
 See the [Mermaid syntax documentation](https://mermaid-js.github.io/mermaid/#/./n00b-syntaxReference) for more information on the Mermaid syntax.
 
-## Theming {/* #theming */}
+## 高亮主题 {/* #theming */}
 
-The diagram dark and light themes can be changed by setting `mermaid.theme` values in the `themeConfig` in your `docusaurus.config.js`. You can set themes for both light and dark mode.
+The diagram dark and light themes can be changed by setting `mermaid.theme` values in the `themeConfig` in your `docusaurus.config.js`. 你可以同时为亮色和暗色模式指定图表的主题。
 
 ```js title="docusaurus.config.js"
 export default {
@@ -72,7 +72,7 @@ export default {
 
 See the [Mermaid theme documentation](https://mermaid-js.github.io/mermaid/#/theming) for more information on theming Mermaid diagrams.
 
-## Mermaid Config {/* #configuration */}
+## Mermaid 配置 {/* #configuration */}
 
 Options in `mermaid.options` will be passed directly to `mermaid.initialize`:
 

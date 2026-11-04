@@ -1,12 +1,12 @@
 ---
 id: head-metadata
-description: Declaring page-specific head metadata through MDX
+description: 通过 MDX 声明页面专有元数据
 slug: /markdown-features/head-metadata
 ---
 
-# Head metadata
+# Head 元数据
 
-## Customizing head metadata {/* #customizing-head-metadata */}
+## 自定义元数据 {/* #customizing-head-metadata */}
 
 Docusaurus automatically sets useful page metadata in `<html>`, `<head>` and `<body>` for you. It is possible to add extra metadata (or override existing ones) with the `<head>` tag in Markdown files:
 
@@ -43,7 +43,7 @@ My text
 </head>
 ```
 
-This `<head>` declaration has been added to the current Markdown doc as a demo. Open your browser DevTools and check how this page's metadata has been affected.
+This `<head>` declaration has been added to the current Markdown doc as a demo. 你可以打开浏览器的调试工具，看看本页面的元数据是如何被影响的。
 
 :::note
 
@@ -57,11 +57,11 @@ Content plugins (e.g. docs and blog) provide front matter options like `descript
 
 :::
 
-## Markdown page description {/* #markdown-page-description */}
+## Markdown 页面描述 {/* #markdown-page-description */}
 
-The Markdown pages' description metadata may be used in more places than the head metadata. For example, the docs plugin's [generated category index](../docs/sidebar/items.mdx#generated-index-page) uses the description metadata for the doc cards.
+Markdown 页面的 description 元数据可能在 head 元数据之外还被用于更多地方。 For example, the docs plugin's [generated category index](../docs/sidebar/items.mdx#generated-index-page) uses the description metadata for the doc cards.
 
-By default, the description is the first content-ful line, with some efforts to convert it to plain text. For example, the following file...
+默认情况下，描述是第一行包含内容的文字。我们会尽量把它转化为纯文本。 例如，对于下面的文件：
 
 ```md
 # Title
@@ -69,7 +69,7 @@ By default, the description is the first content-ful line, with some efforts to 
 Main content... May contain some [links](./file.mdx) or **emphasis**.
 ```
 
-...will have the default description "Main content... May contain some links or emphasis". However, **it's not designed to be fully functional**. Where it fails to produce reasonable descriptions, you can explicitly provide one through front matter:
+它的默认描述为「主要内容…… 还可能包含一些链接或者重点。」 However, **it's not designed to be fully functional**. 如果它不能产出一段合理的描述，你可以通过前言显式地提供一段：
 
 ```md
 ---

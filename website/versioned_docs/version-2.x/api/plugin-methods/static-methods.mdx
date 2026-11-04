@@ -2,13 +2,13 @@
 sidebar_position: 4
 ---
 
-# Static methods
+# 静态方法
 
-Static methods are not part of the plugin instance—they are attached to the constructor function. These methods are used to validate and normalize the plugin options and theme config, which are then used as constructor parameters to initialize the plugin instance.
+静态方法不是插件实例的一部分——它们是构造器函数的一部分。 这些方法会被用来校验并规范化插件选项和主题配置，而后两者随后会作为构造器参数用来初始化插件实例。
 
 ## `validateOptions({options, validate})` {/* #validateOptions */}
 
-Returns validated and normalized options for the plugin. This method is called before the plugin is initialized. You must return the options since they will be passed to the plugin during initialization.
+返回已校验和规范化的插件选项。 这个方法会在插件被初始化前被调用。 你必须返回新选项，因为这个选项会在初始化时被传递给插件。
 
 ### `options` {/* #options */}
 
@@ -46,7 +46,7 @@ myPlugin.validateOptions = ({options, validate}) => {
 module.exports = myPlugin;
 ```
 
-In TypeScript, you can also choose to export this as a separate named export.
+在 TypeScript 中，你也可以选择把这个函数作为单独的命名导出。
 
 ```ts title="my-plugin/src/index.ts"
 export default function (context, options) {
@@ -66,7 +66,7 @@ export function validateOptions({options, validate}) {
 
 ## `validateThemeConfig({themeConfig, validate})` {/* #validateThemeConfig */}
 
-Return validated and normalized configuration for the theme.
+返回已校验和规范化的主题配置。
 
 ### `themeConfig` {/* #themeConfig */}
 
@@ -104,13 +104,13 @@ myPlugin.validateThemeConfig = ({themeConfig, validate}) => {
 module.exports = validateThemeConfig;
 ```
 
-In TypeScript, you can also choose to export this as a separate named export.
+在 TypeScript 中，你也可以选择把这个函数作为单独的命名导出。
 
 ```ts title="my-theme/src/index.ts"
 export default function (context, options) {
   return {
     name: 'docusaurus-plugin',
-    // rest of methods
+    // 其余的方法
   };
 }
 

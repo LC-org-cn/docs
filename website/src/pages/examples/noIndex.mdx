@@ -1,10 +1,10 @@
-# No Index Page example
+# 无索引页面示例
 
 <head>
   <meta name="robots" content="nOiNdeX, NoFolLoW" />
 </head>
 
-This page will not be indexed by search engines because it contains the page following [page metadata](/docs/seo#single-page-metadata) markup:
+此页面将不会被搜索引擎索引，因为它包含[页面元数据](/docs/seo#single-page-metadata)标记后的页面：
 
 ```html
 <head>
@@ -14,12 +14,12 @@ This page will not be indexed by search engines because it contains the page fol
 
 :::tip
 
-The sitemap plugin filters pages containing a `noindex` content value. This page doesn't appear in Docusaurus [sitemap.xml](pathname:///sitemap.xml) file.
+sitemap 插件可过滤包含 `noindex` 内容值的页面。 此页面未出现在 Docusaurus 的 [sitemap.xml](pathname:///sitemap.xml) 文件中。
 
 :::
 
 :::note
 
-Robots directives are [case-insensitive](https://developers.google.com/search/docs/advanced/robots/robots_meta_tag#directives).
+机器人指令[不区分大小写](https://developers.google.com/search/docs/advanced/robots/robots_meta_tag#directives)。
 
 :::

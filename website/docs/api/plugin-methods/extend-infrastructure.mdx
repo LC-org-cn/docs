@@ -2,17 +2,17 @@
 sidebar_position: 2
 ---
 
-# Extending infrastructure
+# 扩展基础设施
 
-Docusaurus has some infrastructure like hot reloading, CLI, and swizzling, that can be extended by external plugins.
+Docusaurus 有一些基础设施，比如热重载、CLI、swizzle 等，它们可以被外部插件扩展。
 
 ## `getPathsToWatch()` {/* #getPathsToWatch */}
 
-Specifies the paths to watch for plugins and themes. The paths are watched by the dev server so that the plugin lifecycles are reloaded when contents in the watched paths change. Note that the plugins and themes modules are initially called with `context` and `options` from Node, which you may use to find the necessary directory information about the site.
+指定插件和主题要监听的路径。 这些路径会被开发服务器监听，从而使得当监听路径的内容发生变化时，插件生命周期会重新运行。 Note that the plugins and themes modules are initially called with `context` and `options` from Node, which you may use to find the necessary directory information about the site.
 
-Use this for files that are consumed server-side, because theme files are automatically watched by Webpack dev server.
+这个生命周期应该用于在服务端被读取的文件，因为主题文件会自动被 Webpack 开发服务器监听。
 
-Example:
+示例：
 
 ```js title="docusaurus-plugin/src/index.js"
 import path from 'path';
@@ -32,9 +32,9 @@ export default function (context, options) {
 
 ## `extendCli(cli)` {/* #extendCli */}
 
-Register an extra command to enhance the CLI of Docusaurus. `cli` is a [Commander 15 `Command`](https://github.com/tj/commander.js/tree/v15.0.0) object.
+为 Docusaurus 的 CLI 注册一个额外的命令。 `cli` is a [Commander 15 `Command`](https://github.com/tj/commander.js/tree/v15.0.0) object.
 
-Example:
+示例：
 
 ```js title="docusaurus-plugin/src/index.js"
 export default function (context, options) {
@@ -56,7 +56,7 @@ export default function (context, options) {
 
 ## `getThemePath()` {/* #getThemePath */}
 
-Returns the path to the directory where the theme components can be found. When your users call `swizzle`, `getThemePath` is called and its returned path is used to find your theme components. Relative paths are resolved against the folder containing the entry point.
+返回主题组件所在的文件夹路径。 When your users call `swizzle`, `getThemePath` is called and its returned path is used to find your theme components. 返回的相对路径会按照插件入口文件所在的文件夹被解析。
 
 For example, your `getThemePath` can be:
 
@@ -79,13 +79,13 @@ Similar to `getThemePath()`, it should return the path to the directory where th
 
 :::tip
 
-For TypeScript theme authors: you are strongly advised to make your compiled output as human-readable as possible. Only strip type annotations and don't transpile any syntaxes, because Docusaurus transpiles them based on the targeted browser versions.
+给用 TypeScript 编写主题的作者的提示：我们强烈建议你确保你的编译输出尽可能地可读。 Only strip type annotations and don't transpile any syntaxes, because Docusaurus transpiles them based on the targeted browser versions.
 
-You should also format these files with Prettier. Remember—JS files can and will be directly consumed by your users.
+你也应该用 Prettier 格式化这些文件。 要记得——JS 文件会被你的用户直接接触到。
 
 :::
 
-Example:
+示例：
 
 ```js title="my-theme/src/index.js"
 export default function (context, options) {

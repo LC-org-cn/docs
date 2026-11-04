@@ -1,20 +1,20 @@
 ---
 id: math-equations
-description: Writing LaTeX Math Equations
+description: 撰写 LaTeX 数学方程
 slug: /markdown-features/math-equations
 ---
 
-# Math Equations
+# 数学公式
 
 import BrowserWindow from '@site/src/components/BrowserWindow';
 
 Mathematical equations can be rendered using [KaTeX](https://katex.org).
 
-## Usage {/* #usage */}
+## 用法 {/* #usage */}
 
 Please read [KaTeX](https://katex.org) documentation for more details.
 
-### Inline {/* #inline */}
+### 行内公式 {/* #inline */}
 
 Write inline math equations by wrapping LaTeX equations between `$`:
 
@@ -26,12 +26,11 @@ $f$ is continuous at $x$, $F$ is differentiable at $x$ with $F'(x)=f(x)$.
 
 <BrowserWindow>
 
-Let $f\colon[a,b] \to \R$ be Riemann integrable. Let $F\colon[a,b]\to\R$ be $F(x)=
-\int_{a}^{x} f(t)\,dt$. Then $F$ is continuous, and at all $x$ such that $f$ is continuous at $x$, $F$ is differentiable at $x$ with $F'(x)=f(x)$.
+令 $f\colon[a,b]\to\R$ 为一个黎曼可积的函数。 令 $F\colon[a,b]\to\R$ 等于 $F(x)=\int_{a}^{x} f(t)\,dt$。 因此，$F$ 是连续的，并且对于所有使得 $f$ 在 $x$ 处连续的 $x$，$F$ 都在 $x$ 处可微，并且有 $F'(x)=f(x)$.
 
 </BrowserWindow>
 
-### Blocks {/* #blocks */}
+### 块级公式 {/* #blocks */}
 
 For equation block or display mode, use <code>```math</code> fenced code blocks.
 
@@ -57,7 +56,7 @@ I = \int_0^{2\pi} \sin(x)\,dx
 
 </BrowserWindow>
 
-## Configuration {/* #configuration */}
+## 配置 {/* #configuration */}
 
 To enable KaTeX, you need to install `remark-math` and `rehype-katex` plugins.
 
@@ -181,7 +180,7 @@ export default {
 };
 ```
 
-## Self-hosting KaTeX assets {/* #self-hosting-katex-assets */}
+## 自托管的 KaTeX 资源 {/* #self-hosting-katex-assets */}
 
 Loading stylesheets, fonts, and JavaScript libraries from CDN sources is a good practice for popular libraries and assets, since it reduces the amount of assets you have to host. In case you prefer to self-host the `katex.min.css` (along with required KaTeX fonts), you can download the latest version from [KaTeX GitHub releases](https://github.com/KaTeX/KaTeX/releases), extract and copy `katex.min.css` and `fonts` directory (only `.woff2` font types should be enough) to your site's `static` directory, and in `docusaurus.config.js`, replace the stylesheet's `href` from the CDN URL to your local path (say, `/katex/katex.min.css`).
 

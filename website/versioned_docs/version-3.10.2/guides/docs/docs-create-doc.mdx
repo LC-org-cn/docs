@@ -1,12 +1,12 @@
 ---
 id: create-doc
-description: Create a Markdown Document
+description: 创建 Markdown 文档
 slug: /create-doc
 ---
 
-# Create a doc
+# 创建文档
 
-Create a Markdown file, `greeting.md`, and place it under the `docs` directory.
+创建一个叫做 `greeting.md` 的 markdown 文件，并且把它放到 `docs` 目录下。
 
 ```bash
 website # root directory of your site
@@ -48,26 +48,26 @@ The headers are well-spaced so that the hierarchy is clear.
 
 :::note
 
-All files prefixed with an underscore (`_`) under the `docs` directory are treated as "partial" pages and will be ignored by default.
+在 `docs` 目录下所有带有下划线（`_`）前缀的文件都会被当作页面“片段”，并被默认忽略。
 
-Read more about [importing partial pages](../markdown-features/markdown-features-react.mdx#importing-markdown).
+了解有关[导入部分页面](../markdown-features/markdown-features-react.mdx#importing-markdown)的更多信息。
 
 :::
 
-## Doc front matter {/* #doc-front-matter */}
+## 文档前言 {/* #doc-front-matter */}
 
-The [front matter](../markdown-features/markdown-features-intro.mdx#front-matter) is used to provide additional metadata for your doc page. Front matter is optional—Docusaurus will be able to infer all necessary metadata without the front matter. For example, the [doc tags](#doc-tags) feature introduced below requires using front matter. For all possible fields, see [the API documentation](../../api/plugins/plugin-content-docs.mdx#markdown-front-matter).
+[前言](../markdown-features/markdown-features-intro.mdx#front-matter)用于为您的文档页面提供额外的元数据。 前言是可选的——Docusaurus 能够自行推断所有必要的元数据，无需前言。 例如，下面介绍的[文档标签](#doc-tags)功能就需要使用前置元数据。 有关所有可用字段，请参阅[API 文档](../../api/plugins/plugin-content-docs.mdx#markdown-front-matter)。
 
-## Doc tags {/* #doc-tags */}
+## 文档标签 {/* #doc-tags */}
 
-Tags are declared in the front matter and introduce another dimension of categorization in addition to the [docs sidebar](./sidebar/index.mdx).
+标签在 front matter 中声明，并在 [docs 侧边栏](./sidebar/index.mdx) 之外引入了另一个分类维度。
 
-It is possible to define tags inline, or to reference predefined tags declared in a [`tags file`](../../api/plugins/plugin-content-docs.mdx#tags-file) (optional, usually `docs/tags.yml`).
+可以内联定义标签，也可以引用在[`标签文件`](../../api/plugins/plugin-content-docs.mdx#tags-file)（可选，通常为 `docs/tags.yml`）中声明的预定义标签。
 
-In the following example:
+下面的示例：
 
-- `docusaurus` references a predefined tag key declared in `docs/tags.yml`
-- `Releases` is an inline tag, because it does not exist in `docs/tags.yml`
+- `docusaurus` 引用了在 `docs/tags.yml` 中声明的预定义标签键
+- `Releases` 是一个内联标签，因为它不存在于 `docs/tags.yml` 中
 
 ```md title="docs/my-doc.md"
 ---
@@ -90,21 +90,21 @@ docusaurus:
 
 :::tip
 
-Tags can also be declared with `tags: [Demo, Getting started]`.
+标签也可以用 `tags: [Demo, 入门]` 来声明。
 
-Read more about all the possible [Yaml array syntaxes](https://www.w3schools.io/file/yaml-arrays/).
+进一步了解所有可能的 [Yaml 数组语法](https://www.w3schools.io/file/yaml-arrays/)。
 
 :::
 
-## Organizing folder structure {/* #organizing-folder-structure */}
+## 组织文件夹结构 {/* #organizing-folder-structure */}
 
-How the Markdown files are arranged under the `docs` folder can have multiple impacts on Docusaurus content generation. However, most of them can be decoupled from the file structure.
+Markdown文件在`docs`文件夹下的排列方式会对Docusaurus内容生成产生多方面的影响。 然而，其中绝大多数可以与文件结构脱钩。
 
-### Document ID {/* #document-id */}
+### 文档 ID {/* #document-id */}
 
-Every document has a unique `id`. By default, a document `id` is the name of the document (without the extension) relative to the root docs directory.
+每个文档都有一个唯一的 `id`。 默认情况下，文档的 `id` 是文档相对于根文档目录的名称（不包含扩展名）。
 
-For example, the ID of `greeting.md` is `greeting`, and the ID of `guide/hello.md` is `guide/hello`.
+例如，`greeting.md` 的 ID 是 `greeting`，而 `guide/hello.md` 的 ID 是 `guide/hello`。
 
 ```bash
 website # Root directory of your site
@@ -114,7 +114,7 @@ website # Root directory of your site
       └── hello.md
 ```
 
-However, the **last part** of the `id` can be defined by the user in the front matter. For example, if `guide/hello.md`'s content is defined as below, its final `id` is `guide/part1`.
+然而，`id` 的**最后部分**可由用户在前置信息中定义。 例如，如果 `guide/hello.md` 的内容定义如下，其最终的 `id` 为 `guide/part1`。
 
 ```md
 ---
@@ -124,29 +124,29 @@ id: part1
 Lorem ipsum
 ```
 
-The ID is used to refer to a document when hand-writing sidebars, or when using docs-related layout components or hooks.
+当手写侧边栏，或这使用与文档相关的布局或钩子时，ID 会被用来指代某篇文档。
 
-### Doc URLs {/* #doc-urls */}
+### 文档 URL {/* #doc-urls */}
 
-By default, the document's URL location is derived from the [document `id`](#document-id), which in turn is based on the document's file path.
+默认情况下，文档的 URL 位置派生自[文档 `id`](#document-id)，而该 `id` 又基于文档的文件路径。
 
-If a file is named one of the following, the file name won't be included in the URL:
+如果文件命名为以下之一，那么该文件名将不会包含在 URL 中：
 
-- Named as `index` (case-insensitive): `docs/Guides/index.md`
-- Named as `README` (case-insensitive): `docs/Guides/README.mdx`
-- Same name as parent folder: `docs/Guides/Guides.md`
+- 名为 `index`（大小写不敏感）：`docs/Guides/index.md`
+- 名为 `README`（大小写不敏感）：`docs/Guides/README.mdx`
+- 和上一级目录的名字一致：`docs/Guides/Guides.md`
 
-In all cases, the default `slug` would only be `/Guides`, without the `/index`, `/README`, or duplicate `/Guides` segment.
+在所有情况下，默认的 `slug` 都只会是 `/Guides`，不包含 `/index`、`/README` 或重复的 `/Guides` 段。
 
 :::note
 
-This convention is exactly the same as [the category index convention](./sidebar/autogenerated.mdx#category-index-convention). However, the `isCategoryIndex` configuration does _not_ affect the document URL.
+该约定与[类别索引约定](./sidebar/autogenerated.mdx#category-index-convention)完全相同。 然而，`isCategoryIndex` 配置并 _不_ 影响文档的 URL。
 
 :::
 
-Use the `slug` front matter to provide an explicit document URL and override the default one.
+使用 `slug` 前置元数据来提供显式的文档 URL 并覆盖默认的 URL。
 
-For example, suppose your site structure looks like this:
+例如，假设你的站点结构如下所示：
 
 ```bash
 website # Root directory of your site
@@ -155,7 +155,7 @@ website # Root directory of your site
         └── hello.md
 ```
 
-By default, `hello.md` will be available at `/docs/guide/hello`. You can change its URL location to `/docs/bonjour`:
+默认情况下，`hello.md` 将可在 `/docs/guide/hello` 路径访问。 你可以将其 URL 位置更改为 `/docs/bonjour`：
 
 ```md
 ---
@@ -165,26 +165,26 @@ slug: /bonjour
 Lorem ipsum
 ```
 
-`slug` will be appended to the doc plugin's `routeBasePath`, which is `/docs` by default. See [Docs-only mode](docs-introduction.mdx#docs-only-mode) for how to remove the `/docs` part from the URL.
+`slug` 将被附加到文档插件的 `routeBasePath` 后面，该路径默认为 `/docs`。 有关如何从 URL 中移除 `/docs` 部分，请参阅[仅文档模式](docs-introduction.mdx#docs-only-mode)。
 
 :::note
 
-It is possible to use:
+可以使用：
 
-- absolute slugs: `slug: /mySlug`, `slug: /`...
-- relative slugs: `slug: mySlug`, `slug: ./../mySlug`...
+- 绝对路径标识：`slug: /mySlug`、`slug: /`……
+- 相对路径标识：`slug: mySlug`、`slug: ./../mySlug`……
 
 :::
 
 :::tip
 
-Changing a document's filename or `id`, will change its default URL. To prevent breaking permalinks when renaming files, we recommend setting an explicit `slug` to keep your URLs stable.
+更改文档的文件名或 `id` 将改变其默认 URL。 为防止重命名文件时固定链接失效，建议设置明确的 `slug` 以保持网址稳定。
 
 :::
 
-#### Making a document available at the root {/* #making-a-document-available-at-the-root */}
+#### 在根目录下提供文档 {/* #making-a-document-available-at-the-root */}
 
-If you want a document to be available at the root, and have a path like `https://docusaurus.io/docs/`, you can use the slug front matter:
+如果您希望文档在根路径下可用，并具有类似 `https://docusaurus.io/docs/` 的路径，您可以使用 slug 前置元数据：
 
 ```md
 ---
@@ -195,8 +195,8 @@ slug: /
 Lorem ipsum
 ```
 
-### Sidebars {/* #sidebars */}
+### 侧边栏 {/* #sidebars */}
 
-When using [autogenerated sidebars](./sidebar/autogenerated.mdx), the file structure will determine the sidebar structure.
+使用自动[生成侧边栏](./sidebar/autogenerated.mdx)时，文件夹的结构将决定侧边栏结构。
 
-Our recommendation for file system organization is: make your file system mirror the sidebar structure (so you don't need to handwrite your `sidebars.js` file), and use the `slug` front matter to customize URLs of each document.
+我们推荐的文件系统组织方式是：让你的文件系统与侧边栏结构保持一致（这样你就不需要手动编写 `sidebars.js` 文件），并使用 `slug` 前置元数据来自定义每个文档的 URL。

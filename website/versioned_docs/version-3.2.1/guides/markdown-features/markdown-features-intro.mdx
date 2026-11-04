@@ -1,10 +1,10 @@
 ---
 id: introduction
-description: Docusaurus uses MDX. Find out more about Docusaurus-specific features when writing Markdown.
+description: Docusaurus 使用的是 MDX。 了解更多 Docusaurus 独有的 Markdown 功能。
 slug: /markdown-features
 ---
 
-# Markdown Features
+# Markdown 特性
 
 import BrowserWindow from '@site/src/components/BrowserWindow';
 
@@ -18,19 +18,19 @@ You can [learn Markdown in 10 minutes](https://commonmark.org/help/).
 
 Docusaurus uses modern tooling to help you create **interactive documentation**.
 
-The **[MDX](https://mdxjs.com/)** compiler transforms **Markdown files to React components**, and allows you to use JSX in your Markdown content. This enables you to easily interleave React components within your content, and create delightful learning experiences.
+The **[MDX](https://mdxjs.com/)** compiler transforms **Markdown files to React components**, and allows you to use JSX in your Markdown content. 这使得您能够轻松地将 React 组件在您的内容中进行交互，并创造愉快的学习体验。
 
 :::tip Use the MDX Playground
 
 The **[MDX playground](https://mdxjs.com/playground/)** is your new best friend!
 
-It is a very helpful debugging tool that shows how the MDX compiler transforms Markdown to React.
+这是一个非常有用的调试工具，显示 MDX 编译器如何将 Markdown 转换为 React。
 
 **Options**: select the right format (MDX or CommonMark) and the following plugins Docusaurus uses: `remark-gfm`, `remark-directive`, `rehype-raw`.
 
 :::
 
-## MDX vs. CommonMark {/* #mdx-vs-commonmark */}
+## MDX 与 CommonMark 的对比 {/* #mdx-vs-commonmark */}
 
 Docusaurus compiles both `.md` and `.mdx` files to React components using the MDX compiler, but **the syntax can be interpreted differently** depending on your settings.
 
@@ -58,16 +58,16 @@ The CommonMark support is **experimental** and currently has a few [limitations]
 
 :::
 
-## Standard features {/* #standard-features */}
+## 标准功能 {/* #standard-features */}
 
-Markdown is a syntax that enables you to write formatted content in a readable syntax.
+Markdown 是一种能让你撰写易读的格式化内容的语法。
 
 ```md
-### My Doc Section
+### 我的文档章节
 
-Hello world message with some **bold** text, some _italic_ text, and a [link](/)
+一些文本，包括**粗体**、_斜体_，和[链接](/)
 
-![img alt](/img/docusaurus.png)
+![图片 alt 文本](/img/docusaurus.png)
 ```
 
 ```mdx-code-block
@@ -94,25 +94,25 @@ In general, you should only assume the _semantics_ of the markup (` ``` ` fences
 
 </details>
 
-## Front matter {/* #front-matter */}
+## 前言 {/* #front-matter */}
 
-Front matter is used to add metadata to your Markdown file. All content plugins have their own front matter schema, and use the front matter to enrich the default metadata inferred from the content or other configuration.
+你可以用前言 (front matter) 来给你的 Markdown 文件添加元数据。 All content plugins have their own front matter schema, and use the front matter to enrich the default metadata inferred from the content or other configuration.
 
 Front matter is provided at the very top of the file, enclosed by three dashes `---`. The content is parsed as [YAML](https://yaml.org/spec/1.2.2/).
 
 ```md
 ---
-title: My Doc Title
-more_data:
-  - Can be provided
-  - as: objects
-    or: arrays
+title: 我的文档标题
+其他内容:
+  - 可以以
+  - 对象: 或者
+    数组: 的形式给出
 ---
 ```
 
 :::info
 
-The API documentation of each official plugin lists the supported attributes:
+每个官方插件的 API 文档列出了支持的属性：
 
 - [Docs front matter](../../api/plugins/plugin-content-docs.mdx#markdown-front-matter)
 - [Blog front matter](../../api/plugins/plugin-content-blog.mdx#markdown-front-matter)
@@ -159,9 +159,9 @@ export default {
 
 :::
 
-## Quotes {/* #quotes */}
+## 引文 {/* #quotes */}
 
-Markdown quotes are beautifully styled:
+Markdown 引文有着漂亮的样式：
 
 ```md
 > Easy to maintain open source documentation websites.
@@ -177,7 +177,7 @@ Markdown quotes are beautifully styled:
 
 </BrowserWindow>
 
-## Details {/* #details */}
+## 细节 {/* #details */}
 
 Markdown can embed HTML elements, and [`details`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details) HTML elements are beautifully styled:
 

@@ -2,9 +2,9 @@
 slug: /migration/v2/versioned-sites
 ---
 
-# Versioned sites
+# 分版站点
 
-Read up https://docusaurus.io/blog/2018/09/11/Towards-Docusaurus-2#versioning first for problems in v1's approach.
+先阅读 https://docusaurus.io/blog/2018/09/11/Towards-Docusaurus-2#versioning 来了解从 v1 迁移可能带来的问题。
 
 :::note
 
@@ -14,7 +14,7 @@ The versioned docs should normally be migrated correctly by the [migration CLI](
 
 ## Migrate your `versioned_docs` front matter {/* #migrate-your-versioned_docs-front-matter */}
 
-Unlike v1, The Markdown header for each versioned doc is no longer altered by using `version-${version}-${original_id}` as the value for the actual ID field. See scenario below for better explanation.
+Unlike v1, The Markdown header for each versioned doc is no longer altered by using `version-${version}-${original_id}` as the value for the actual ID field. 为了更好地解释请看下方的场景。
 
 For example, if you have a `docs/hello.md`.
 
@@ -50,9 +50,9 @@ title: Hello, World !
 Hi, Endilie here :)
 ```
 
-Since we're going for snapshot and allow people to move (and edit) docs easily inside version. The `id` front matter is no longer altered and will remain the same. Internally, it is set as `version-${version}/${id}`.
+既然我们正在使用快照版本应允许用户简便地在版本内移动 (和编辑) 文档。 The `id` front matter is no longer altered and will remain the same. Internally, it is set as `version-${version}/${id}`.
 
-Essentially, here are the necessary changes in each versioned_docs file:
+基础地，这是每个版本的 docs 文件中的必要更改：
 
 ```diff {2-3,5}
 ---
@@ -94,7 +94,7 @@ Hi, Endilie here :)
 
 Since we don't allow `/` in v1 & v2 for front matter, conflicts are less likely to occur.
 
-So v1 users need to migrate their versioned_sidebars file
+所以 v1 版本需要迁移他们的 versioned_sidebars 文件
 
 Example `versioned_sidebars/version-1.0.0-sidebars.json`:
 
@@ -116,7 +116,7 @@ Example `versioned_sidebars/version-1.0.0-sidebars.json`:
 
 ## Populate your `versioned_sidebars` and `versioned_docs` {/* #populate-your-versioned_sidebars-and-versioned_docs */}
 
-In v2, we use snapshot approach for documentation versioning. **Every versioned docs does not depends on other version**. It is possible to have `foo.md` in `version-1.0.0` but it doesn't exist in `version-1.2.0`. This is not possible in previous version due to Docusaurus v1 fallback functionality (https://v1.docusaurus.io/docs/en/versioning#fallback-functionality).
+在 v2 版本中，我们使用快照方法进行文档版本管理。 **Every versioned docs does not depends on other version**. It is possible to have `foo.md` in `version-1.0.0` but it doesn't exist in `version-1.2.0`. 由于Docusaurus v1 的回退功能，这在前一版本中是不可行的 (https://v1.docusaurus.io/docs/en/versioning#fallback-function).
 
 For example, if your `versions.json` looks like this in v1
 
@@ -157,9 +157,9 @@ website
 │   └── version-1.0.0-sidebars.json
 ```
 
-## Convert style attributes to style objects in MDX {/* #convert-style-attributes-to-style-objects-in-mdx */}
+## 将样式属性转换为 MDX 中的样式对象 {/* #convert-style-attributes-to-style-objects-in-mdx */}
 
-Docusaurus 2 uses JSX for doc files. If you have any style attributes in your Docusaurus 1 docs, convert them to style objects, like this:
+Docusaurus 2 使用 JSX 来处理文件。 如果您在 Docusaurus 1 文档中有任何样式属性，将其转换为样式对象，如：
 
 ```diff
 ---

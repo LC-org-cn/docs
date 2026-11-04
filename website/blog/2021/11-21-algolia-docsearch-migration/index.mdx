@@ -1,8 +1,8 @@
 ---
-title: DocSearch migration
+title: DocSearch 迁移
 authors: [shortcuts, slorber]
-tags: [search]
-image: ./img/social-card.png
+tags: [搜索]
+image: '@site/blog/2021/11-21-algolia-docsearch-migration/img/social-card.png'
 ---
 
 [DocSearch](https://docsearch.algolia.com/) is migrating to a new, more powerful system, which gives users their own Algolia application and new credentials.
@@ -11,16 +11,16 @@ Docusaurus site owners should upgrade their configuration with their new credent
 
 {/* truncate */}
 
-## Upgrading your Docusaurus site {/* #upgrading-your-docusaurus-site */}
+## 升级你的 Docusaurus 网站 {/* #upgrading-your-docusaurus-site */}
 
-In the next few weeks, Docusaurus site owners will receive an email inviting them to join their personal Algolia application.
+在接下来的几周，Docusaurus 网站所有者将收到一封电子邮件，邀请您加入 Algolia 个人应用。
 
 This email will include a new `appId` and `apiKey` to use in your Docusaurus configuration.
 
-The only things you have to do:
+您只需要：
 
-- Join the Algolia application (eventually creating a new Algolia account)
-- Update your site configuration.
+- 加入 Algolia 应用程序（必要时创建一个新的 Algolia 账户）
+- 更新您的站点配置。
 
 ```js title="docusaurus.config.js"
 const config = {
@@ -41,13 +41,13 @@ module.exports = config;
 
 `appId` is now **required**.
 
-These keys are not secrets and can be added to your Git repository.
+这些密钥不是机密，可以添加到您的 Git 仓库中。
 
 :::
 
-## DocSearch has a new home! {/* #docsearch-has-a-new-home */}
+## Docsearch 有一个新家了！ {/* #docsearch-has-a-new-home */}
 
-### What is DocSearch? {/* #what-is-docsearch */}
+### DocSearch 是什么？ {/* #what-is-docsearch */}
 
 [DocSearch](https://docsearch.algolia.com/) is a program created by [Algolia](http://algolia.com/), which offers search to technical documentation of Open Source projects and technical blogs **for free**.
 
@@ -55,7 +55,7 @@ You can [read more here](https://docsearch.algolia.com/docs/what-is-docsearch/),
 
 ## What is this migration about? {/* #what-is-this-migration-about */}
 
-### Motivation {/* #motivation */}
+### 动机 {/* #motivation */}
 
 With the upcoming stable release of [DocSearch UI](https://docsearch.algolia.com/docs/DocSearch-v3), we wanted to go further and provide better tooling for our users to improve their search, but also leverage the full potential of Algolia.
 
@@ -63,23 +63,23 @@ With the upcoming stable release of [DocSearch UI](https://docsearch.algolia.com
 
 DocSearch now leverages the [Algolia Crawler](https://www.algolia.com/products/search-and-discovery/crawler/), which includes a web interface that will allow you to:
 
-- Start, schedule and monitor your crawls
-- Edit your config file from a live editor
-- Test your results with DocSearch v3
+- 启动，规划和监视你的 crawl
+- 使用在线编辑器编辑您的配置文件
+- 借助于 DocSearch v3 测试您的结果
 
-![The Algolia crawler front page showing the project's overview, such as last complete crawl and indices](./img/crawler-overview.png)
+![The Algolia crawler front page showing the project's overview, such as last complete crawl and indices](@site/blog/2021/11-21-algolia-docsearch-migration/img/crawler-overview.png)
 
-![The Algolia config editor opened to the docusaurus-2 config. The right pane shows the results for index and various facet filters.](./img/editor.png)
+![The Algolia config editor opened to the docusaurus-2 config. The right pane shows the results for index and various facet filters.](@site/blog/2021/11-21-algolia-docsearch-migration/img/editor.png)
 
 But also, more Algolia features in **your own Algolia app**:
 
-- Team management
-- Browse and see how your records are indexed in Algolia
-- Try other Algolia features with free trials
+- 团队管理
+- 浏览并查看您的记录是如何在Algolia进行索引的
+- 免费试用其他Algolia功能
 
-![The Algolia index overview page, showing various filters and the details of every single index](./img/index-overview.png)
+![The Algolia index overview page, showing various filters and the details of every single index](@site/blog/2021/11-21-algolia-docsearch-migration/img/index-overview.png)
 
-![The Algolia index analytics page, showing trends for total users, total searches, etc.](./img/index-analytics.png)
+![The Algolia index analytics page, showing trends for total users, total searches, etc.](@site/blog/2021/11-21-algolia-docsearch-migration/img/index-analytics.png)
 
 And of course, **a lot more, for free**.
 

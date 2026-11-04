@@ -1,12 +1,12 @@
 ---
-description: How the Docusaurus client is structured
+description: Docusaurus 客户端的结构
 ---
 
-# Client architecture
+# 客户端架构
 
-## Theme aliases {/* #theme-aliases */}
+## 主题别名 {/* #theme-aliases */}
 
-A theme works by exporting a set of components, e.g. `Navbar`, `Layout`, `Footer`, to render the data passed down from plugins. Docusaurus and users use these components by importing them using the `@theme` webpack alias:
+主题会提供一组组件，比如 `Navbar`、`Layout`、`Footer`，用于渲染插件传递下来的数据。 Docusaurus 和用户会通过 `@theme` 这个 Webpack 别名导入并使用这些组件：
 
 ```js
 import Navbar from '@theme/Navbar';
@@ -16,9 +16,9 @@ The alias `@theme` can refer to a few directories, in the following priority:
 
 1. A user's `website/src/theme` directory, which is a special directory that has the higher precedence.
 2. A Docusaurus theme package's `theme` directory.
-3. Fallback components provided by Docusaurus core (usually not needed).
+3. Docusaurus core 提供的原始组件（通常用不到）。
 
-This is called a _layered architecture_: a higher-priority layer providing the component would shadow a lower-priority layer, making swizzling possible. Given the following structure:
+This is called a _layered architecture_: a higher-priority layer providing the component would shadow a lower-priority layer, making swizzling possible. 假设有以下文件结构：
 
 ```
 website
@@ -31,7 +31,7 @@ website
         └── Navbar.js
 ```
 
-`website/src/theme/Navbar.js` takes precedence whenever `@theme/Navbar` is imported. This behavior is called component swizzling. If you are familiar with Objective C where a function's implementation can be swapped during runtime, it's the exact same concept here with changing the target `@theme/Navbar` is pointing to!
+`website/src/theme/Navbar.js` takes precedence whenever `@theme/Navbar` is imported. 这被称为 swizzle。 If you are familiar with Objective C where a function's implementation can be swapped during runtime, it's the exact same concept here with changing the target `@theme/Navbar` is pointing to!
 
 We already talked about how the "userland theme" in `src/theme` can re-use a theme component through the [`@theme-original`](../swizzling.mdx#wrapping) alias. One theme package can also wrap a component from another theme, by importing the component from the initial theme, using the `@theme-init` import.
 
@@ -58,17 +58,17 @@ Unless you want to publish a re-usable "theme enhancer" (like `@docusaurus/theme
 
 :::
 
-It can be quite hard to wrap your mind around these aliases. Let's imagine the following case with a super convoluted setup with three themes/plugins and the site itself all trying to define the same component. Internally, Docusaurus loads these themes as a "stack".
+要理解这些别名可能有点困难。 我们来想象一个超级复杂的场景：三个主题，以及网站本身，都尝试定义同一个组件。 Docusaurus 内部会把这些主题加载成一个「栈」。
 
 ```text
 +-------------------------------------------------+
-|        `website/src/theme/CodeBlock.js`         | <-- `@theme/CodeBlock` always points to the top
+|        `website/src/theme/CodeBlock.js`         | <-- `@theme/CodeBlock` 永远指向最顶部
 +-------------------------------------------------+
-| `theme-live-codeblock/theme/CodeBlock/index.js` | <-- `@theme-original/CodeBlock` points to the topmost non-swizzled component
+| `theme-live-codeblock/theme/CodeBlock/index.js` | <-- `@theme-original/CodeBlock` 指向最顶部的非 swizzle 组件
 +-------------------------------------------------+
 |  `plugin-awesome-codeblock/theme/CodeBlock.js`  |
 +-------------------------------------------------+
-|     `theme-classic/theme/CodeBlock/index.js`    | <-- `@theme-init/CodeBlock` always points to the bottom
+|     `theme-classic/theme/CodeBlock/index.js`    | <-- `@theme-init/CodeBlock` 永远指向最底部
 +-------------------------------------------------+
 ```
 
@@ -76,18 +76,18 @@ The components in this "stack" are pushed in the order of `preset plugins > pres
 
 `@theme/*` always points to the topmost component—when `CodeBlock` is swizzled, all other components requesting `@theme/CodeBlock` receive the swizzled version.
 
-`@theme-original/*` always points to the topmost non-swizzled component. That's why you can import `@theme-original/CodeBlock` in the swizzled component—it points to the next one in the "component stack", a theme-provided one. Plugin authors should not try to use this because your component could be the topmost component and cause a self-import.
+`@theme-original/*` always points to the topmost non-swizzled component. That's why you can import `@theme-original/CodeBlock` in the swizzled component—it points to the next one in the "component stack", a theme-provided one. 插件作者不能使用这个别名，因为你的组件可能是最顶端的组件，从而导致自己导入自己的情况。
 
-`@theme-init/*` always points to the bottommost component—usually, this comes from the theme or plugin that first provides this component. Individual plugins / themes trying to enhance code block can safely use `@theme-init/CodeBlock` to get its basic version. Site creators should generally not use this because you likely want to enhance the _topmost_ instead of the _bottommost_ component. It's also possible that the `@theme-init/CodeBlock` alias does not exist at all—Docusaurus only creates it when it points to a different one from `@theme-original/CodeBlock`, i.e. when it's provided by more than one theme. We don't waste aliases!
+`@theme-init/*` always points to the bottommost component—usually, this comes from the theme or plugin that first provides this component. Individual plugins / themes trying to enhance code block can safely use `@theme-init/CodeBlock` to get its basic version. Site creators should generally not use this because you likely want to enhance the _topmost_ instead of the _bottommost_ component. It's also possible that the `@theme-init/CodeBlock` alias does not exist at all—Docusaurus only creates it when it points to a different one from `@theme-original/CodeBlock`, i.e. when it's provided by more than one theme. 我们不会浪费别名的！
 
-## Client modules {/* #client-modules */}
+## 客户端模块 {/* #client-modules */}
 
-Client modules are part of your site's bundle, just like theme components. However, they are usually side-effect-ful. Client modules are anything that can be `import`ed by Webpack—CSS, JS, etc. JS scripts usually work on the global context, like registering event listeners, creating global variables...
+客户端模块是网站包的一部分，就像主题组件一样。 然而，它们通常会引入副作用。 客户端模块是任何可以被 Webpack `import` 的东西——比如 CSS、JS 等等。 JS 脚本通常在全局环境中工作，比如注册事件监听器，创建全局变量……
 
-These modules are imported globally before React even renders the initial UI.
+这些模块是在 React 甚至还没开始渲染 UI 之前就导入的。
 
 ```js title="@docusaurus/core/App.tsx"
-// How it works under the hood
+// 它在底层是如何工作的
 import '@generated/client-modules';
 ```
 
@@ -99,7 +99,7 @@ Client modules are called during server-side rendering as well, so remember to c
 import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 
 if (ExecutionEnvironment.canUseDOM) {
-  // As soon as the site loads in the browser, register a global event listener
+  // 网站在浏览器中开始加载时，立即注册一个全局事件监听器
   window.addEventListener('keydown', (e) => {
     if (e.code === 'Period') {
       location.assign(location.href.replace('.com', '.dev'));
@@ -108,33 +108,33 @@ if (ExecutionEnvironment.canUseDOM) {
 }
 ```
 
-CSS stylesheets imported as client modules are [global](../styling-layout.mdx#global-styles).
+作为客户端模块导入的 CSS 样式表是[全局的](../styling-layout.mdx#global-styles)。
 
 ```css title="mySiteGlobalCss.css"
-/* This stylesheet is global. */
+/* 这个样式是全局的。 */
 .globalSelector {
   color: red;
 }
 ```
 
-### Client module lifecycles {/* #client-module-lifecycles */}
+### 客户端模块生命周期 {/* #client-module-lifecycles */}
 
 Besides introducing side-effects, client modules can optionally export two lifecycle functions: `onRouteUpdate` and `onRouteDidUpdate`.
 
-Because Docusaurus builds a single-page application, `script` tags will only be executed the first time the page loads, but will not re-execute on page transitions. These lifecycles are useful if you have some imperative JS logic that should execute every time a new page has loaded, e.g., to manipulate DOM elements, to send analytics data, etc.
+Because Docusaurus builds a single-page application, `script` tags will only be executed the first time the page loads, but will not re-execute on page transitions. 如果你有一些命令式的 JS 逻辑需要在每个新页面加载时执行，那么这些生命周期会很有用，比如操纵 DOM 元素，发送分析数据，等等。
 
-For every route transition, there will be several important timings:
+每次路由变换，会有几个重要的时间节点：
 
-1. The user clicks a link, which causes the router to change its current location.
-2. Docusaurus preloads the next route's assets, while keeping displaying the current page's content.
-3. The next route's assets have loaded.
-4. The new location's route component gets rendered to DOM.
+1. 用户点击链接，导致路由更改当前位置。
+2. Docusaurus 预加载下一路径的资源，同时保持显示当前页面的内容。
+3. 下一路径的资源加载完毕。
+4. 新路径的路由组件在 DOM 上渲染出来。
 
 `onRouteUpdate` will be called at event (2), and `onRouteDidUpdate` will be called at (4). They both receive the current location and the previous location (which can be `null`, if this is the first screen).
 
 `onRouteUpdate` can optionally return a "cleanup" callback, which will be called at (3). For example, if you want to display a progress bar, you can start a timeout in `onRouteUpdate`, and clear the timeout in the callback. (The classic theme already provides an `nprogress` integration this way.)
 
-Note that the new page's DOM is only available during event (4). If you need to manipulate the new page's DOM, you'll likely want to use `onRouteDidUpdate`, which will be fired as soon as the DOM on the new page has mounted.
+请注意，新页面的 DOM 仅在事件 (4) 中可用。 If you need to manipulate the new page's DOM, you'll likely want to use `onRouteDidUpdate`, which will be fired as soon as the DOM on the new page has mounted.
 
 ```js title="myClientModule.js"
 export function onRouteDidUpdate({location, previousLocation}) {
@@ -159,7 +159,7 @@ export function onRouteUpdate({location, previousLocation}) {
 }
 ```
 
-Or, if you are using TypeScript and you want to leverage contextual typing:
+或者，如果你用 TypeScript，并且你想要利用上下文类型 (contextual type)：
 
 ```ts title="myClientModule.ts"
 import type {ClientModule} from '@docusaurus/types';
@@ -175,10 +175,10 @@ const module: ClientModule = {
 export default module;
 ```
 
-Both lifecycles will fire on first render, but they will not fire on server-side, so you can safely access browser globals in them.
+这两个生命周期都会在第一次渲染时被调用，但它们不会在服务端被调用，因此你可以安全地在函数中访问浏览器专有的全局变量。
 
 :::tip Prefer using React
 
-Client module lifecycles are purely imperative, and you can't use React hooks or access React contexts within them. If your operations are state-driven or involve complicated DOM manipulations, you should consider [swizzling components](../swizzling.mdx) instead.
+客户端模块的生命周期是纯命令式的，你不能在内部用 React 钩子函数或读取 React context。 If your operations are state-driven or involve complicated DOM manipulations, you should consider [swizzling components](../swizzling.mdx) instead.
 
 :::

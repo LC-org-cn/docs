@@ -11,36 +11,36 @@ import APITable from '@site/src/components/APITable';
 
 :::warning production only
 
-This plugin is always inactive in development and **only active in production** (`docusaurus build`) to avoid polluting the analytics statistics.
+这个插件始终不会工作在开发过程中激活，**只在生产环境中启用**(`docusaurus build`)，防止污染分析数据。
 
 :::
 
-## Installation {/* #installation */}
+## 安装流程 {/* #installation */}
 
 ```bash npm2yarn
 npm install --save @docusaurus/plugin-vercel-analytics
 ```
 
-## Configuration {/* #configuration */}
+## 配置 {/* #configuration */}
 
-Accepted fields:
+接受的字段：
 
 ```mdx-code-block
 <APITable>
 ```
 
-| Name | Type | Default | Description |
+| 参数 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- |
-| `mode` | `string` | `'auto'` | Override the automatic environment detection. Read the [official docs](https://vercel.com/docs/analytics/package#mode) for details. |
-| `debug` | `boolean` | `undefined` | Enable browser console logging of analytics events. Read the [official docs](https://vercel.com/docs/analytics/package#debug) for details. |
+| `mode` | `string` | `'auto'` | 覆盖自动环境检测。 阅读[官方文档](https://vercel.com/docs/analytics/package#mode)了解详情。 |
+| `debug` | `boolean` | `undefined` | 启用浏览器控制台记录分析事件。 阅读[官方文档](https://vercel.com/docs/analytics/package#debug)了解详情。 |
 
 ```mdx-code-block
 </APITable>
 ```
 
-### Example configuration {/* #ex-config */}
+### 示例配置 {/* #ex-config */}
 
-You can configure this plugin through plugin options.
+你可以通过插件选项来配置这个插件。
 
 ```js title="docusaurus.config.js"
 export default {
