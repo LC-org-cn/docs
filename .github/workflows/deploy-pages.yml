@@ -1,10 +1,10 @@
 # Build the Docusaurus website and publish it to GitHub Pages.
 #
-# Why these locales only:
-#   GitHub Pages has a HARD 1 GB cap on the published site. A full build of all
-#   five locales (en, fr, pt-BR, ko, zh-CN) is ~1.13 GB and would be rejected.
-#   This fork ships en + fr + zh-CN (~677 MiB) on Pages. To add pt-BR/ko later,
-#   either trim content or split into a second Pages repo (see notes below).
+# Locales:
+#   Default = 中文 (zh-CN), second = English (en). fr/pt-BR/ko are dropped.
+#   GitHub Pages has a HARD 1 GB cap; zh-CN + en stays well under it. The default
+#   locale and the built locale list live in docusaurus.config.ts
+#   (defaultLocale / production locales). DOCUSAURUS_LOCALES mirrors that subset.
 #
 # /api/* endpoints (health/storage/feedback) were Cloudflare-Worker-only (D1+KV)
 # and DO NOT exist on static Pages. The static build never contained them, so
@@ -34,17 +34,11 @@ jobs:
     timeout-minutes: 60
     env:
       NODE_OPTIONS: --max_old_space_size=8192
-      # Only build the locales that fit within the 1 GB Pages hard cap.
-      DOCUSAURUS_LOCALES: en,fr,zh-CN
-      # Site origin. Because the site is deployed at the repo root (custom domain
-      # served at root), baseUrl stays '/'. Docusaurus content uses root-absolute
-      # links, so a subpath baseUrl would break the build. Replace SITE_URL with
-      # your custom domain when you bind it (this sets the canonical url used in
-      # sitemap/rss/canonical tags). Interim GitHub project URL quirk: until a
-      # custom domain is bound, assets are referenced from '/assets' but served at
-      # '/docs/assets' because the repo is named 'docs'; bind the domain (root) to
-      # resolve, or rename the repo to 'lc-org-cn.github.io'.
-      SITE_URL: https://lc-org-cn.github.io
+      # Build only zh-CN + en (must match docusaurus.config.ts production locales).
+      DOCUSAURUS_LOCALES: zh-CN,en
+      # SITE_URL is resolved automatically by the "Resolve site URL" step below:
+      # if a custom domain is bound on Pages it is used, otherwise the project URL.
+      # No manual edit needed when you bind/unbind a domain.
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -63,6 +57,19 @@ jobs:
       - name: Install dependencies
         # postinstall runs "pnpm build:packages" (lerna), which the website build needs.
         run: pnpm install --frozen-lockfile
+
+      - name: Resolve site URL
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          CNAME=$(gh api "repos/${{ github.repository }}/pages" --jq '.cname // empty' 2>/dev/null || true)
+          if [ -n "$CNAME" ]; then
+            echo "SITE_URL=https://${CNAME}" >> "$GITHUB_ENV"
+            echo "Resolved SITE_URL=https://${CNAME} (custom domain)"
+          else
+            echo "SITE_URL=https://lc-org-cn.github.io" >> "$GITHUB_ENV"
+            echo "Resolved SITE_URL=https://lc-org-cn.github.io (project URL, no custom domain yet)"
+          fi
 
       - name: Build website
         run: pnpm build:website
