@@ -1,0 +1,38 @@
+---
+sidebar_position: 2
+description: Demonstrates Docusaurus admonitions, tabs, code blocks and diagrams.
+---
+
+# Test Page: Markdown Features
+
+## Admonitions
+
+:::tip
+This is a tip admonition.
+:::
+
+:::warning
+This is a warning admonition.
+:::
+
+## Tabs
+
+```tabs
+```bash
+npm run build
+```
+
+```pnpm
+pnpm build
+```
+```
+
+## Diagram (Mermaid)
+
+```mermaid
+graph TD
+  A[Push to main] --> B(GitHub Actions)
+  B --> C{Build ok?}
+  C -->|yes| D[Deploy Pages]
+  C -->|no| E[Check Actions log]
+```

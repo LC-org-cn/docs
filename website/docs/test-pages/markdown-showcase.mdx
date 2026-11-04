@@ -1,0 +1,42 @@
+---
+sidebar_position: 2
+description: 演示 Docusaurus 的提示框、标签页、代码块与流程图。
+---
+
+# 测试页：Markdown 特性
+
+## 提示框
+
+:::tip
+这是一个 tip 提示框。
+:::
+
+:::warning
+这是一个 warning 提示框。
+:::
+
+:::danger
+这是一个 danger 提示框。
+:::
+
+## 标签页
+
+```tabs
+```bash
+npm run build
+```
+
+```pnpm
+pnpm build
+```
+```
+
+## 流程图 (Mermaid)
+
+```mermaid
+graph TD
+  A[Push to main] --> B(GitHub Actions)
+  B --> C{Build 成功?}
+  C -->|是| D[Deploy Pages]
+  C -->|否| E[查看 Actions 日志]
+```

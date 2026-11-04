@@ -1,0 +1,34 @@
+---
+sidebar_position: 1
+description: LC-org-cn/docs 站点自动测试页 - 验证基本 Markdown 渲染与部署。
+---
+
+# 测试页：欢迎
+
+:::note
+这是 **LC-org-cn/docs** 站点的自动测试页面之一，用于验证部署、Markdown 渲染与 i18n 切换是否正常。
+:::
+
+## 基本排版
+
+段落文字、**加粗**、*斜体*、`行内代码`、[站内首页](/)。
+
+- 列表项一
+- 列表项二
+  - 嵌套项 A
+  - 嵌套项 B
+
+> 引用块示例：Docusaurus 用 Markdown/MDX 写文档。
+
+## 代码块
+
+```bash
+echo "hello docusaurus"
+pnpm build:website
+```
+
+```ts
+function greet(name: string): string {
+  return `Hello, ${name}!`;
+}
+```

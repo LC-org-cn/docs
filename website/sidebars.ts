@@ -12,6 +12,16 @@ const sidebars: SidebarsConfig = {
     'introduction',
     {
       type: 'category',
+      label: 'Test Pages',
+      collapsed: false,
+      items: [
+        'test-pages/welcome',
+        'test-pages/markdown-showcase',
+        'test-pages/i18n-demo',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Getting Started',
       link: {
         type: 'generated-index',

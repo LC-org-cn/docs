@@ -1,0 +1,17 @@
+---
+sidebar_position: 3
+description: Side-by-side test page to verify Chinese/English switching.
+---
+
+# Test Page: i18n Check
+
+This page verifies the site language switch. Use the language selector (top-right) to toggle `zh-CN` and `en`; the content should change accordingly.
+
+| Language | Path | Notes |
+| --- | --- | --- |
+| Chinese (default) | `/` | Source content |
+| English | `/en/` | Translated content |
+
+:::info
+If `/en/` still shows Chinese, the matching translation file is missing and Docusaurus falls back to the source.
+:::
