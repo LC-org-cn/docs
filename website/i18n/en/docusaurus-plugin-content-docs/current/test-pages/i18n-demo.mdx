@@ -1,17 +1,23 @@
 ---
 sidebar_position: 3
-description: Side-by-side test page to verify Chinese/English switching.
+description: Common response fields and error codes.
 ---
 
-# Test Page: i18n Check
+# Response & Error Codes
 
-This page verifies the site language switch. Use the language selector (top-right) to toggle `zh-CN` and `en`; the content should change accordingly.
+## Common fields
 
-| Language | Path | Notes |
+| Field | Type | Description |
 | --- | --- | --- |
-| Chinese (default) | `/` | Source content |
-| English | `/en/` | Translated content |
+| `id` | string | Unique request id. |
+| `object` | string | Object type, e.g. `chat.completion`. |
+| `usage` | object | Token usage. |
 
-:::info
-If `/en/` still shows Chinese, the matching translation file is missing and Docusaurus falls back to the source.
-:::
+## Error codes
+
+| HTTP | Meaning | Action |
+| --- | --- | --- |
+| `400` | Bad request | Check field formats. |
+| `401` | Unauthorized | Verify API key. |
+| `429` | Rate limited | Retry with backoff. |
+| `500` | Server error | Retry later. |

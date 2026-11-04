@@ -1,42 +1,97 @@
 ---
 sidebar_position: 2
-description: 演示 Docusaurus 的提示框、标签页、代码块与流程图。
+description: 对话补全接口的参考文档，含请求参数表与请求/响应示例。
 ---
 
-# 测试页：Markdown 特性
+# 对话补全（Chat Completions）
 
-## 提示框
+创建一个模型对话补全。这是最常见的接口，用于向模型发送一组消息并接收回复。
 
-:::tip
-这是一个 tip 提示框。
-:::
+```
+POST /v1/chat/completions
+```
 
-:::warning
-这是一个 warning 提示框。
-:::
+## 请求参数
 
-:::danger
-这是一个 danger 提示框。
-:::
+| 参数 | 类型 | 必填 | 说明 |
+| --- | --- | --- | --- |
+| `model` | string | 是 | 要使用的模型名称，例如 `example-chat`。 |
+| `messages` | array | 是 | 对话消息数组，每条消息含 `role` 与 `content`。 |
+| `temperature` | number | 否 | 采样温度，取值 0–2，越大越随机。默认 `1.0`。 |
+| `stream` | boolean | 否 | 是否流式返回。默认 `false`。 |
+| `max_tokens` | integer | 否 | 回复的最大 token 数。 |
 
-## 标签页
+## 请求示例
 
-```tabs
+<Tabs groupId="api-call">
+  <TabItem value="curl" label="curl" default>
+
 ```bash
-npm run build
+curl https://api.example.com/v1/chat/completions \
+  -H "Authorization: Bearer $API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "example-chat",
+    "messages": [
+      {"role": "system", "content": "你是一个助手。"},
+      {"role": "user", "content": "用一句话介绍自己。"}
+    ],
+    "temperature": 0.7
+  }'
 ```
 
-```pnpm
-pnpm build
-```
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+resp = client.chat.completions.create(
+    model="example-chat",
+    messages=[
+        {"role": "system", "content": "你是一个助手。"},
+        {"role": "user", "content": "用一句话介绍自己。"},
+    ],
+    temperature=0.7,
+)
 ```
 
-## 流程图 (Mermaid)
+  </TabItem>
+  <TabItem value="node" label="Node.js">
 
-```mermaid
-graph TD
-  A[Push to main] --> B(GitHub Actions)
-  B --> C{Build 成功?}
-  C -->|是| D[Deploy Pages]
-  C -->|否| E[查看 Actions 日志]
+```javascript
+const resp = await client.chat.completions.create({
+  model: "example-chat",
+  messages: [
+    { role: "system", content: "你是一个助手。" },
+    { role: "user", content: "用一句话介绍自己。" },
+  ],
+  temperature: 0.7,
+});
+```
+
+  </TabItem>
+</Tabs>
+
+## 响应示例
+
+```json
+{
+  "id": "chatcmpl-abc123",
+  "object": "chat.completion",
+  "model": "example-chat",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "我是你的智能助手，很高兴为你服务。"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 18,
+    "completion_tokens": 12,
+    "total_tokens": 30
+  }
+}
 ```

@@ -1,28 +1,51 @@
 ---
 sidebar_position: 1
-description: Auto test page for LC-org-cn/docs - verifies basic Markdown rendering and deployment.
+description: Quick-start example showing curl, Python and Node call styles.
 ---
 
-# Test Page: Welcome
+# Quick Start
 
-:::note
-This is one of the auto test pages for the **LC-org-cn/docs** site, used to verify deployment, Markdown rendering, and i18n switching.
-:::
+This page shows how to organize an API reference like the DeepSeek docs: endpoint description, parameter table, and multi-language call examples.
 
-## Basic formatting
+## Your first call
 
-Paragraph text, **bold**, *italic*, `inline code`, [home](/).
+Using the "chat completions" endpoint as an example, with **curl / Python / Node** variants.
 
-- List item one
-- List item two
-  - Nested A
-  - Nested B
-
-> Blockquote example: Docusaurus writes docs in Markdown/MDX.
-
-## Code blocks
+<Tabs groupId="api-call">
+  <TabItem value="curl" label="curl" default>
 
 ```bash
-echo "hello docusaurus"
-pnpm build:website
+curl https://api.example.com/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $API_KEY" \
+  -d '{"model":"example-chat","messages":[{"role":"user","content":"hi"}]}'
 ```
+
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+from openai import OpenAI
+client = OpenAI(api_key="YOUR_API_KEY", base_url="https://api.example.com/v1")
+resp = client.chat.completions.create(
+    model="example-chat",
+    messages=[{"role": "user", "content": "hi"}],
+)
+print(resp.choices[0].message.content)
+```
+
+  </TabItem>
+  <TabItem value="node" label="Node.js">
+
+```javascript
+import OpenAI from "openai";
+const client = new OpenAI({ apiKey: "YOUR_API_KEY", baseURL: "https://api.example.com/v1" });
+const resp = await client.chat.completions.create({
+  model: "example-chat",
+  messages: [{ role: "user", content: "hi" }],
+});
+console.log(resp.choices[0].message.content);
+```
+
+  </TabItem>
+</Tabs>

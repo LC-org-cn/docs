@@ -1,17 +1,42 @@
 ---
 sidebar_position: 3
-description: 用于验证中文/英文切换的对照测试页。
+description: 响应的公共字段与常见错误码说明。
 ---
 
-# 测试页：i18n 对照
+# 响应结构与错误码
 
-本页用于验证站点中英文切换。在右上角语言选择器切换 `zh-CN` 与 `en`，内容应变为对应语言。
+本页说明所有接口的通用响应字段，以及调用失败时返回的错误码，便于排查问题。
 
-| 语言 | 路径 | 说明 |
+## 公共字段
+
+| 字段 | 类型 | 说明 |
 | --- | --- | --- |
-| 中文（默认） | `/` | 源语言内容 |
-| 英文 | `/en/` | 翻译内容 |
+| `id` | string | 本次请求的唯一标识。 |
+| `object` | string | 返回对象的类型，例如 `chat.completion`。 |
+| `created` | integer | 创建时间（Unix 时间戳）。 |
+| `usage` | object | token 用量统计。 |
 
-:::info
-如果 `/en/` 下显示的是中文，说明对应翻译文件缺失，Docusaurus 会回退到源语言。
+## 错误码
+
+| HTTP 状态码 | 含义 | 处理建议 |
+| --- | --- | --- |
+| `400` | 请求参数错误 | 检查 `messages`、`model` 等字段格式。 |
+| `401` | 鉴权失败 | 确认 `Authorization` 中的 API Key 有效。 |
+| `429` | 请求过于频繁 | 降低并发或稍后重试。 |
+| `500` | 服务端错误 | 稍后重试，持续出现请联系支持。 |
+
+## 错误响应示例
+
+```json
+{
+  "error": {
+    "message": "Invalid API key provided.",
+    "type": "invalid_request_error",
+    "code": "invalid_api_key"
+  }
+}
+```
+
+:::warning
+`401` 与 `429` 是最常见的两类问题，上线前请务必做好 Key 管理与重试退避。
 :::

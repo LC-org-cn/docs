@@ -12,7 +12,7 @@ const sidebars: SidebarsConfig = {
     'introduction',
     {
       type: 'category',
-      label: 'Test Pages',
+      label: 'API 测试示例',
       collapsed: false,
       items: [
         'test-pages/welcome',

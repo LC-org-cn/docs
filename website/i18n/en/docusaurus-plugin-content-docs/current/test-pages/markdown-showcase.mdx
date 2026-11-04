@@ -1,38 +1,66 @@
 ---
 sidebar_position: 2
-description: Demonstrates Docusaurus admonitions, tabs, code blocks and diagrams.
+description: Chat completions reference with parameter table and examples.
 ---
 
-# Test Page: Markdown Features
+# Chat Completions
 
-## Admonitions
+Creates a model response for a given chat conversation.
 
-:::tip
-This is a tip admonition.
-:::
+```
+POST /v1/chat/completions
+```
 
-:::warning
-This is a warning admonition.
-:::
+## Request parameters
 
-## Tabs
+| Param | Type | Required | Description |
+| --- | --- | --- | --- |
+| `model` | string | yes | Model name, e.g. `example-chat`. |
+| `messages` | array | yes | Messages with `role` and `content`. |
+| `temperature` | number | no | Sampling temperature 0–2. Default `1.0`. |
+| `stream` | boolean | no | Stream the response. Default `false`. |
 
-```tabs
+## Request example
+
+<Tabs groupId="api-call">
+  <TabItem value="curl" label="curl" default>
+
 ```bash
-npm run build
+curl https://api.example.com/v1/chat/completions \
+  -H "Authorization: Bearer $API_KEY" \
+  -d '{"model":"example-chat","messages":[{"role":"user","content":"hi"}]}'
 ```
 
-```pnpm
-pnpm build
-```
+  </TabItem>
+  <TabItem value="python" label="Python">
+
+```python
+resp = client.chat.completions.create(
+    model="example-chat",
+    messages=[{"role": "user", "content": "hi"}],
+)
 ```
 
-## Diagram (Mermaid)
+  </TabItem>
+  <TabItem value="node" label="Node.js">
 
-```mermaid
-graph TD
-  A[Push to main] --> B(GitHub Actions)
-  B --> C{Build ok?}
-  C -->|yes| D[Deploy Pages]
-  C -->|no| E[Check Actions log]
+```javascript
+const resp = await client.chat.completions.create({
+  model: "example-chat",
+  messages: [{ role: "user", content: "hi" }],
+});
+```
+
+  </TabItem>
+</Tabs>
+
+## Response example
+
+```json
+{
+  "id": "chatcmpl-abc123",
+  "object": "chat.completion",
+  "choices": [{"index": 0, "message": {"role": "assistant", "content": "Hi!"}, "finish_reason": "stop"}],
+  "usage": {"prompt_tokens": 5, "completion_tokens": 2, "total_tokens": 7}
+}
 ```
