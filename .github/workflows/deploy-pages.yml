@@ -36,12 +36,15 @@ jobs:
       NODE_OPTIONS: --max_old_space_size=8192
       # Only build the locales that fit within the 1 GB Pages hard cap.
       DOCUSAURUS_LOCALES: en,fr,zh-CN
-      # Site origin + base path. For the interim GitHub project URL
-      # (https://lc-org-cn.github.io/docs/) use these. When you bind a custom
-      # domain served at the root, change BASE_URL to '/' and SITE_URL to that
-      # domain. These feed docusaurus.config.ts (url / baseUrl).
+      # Site origin. Because the site is deployed at the repo root (custom domain
+      # served at root), baseUrl stays '/'. Docusaurus content uses root-absolute
+      # links, so a subpath baseUrl would break the build. Replace SITE_URL with
+      # your custom domain when you bind it (this sets the canonical url used in
+      # sitemap/rss/canonical tags). Interim GitHub project URL quirk: until a
+      # custom domain is bound, assets are referenced from '/assets' but served at
+      # '/docs/assets' because the repo is named 'docs'; bind the domain (root) to
+      # resolve, or rename the repo to 'lc-org-cn.github.io'.
       SITE_URL: https://lc-org-cn.github.io
-      BASE_URL: /docs/
     steps:
       - name: Checkout
         uses: actions/checkout@v7
