@@ -1,0 +1,81 @@
+# Build the Docusaurus website and publish it to GitHub Pages.
+#
+# Why these locales only:
+#   GitHub Pages has a HARD 1 GB cap on the published site. A full build of all
+#   five locales (en, fr, pt-BR, ko, zh-CN) is ~1.13 GB and would be rejected.
+#   This fork ships en + fr + zh-CN (~677 MiB) on Pages. To add pt-BR/ko later,
+#   either trim content or split into a second Pages repo (see notes below).
+#
+# /api/* endpoints (health/storage/feedback) were Cloudflare-Worker-only (D1+KV)
+# and DO NOT exist on static Pages. The static build never contained them, so
+# nothing breaks, but those AJAX endpoints are simply unavailable here.
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Allow one concurrent deploy; a newer push cancels the in-flight one.
+concurrency:
+  group: pages-deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    name: Build website
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      NODE_OPTIONS: --max_old_space_size=8192
+      # Only build the locales that fit within the 1 GB Pages hard cap.
+      DOCUSAURUS_LOCALES: en,fr,zh-CN
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 12.3.4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install dependencies
+        # postinstall runs "pnpm build:packages" (lerna), which the website build needs.
+        run: pnpm install --frozen-lockfile
+
+      - name: Build website
+        run: pnpm build:website
+
+      - name: Disable Jekyll
+        # Pages serves via GitHub Actions; add .nojekyll so asset dirs starting
+        # with _ (e.g. __docusaurus) are not stripped by Jekyll.
+        run: touch website/build/.nojekyll
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: website/build
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
