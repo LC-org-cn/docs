@@ -766,7 +766,7 @@ export default async function createConfigAsync(): Promise<Config> {
         style: 'dark',
         links: [
           {
-            title: 'Learn',
+            title: '文档',
             items: [
               {
                 label: '介绍',
@@ -779,82 +779,6 @@ export default async function createConfigAsync(): Promise<Config> {
               {
                 label: '升级',
                 to: 'docs/migration',
-              },
-            ],
-          },
-          {
-            title: 'Community',
-            items: [
-              {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
-                label: '功能建议',
-                to: '/feature-requests',
-              },
-              {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: '帮助',
-                to: '/community/support',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: '博客',
-                to: 'blog',
-              },
-              {
-                label: '更新日志',
-                to: '/changelog',
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
-              },
-              {
-                label: 'X',
-                href: 'https://x.com/docusaurus',
-              },
-              {
-                html: `
-                <a href="https://www.netlify.com" target="_blank" rel="noreferrer noopener" aria-label="Deploys by Netlify">
-                  <img src="/img/footer/badge-netlify.svg" alt="Deploys by Netlify" width="114" height="51" />
-                </a>
-              `,
-              },
-              {
-                html: `
-                <a href="https://argos-ci.com" target="_blank" rel="noreferrer noopener" aria-label="Covered by Argos">
-                  <img src="/img/footer/badge-argos.svg" alt="Covered by Argos" width="133" height="20" />
-                </a>
-              `,
-              },
-            ],
-          },
-          {
-            title: 'Legal',
-            className: 'footer-column-legal',
-            // Don't remove the privacy and terms, it's a legal requirement.
-            items: [
-              {
-                label: 'Privacy',
-                className: 'footer-item-privacy',
-                href: 'https://opensource.facebook.com/legal/privacy/',
-              },
-              {
-                label: 'Terms',
-                href: 'https://opensource.facebook.com/legal/terms/',
-              },
-              {
-                label: 'Cookie Policy',
-                href: 'https://opensource.facebook.com/legal/cookie-policy/',
               },
             ],
           },
