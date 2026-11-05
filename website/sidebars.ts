@@ -10,6 +10,7 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 const sidebars: SidebarsConfig = {
   docs: [
     'introduction',
+    'site-note',
     {
       type: 'category',
       label: 'API 测试示例',
