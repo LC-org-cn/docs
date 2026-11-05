@@ -406,6 +406,10 @@ export default async function createConfigAsync(): Promise<Config> {
                 from: '/docs/api/misc/docusaurus-init',
                 to: '/docs/api/misc/create-docusaurus',
               },
+              {
+                from: '/',
+                to: '/docs/next',
+              },
               ...dogfoodingRedirects,
             ],
           } satisfies ClientRedirectsOptions,
