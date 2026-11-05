@@ -605,7 +605,8 @@ export default async function createConfigAsync(): Promise<Config> {
             ignorePatterns: isArgosBuild
               ? undefined
               : // Note: /tests/docs already has noIndex: true
-                ['/tests/{blog,pages}/**'],
+                // Don't index the root path: it's just a redirect to /docs/next
+                ['/tests/{blog,pages}/**', '/'],
             lastmod: showLastUpdate ? 'date' : null,
           },
         } satisfies Preset.Options,
