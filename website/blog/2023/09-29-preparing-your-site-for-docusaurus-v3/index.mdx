@@ -55,7 +55,7 @@ MDX v3更加强大，但也带来了一些变化，可能需要您对内容进�
 
 Upgrading MDX comes with all the breaking changes documented on the [MDX v2](https://mdxjs.com/blog/v2/) and [MDX v3](https://mdxjs.com/blog/v3/) release blog posts. 大多数重大变更来自MDX v2。 The [MDX v2 migration guide](https://mdxjs.com/migrating/v2/) has a section on how to [update MDX files](https://mdxjs.com/migrating/v2/#update-mdx-files) that will be particularly relevant to us. Also make sure to read the [Troubleshooting MDX](https://mdxjs.com/docs/troubleshooting-mdx/) page that can help you interpret common MDX error messages.
 
-还请确保阅读我们更新的 [**MDX 和 React**](/docs/markdown-features/react) 文档页面。
+还请确保阅读我们更新的 [**MDX 和 React**](/markdown-features/react) 文档页面。
 
 :::tip Ask for help
 
@@ -220,14 +220,14 @@ http://localhost:3000
 
 #### 小写 MDXComponent 映射 {/* #lower-case-mdxcomponent-mapping */}
 
-对于提供[自定义 `MDXComponent`mapping](/docs/markdown-features/react#mdx-component-scope) 的用户，组件现在是 "sandboxed"：
+对于提供[自定义 `MDXComponent`mapping](/markdown-features/react#mdx-component-scope) 的用户，组件现在是 "sandboxed"：
 
 - `h1` 的映射 `MDXComponent` 仅用于`# hi` ，而不是用于`<h1>hi</h1>`
 - **小写** 自定义元素名称将不再被相应的 `MDXComponent` 组件所替代。
 
 :::danger visual difference
 
-Your [`MDXComponent` component mapping](/docs/markdown-features/react#mdx-component-scope) might not be applied as before, and your custom components might no longer be used.
+Your [`MDXComponent` component mapping](/markdown-features/react#mdx-component-scope) might not be applied as before, and your custom components might no longer be used.
 
 :::
 
@@ -383,7 +383,7 @@ export default {
 };
 ```
 
-If you want to keep using CommonJS modules, you can use dynamic imports as a workaround that enables you to import ES modules inside a CommonJS module. Fortunately, the [Docusaurus config supports the usage of an async function](/docs/configuration#syntax-to-declare-docusaurus-config) to let you do so.
+If you want to keep using CommonJS modules, you can use dynamic imports as a workaround that enables you to import ES modules inside a CommonJS module. Fortunately, the [Docusaurus config supports the usage of an async function](/configuration#syntax-to-declare-docusaurus-config) to let you do so.
 
 ```js title="docusaurus.config.js"
 module.exports = async function () {

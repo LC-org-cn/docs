@@ -20,13 +20,13 @@ The upgrade should be easy: as explained in our [release process documentation](
 
 Google Tag Manager is a tag management system that allows great flexibility. It enables analytics and marketing teams to easily load other third-party trackers and fire analytics tags.
 
-We now have a [`@docusaurus/plugin-google-tag-manager`](/docs/api/plugins/@docusaurus/plugin-google-tag-manager/) package that you can use alongside or as an alternative to the existing [gtag.js plugin](/docs/api/plugins/@docusaurus/plugin-google-gtag/) (refer to [this doc](https://support.google.com/tagmanager/answer/7582054) to understand when to use which solution).
+We now have a [`@docusaurus/plugin-google-tag-manager`](/api/plugins/@docusaurus/plugin-google-tag-manager/) package that you can use alongside or as an alternative to the existing [gtag.js plugin](/api/plugins/@docusaurus/plugin-google-gtag/) (refer to [this doc](https://support.google.com/tagmanager/answer/7582054) to understand when to use which solution).
 
 :::warning Google is sunsetting Universal Analytics
 
 [Google will sunset its Universal Analytics](https://blog.google/products/marketingplatform/analytics/prepare-for-future-with-google-analytics-4/) on **July 1, 2023**, and ask users to migrate to **Google Analytics 4**.
 
-Therefore, we are also **deprecating our existing [`@docusaurus/plugin-google-analytics`](https://github.com/facebook/docusaurus/issues/7221)** package. Docusaurus users should create a new Google Analytics 4 property, and migrate to the [gtag.js plugin](/docs/api/plugins/@docusaurus/plugin-google-gtag/), or the [Google Tag Manager plugin](/docs/api/plugins/@docusaurus/plugin-google-tag-manager/). Refer to the [dedicated Docusaurus issue](https://github.com/facebook/docusaurus/issues/7221) for details and questions.
+Therefore, we are also **deprecating our existing [`@docusaurus/plugin-google-analytics`](https://github.com/facebook/docusaurus/issues/7221)** package. Docusaurus users should create a new Google Analytics 4 property, and migrate to the [gtag.js plugin](/api/plugins/@docusaurus/plugin-google-gtag/), or the [Google Tag Manager plugin](/api/plugins/@docusaurus/plugin-google-tag-manager/). Refer to the [dedicated Docusaurus issue](https://github.com/facebook/docusaurus/issues/7221) for details and questions.
 
 :::
 
@@ -38,7 +38,7 @@ This feature allows deep-linking to a specific documentation tab that will pre-s
 
 When used alongside the `groupId` prop, the query string tab value takes precedence over the `localStorage` value.
 
-Make sure to check the [documentation](/docs/markdown-features/tabs#query-string) and the demo below to understand how it works:
+Make sure to check the [documentation](/markdown-features/tabs#query-string) and the demo below to understand how it works:
 
 import BrowserWindow from '@site/src/components/BrowserWindow';
 import Tabs from '@theme/Tabs';
@@ -98,7 +98,7 @@ Use this sparingly when it makes sense.
 
 ### Blog `createFeedItems` {/* #blog-createfeeditems */}
 
-A new blog plugin option [`feedOptions.createFeedItems`](/docs/api/plugins/@docusaurus/plugin-content-blog/#CreateFeedItemsFn) gives you more control over the RSS/Atom feed generation. It is now possible to transform/filter/limit feed items through a new callback.
+A new blog plugin option [`feedOptions.createFeedItems`](/api/plugins/@docusaurus/plugin-content-blog/#CreateFeedItemsFn) gives you more control over the RSS/Atom feed generation. It is now possible to transform/filter/limit feed items through a new callback.
 
 ```tsx title="docusaurus.config.js"
 [

@@ -28,7 +28,7 @@ In [#9528](https://github.com/facebook/docusaurus/pull/9528), we improved the bu
 
 :::tip[Make it fail fast]
 
-The new [`onBrokenAnchors`](/docs/api/docusaurus-config#onBrokenAnchors) option has value `warn` by default, for retro-compatibility reasons.
+The new [`onBrokenAnchors`](/api/docusaurus-config#onBrokenAnchors) option has value `warn` by default, for retro-compatibility reasons.
 
 We recommend to turn it to `throw` and fail your CI builds instead of deploying broken anchors to productions.
 
@@ -36,7 +36,7 @@ We recommend to turn it to `throw` and fail your CI builds instead of deploying 
 
 :::note
 
-For users and plugin authors implementing custom `<Heading>` and `<Link>` components, we provide a new [`useBrokenLinks`](/docs/docusaurus-core#useBrokenLinks) React hook API.
+For users and plugin authors implementing custom `<Heading>` and `<Link>` components, we provide a new [`useBrokenLinks`](/docusaurus-core#useBrokenLinks) React hook API.
 
 **Most Docusaurus users don't need to care about it**, built-in components (`docusaurus/Link` and `@theme/Heading`) already use it internally.
 
@@ -44,7 +44,7 @@ For users and plugin authors implementing custom `<Heading>` and `<Link>` compon
 
 ### `parseFrontMatter` hook {/* #parsefrontmatter-hook */}
 
-In [#9624](https://github.com/facebook/docusaurus/pull/9624), we added a new [`siteConfig.markdown.parseFrontMatter` function hook](/docs/api/docusaurus-config#markdown).
+In [#9624](https://github.com/facebook/docusaurus/pull/9624), we added a new [`siteConfig.markdown.parseFrontMatter` function hook](/api/docusaurus-config#markdown).
 
 This makes it possible to implement convenient front matter transformations, shortcuts, or to integrate with external systems using front matter that Docusaurus plugins do not support.
 
@@ -79,7 +79,7 @@ export default {
 };
 ```
 
-Read the [front matter guide](/docs/markdown-features#front-matter) and the [`parseFrontMatter` API ref](/docs/api/docusaurus-config#markdown) for details.
+Read the [front matter guide](/markdown-features#front-matter) and the [`parseFrontMatter` API ref](/api/docusaurus-config#markdown) for details.
 
 ## 其他改变： {/* #other-changes */}
 

@@ -38,7 +38,7 @@ Here are some examples of file path links and how they get resolved, assuming th
 
 Absolute file paths can also be relative to the site directory. However, beware that links that begin with `/docs/`, `/blog/` or `@site/` are **not portable** as you would need to manually update them if you create new doc versions or localize them:
 
-- `[link](/docs/target.mdx)` is resolved from the site root `website` (⚠️ less portable).
+- `[link](/target.mdx)` is resolved from the site root `website` (⚠️ less portable).
 - `[link](@site/docs/target.mdx)` is relative to the site root `website` (⚠️ less portable).
 
 Using relative _file_ paths (with `.md` extensions) instead of relative _URL_ links provides the following benefits:

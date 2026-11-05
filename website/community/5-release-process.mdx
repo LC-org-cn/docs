@@ -153,15 +153,15 @@ An API being "stable" means if you increment the patch or minor version of your 
 Docusaurus has a very flexible theming system:
 
 - You can use custom CSS
-- You can [swizzle](/docs/swizzling) any React theme component
+- You can [swizzle](/swizzling) any React theme component
 
 This system also implicitly creates a very large API surface. To be able to move fast and improve Docusaurus, we can't guarantee retro-compatibility.
 
 ✅ Our public theming API includes:
 
-- [Theme class names](/docs/styling-layout#theme-class-names)
-- [Infima](/docs/styling-layout#styling-your-site-with-infima) class names and CSS variables
-- React components that are [safe to swizzle](/docs/swizzling#what-is-safe-to-swizzle)
+- [Theme class names](/styling-layout#theme-class-names)
+- [Infima](/styling-layout#styling-your-site-with-infima) class names and CSS variables
+- React components that are [safe to swizzle](/swizzling#what-is-safe-to-swizzle)
 - The theme user experience
 - Browser support
 
@@ -177,13 +177,13 @@ In this case, please [report your customization use case](https://github.com/fac
 
 - The DOM structure
 - CSS module class names with a hash suffix (usually targeted with `[class*='myClassName']` selectors)
-- React components that are [unsafe or forbidden to swizzle](/docs/swizzling#what-is-safe-to-swizzle)
+- React components that are [unsafe or forbidden to swizzle](/swizzling#what-is-safe-to-swizzle)
 - React components that import from `@docusaurus/theme-common/internal`
 - The exact visual appearance of the theme
 
 :::note
 
-When [swizzling](/docs/swizzling) safe components, you might encounter components that import undocumented APIs from `@docusaurus/theme-common` (without the `/internal` subpath).
+When [swizzling](/swizzling) safe components, you might encounter components that import undocumented APIs from `@docusaurus/theme-common` (without the `/internal` subpath).
 
 We still maintain retro-compatibility on those APIs (hence they are marked as "safe"), but we don't encourage a direct usage.
 
