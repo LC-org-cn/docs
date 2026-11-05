@@ -145,15 +145,15 @@ export const dogfoodingPluginInstances: PluginConfig[] = [
 export const dogfoodingRedirects: {from: string[]; to: string}[] = [
   {
     from: ['/home/'],
-    to: '/',
+    to: '/docs/next/installation',
   },
   {
     from: ['/home/qs'],
-    to: '/?a=1',
+    to: '/docs/next/installation?a=1',
   },
   {
     from: ['/home/anchor'],
-    to: '/#anchor',
+    to: '/docs/next/installation#anchor',
   },
   {
     from: ['/home/absolute'],

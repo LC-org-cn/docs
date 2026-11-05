@@ -63,3 +63,6 @@ website/profile.json.gz
 
 .wrangler
 
+
+# local scratch / dump files
+.local/
