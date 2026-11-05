@@ -103,6 +103,7 @@ const crashTest = process.env.DOCUSAURUS_CRASH_TEST === 'true';
 
 // By default, we use Docusaurus Faster
 // DOCUSAURUS_SLOWER=true is useful for benchmarking faster against slower
+// eslint-disable-next-line max-len
 // hyperfine --prepare 'pnpm clear:website' --runs 3 'DOCUSAURUS_SLOWER=true pnpm build:website:fast' 'pnpm build:website:fast'
 const isSlower = process.env.DOCUSAURUS_SLOWER === 'true';
 if (isSlower) {
@@ -173,10 +174,22 @@ function getLocalizedConfigValue(key: keyof typeof ConfigLocalized) {
 // By default, we don't want to run "git log" commands on i18n sites
 // This makes localized sites build much slower on Netlify
 // See also https://github.com/facebook/docusaurus/issues/11208
+// eslint-disable-next-line max-len
 // const showLastUpdate = process.env.DOCUSAURUS_CURRENT_LOCALE === defaultLocale;
 const showLastUpdate = true;
 
-export default async function createConfigAsync() {
+export default async function createConfigAsync(): Promise<Config> {
+  // Deploy preview and branch deploys: keep them fast!
+  // Staging locales: https://docusaurus-i18n-staging.netlify.app/
+  // Production locales
+  let i18nLocales: string[];
+  if (isDeployPreview || isBranchDeploy) {
+    i18nLocales = [defaultLocale];
+  } else if (isI18nStaging) {
+    i18nLocales = [defaultLocale, 'ja'];
+  } else {
+    i18nLocales = [defaultLocale, 'en'];
+  }
   return {
     title: 'Docusaurus',
     tagline: getLocalizedConfigValue('tagline'),
@@ -189,6 +202,7 @@ export default async function createConfigAsync() {
     // Deprecated: dogfood the Webpack/Babel opt-out for benchmarking
     webpack: isSlower,
     future: {
+      // eslint-disable-next-line camelcase
       experimental_router: router,
     },
     // Dogfood both settings:
@@ -212,16 +226,7 @@ export default async function createConfigAsync() {
         },
       },
 
-      locales:
-        localesOverride ??
-        (isDeployPreview || isBranchDeploy
-          ? // Deploy preview and branch deploys: keep them fast!
-            [defaultLocale]
-          : isI18nStaging
-            ? // Staging locales: https://docusaurus-i18n-staging.netlify.app/
-              [defaultLocale, 'ja']
-            : // Production locales
-              [defaultLocale, 'en']),
+      locales: localesOverride ?? i18nLocales,
     },
     markdown: {
       format: 'detect',
