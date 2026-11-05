@@ -701,33 +701,6 @@ export default async function createConfigAsync(): Promise<Config> {
             docId: 'introduction',
             label: '文档',
           },
-          {
-            type: 'docSidebar',
-            position: 'left',
-            sidebarId: 'api',
-            label: 'API',
-          },
-          {to: 'blog', label: '博客', position: 'left'},
-          {to: 'showcase', label: '案例展示', position: 'left'},
-          {
-            to: '/community/support',
-            label: '社区',
-            position: 'left',
-            activeBaseRegex: `/community/`,
-          },
-          // This item links to a draft doc: only displayed in dev
-          {
-            type: 'doc',
-            docId: 'index',
-            label: '测试',
-            docsPluginId: 'docs-tests',
-          },
-          isDev && {to: '/__docusaurus/debug', label: '调试'},
-          // Custom item for dogfooding: only displayed in /tests/ routes
-          {
-            type: 'custom-dogfood-navbar-item',
-            content: '😉',
-          },
           // Right
           {
             type: 'docsVersionDropdown',
