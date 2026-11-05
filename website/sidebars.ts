@@ -9,18 +9,6 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 
 const sidebars: SidebarsConfig = {
   docs: [
-    'introduction',
-    'site-note',
-    {
-      type: 'category',
-      label: 'API 测试示例',
-      collapsed: false,
-      items: [
-        'test-pages/welcome',
-        'test-pages/markdown-showcase',
-        'test-pages/i18n-demo',
-      ],
-    },
     {
       type: 'category',
       label: 'Getting Started',

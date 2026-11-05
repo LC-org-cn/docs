@@ -385,7 +385,7 @@ export default async function createConfigAsync(): Promise<Config> {
             createRedirects(routePath) {
               // Redirect to /docs from /docs/introduction (now docs root doc)
               if (routePath === '/docs' || routePath === '/docs/') {
-                return [`${routePath}/introduction`];
+                return [`${routePath}/installation`];
               }
               return [];
             },
@@ -408,7 +408,7 @@ export default async function createConfigAsync(): Promise<Config> {
               },
               {
                 from: '/',
-                to: '/docs/next',
+                to: '/docs/next/installation',
               },
               ...dogfoodingRedirects,
             ],
@@ -703,7 +703,7 @@ export default async function createConfigAsync(): Promise<Config> {
           {
             type: 'doc',
             position: 'left',
-            docId: 'introduction',
+            docId: 'installation',
             label: '文档',
           },
           // Right
@@ -774,8 +774,8 @@ export default async function createConfigAsync(): Promise<Config> {
             title: '文档',
             items: [
               {
-                label: '介绍',
-                to: 'docs',
+                label: '开始',
+                to: 'docs/installation',
               },
               {
                 label: '安装',
