@@ -34,7 +34,7 @@ We have worked on multiple optimizations and modernized our infrastructure to us
 
 Adopting a new infrastructure can have various impacts. It's impossible to list them all exhaustively, so let's focus on the major ones.
 
-To help you adopt it easily, we have been fairly conservative in terms of expected static site output and [browser support](/browser-support).
+To help you adopt it easily, we have been fairly conservative in terms of expected static site output and [browser support](/docs/browser-support).
 
 #### Build Time {/* #build-time */}
 
@@ -126,7 +126,7 @@ The new infrastructure is robust and well-tested by our CI pipeline. The [Docusa
 
 The new infrastructure uses [Rspack](https://rspack.dev/). By chance, Rspack is almost 100% compatible with [webpack](https://webpack.js.org/), and Rspack shouldn't break our plugin ecosystem.
 
-Most Docusaurus plugins should work out of the box with Rspack, even those implementing [`configureWebpack`](/api/plugin-methods/lifecycle-apis#configureWebpack).
+Most Docusaurus plugins should work out of the box with Rspack, even those implementing [`configureWebpack`](/docs/api/plugin-methods/lifecycle-apis#configureWebpack).
 
 However, some of them will require small modifications to make them compatible with Rspack. The general idea is to avoid importing `webpack` directly, and use the "dynamically provided" webpack instance instead:
 
@@ -169,7 +169,7 @@ In [#10588](https://github.com/facebook/docusaurus/pull/10588), we created a Doc
 
 ![Loader timeline example](./img/rsdoctor.jpg)
 
-To use it, install the new [`@docusaurus/plugin-rsdoctor`](/api/plugins/@docusaurus/plugin-rsdoctor) package, and then use the plugin in your config:
+To use it, install the new [`@docusaurus/plugin-rsdoctor`](/docs/api/plugins/@docusaurus/plugin-rsdoctor) package, and then use the plugin in your config:
 
 ```ts title="docusaurus.config.js"
 export default {

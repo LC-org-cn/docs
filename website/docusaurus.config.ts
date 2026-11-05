@@ -382,26 +382,33 @@ export default async function createConfigAsync(): Promise<Config> {
           'client-redirects',
           {
             fromExtensions: ['html'],
-            createRedirects(_routePath) {
-              // Docs now served at the site root '/'; no redirect needed.
+            createRedirects(routePath) {
+              // Redirect to /docs from /docs/introduction (now docs root doc)
+              if (routePath === '/docs' || routePath === '/docs/') {
+                return [`${routePath}/installation`];
+              }
               return [];
             },
             redirects: [
               {
-                from: ['/support', '/next/support'],
+                from: ['/docs/support', '/docs/next/support'],
                 to: '/community/support',
               },
               {
-                from: ['/team', '/next/team'],
+                from: ['/docs/team', '/docs/next/team'],
                 to: '/community/team',
               },
               {
-                from: ['/resources', '/next/resources'],
+                from: ['/docs/resources', '/docs/next/resources'],
                 to: '/community/resources',
               },
               {
-                from: '/api/misc/docusaurus-init',
-                to: '/api/misc/create-docusaurus',
+                from: '/docs/api/misc/docusaurus-init',
+                to: '/docs/api/misc/create-docusaurus',
+              },
+              {
+                from: '/',
+                to: '/docs/next/installation',
               },
               ...dogfoodingRedirects,
             ],
@@ -490,7 +497,7 @@ export default async function createConfigAsync(): Promise<Config> {
         {
           debug: true, // force debug plugin usage
           docs: {
-            routeBasePath: '/',
+            // routeBasePath: '/',
             path: 'docs',
             sidebarPath: 'sidebars.ts',
             // sidebarCollapsible: false,
@@ -678,7 +685,7 @@ export default async function createConfigAsync(): Promise<Config> {
           isDev || isDeployPreview
             ? {
                 from: /^\/docs\/next/g.source,
-                to: '/',
+                to: '/docs',
               }
             : undefined,
       },
@@ -768,15 +775,15 @@ export default async function createConfigAsync(): Promise<Config> {
             items: [
               {
                 label: '开始',
-                to: '/installation',
+                to: 'docs/installation',
               },
               {
                 label: '安装',
-                to: '/installation',
+                to: 'docs/installation',
               },
               {
                 label: '升级',
-                to: '/migration',
+                to: 'docs/migration',
               },
             ],
           },

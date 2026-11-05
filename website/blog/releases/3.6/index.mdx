@@ -34,7 +34,7 @@ Upgrading should be easy. Our [release process](/community/release-process) resp
 
 采用新的基础设施可能会产生各种影响。 由于不可能将所有问题全部列举出来，因此我们将重点关注主要的几个。
 
-为了帮助您轻松地使用它，我们在预期的静态站点输出和[浏览器支持](/browser-support) 方面相当保守。
+为了帮助您轻松地使用它，我们在预期的静态站点输出和[浏览器支持](/docs/browser-support) 方面相当保守。
 
 #### 构建时间 {/* #build-time */}
 
@@ -126,7 +126,7 @@ const config = {
 
 新的基础设施使用 [Rspack](https://rspack.dev/)。 碰巧的是，Rspack 与 [webpack](https://webpack.js.org/) 几乎 100% 兼容，并且 Rspack 不会破坏我们的插件生态系统。
 
-大多数Docusaurus插件都应该可以与Rspack开箱即用，即使是那些实现了[`configureWebpack`](/api/plugin-methods/lifecycle-apis#configureWebpack) 的插件。
+大多数Docusaurus插件都应该可以与Rspack开箱即用，即使是那些实现了[`configureWebpack`](/docs/api/plugin-methods/lifecycle-apis#configureWebpack) 的插件。
 
 然而，其中有些需要做小的修改，以使其与Rspack兼容。 一般的想法是避免直接导入 `webpack` ，而是使用 "动态提供" webpack 实例：
 
@@ -169,7 +169,7 @@ export default function (context, options) {
 
 ![加载时间轴示例](@site/blog/releases/3.6/img/rsdoctor.jpg)
 
-要使用它，请安装新的 [`@docusaurus/plugin-rsdoctor`](/api/plugins/@docusaurus/plugin-rsdoctor) 包，然后在你的配置中使用插件：
+要使用它，请安装新的 [`@docusaurus/plugin-rsdoctor`](/docs/api/plugins/@docusaurus/plugin-rsdoctor) 包，然后在你的配置中使用插件：
 
 ```ts title="docusaurus.config.js"
 export default {
