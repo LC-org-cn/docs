@@ -147,6 +147,11 @@ const sidebars: SidebarsConfig = {
       },
       items: ['migration/v3'],
     },
+    {
+      type: 'category',
+      label: '示例',
+      items: ['example'],
+    },
   ],
   api: [
     'cli',
