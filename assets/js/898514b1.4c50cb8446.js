@@ -1,1 +1,0 @@
-"use strict";(globalThis.rspackChunkwebsite||=[]).push([[19528],{19187(a){a.exports=JSON.parse('{"tags":[{"label":"\u793A\u4F8B","permalink":"/docs/tags/\u793A\u4F8B","count":1},{"label":"Markdown","permalink":"/docs/tags/markdown","count":1},{"label":"\u5199\u4F5C","permalink":"/docs/tags/\u5199\u4F5C","count":1}]}')}}]);
