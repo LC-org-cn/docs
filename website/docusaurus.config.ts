@@ -12,36 +12,19 @@ import rehypeKatex from 'rehype-katex';
 import configTabs from './src/remark/configTabs';
 
 import versions from './versions.json';
-import VersionsArchived from './versionsArchived.json';
-import {
-  dogfoodingPluginInstances,
-  dogfoodingThemeInstances,
-  dogfoodingRedirects,
-  dogfoodingTransformFrontMatter,
-} from './_dogfooding/dogfooding.config';
 
 import ConfigLocalized from './docusaurus.config.localized.json';
 
 import PrismLight from './src/utils/prismLight';
 import PrismDark from './src/utils/prismDark';
 
-import {isArgosBuild, argosBuildPlugin} from './_dogfooding/argosBuild';
 import type {Config, DocusaurusConfig, VcsPreset} from '@docusaurus/types';
 
 import type * as Preset from '@docusaurus/preset-classic';
-import type {Options as DocsOptions} from '@docusaurus/plugin-content-docs';
-import type {Options as BlogOptions} from '@docusaurus/plugin-content-blog';
-import type {Options as PageOptions} from '@docusaurus/plugin-content-pages';
 import type {Options as IdealImageOptions} from '@docusaurus/plugin-ideal-image';
-import type {Options as ClientRedirectsOptions} from '@docusaurus/plugin-client-redirects';
 import type {ThemeConfig as LiveCodeBlockThemeConfig} from '@docusaurus/theme-live-codeblock';
 
 type ThemeConfig = Preset.ThemeConfig & LiveCodeBlockThemeConfig;
-
-const ArchivedVersionsDropdownItems = Object.entries(VersionsArchived).splice(
-  0,
-  5,
-);
 
 function isPrerelease(version: string) {
   return (
@@ -79,7 +62,6 @@ function getNextVersionName() {
 }
 
 // Artificial way to crash the SSR rendering and test errors
-// See website/_dogfooding/_pages tests/crashTest.tsx
 // Test with: DOCUSAURUS_CRASH_TEST=true pnpm build:website:fast
 const crashTest = process.env.DOCUSAURUS_CRASH_TEST === 'true';
 
@@ -127,7 +109,7 @@ const localesOverride = process.env.DOCUSAURUS_LOCALES
   ? process.env.DOCUSAURUS_LOCALES.split(',')
   : undefined;
 
-const isVersioningDisabled = !!process.env.DISABLE_VERSIONING || isI18nStaging;
+const isVersioningDisabled = true; // forced: docs served flat at root (no /next/)
 
 const isRsdoctor = process.env.RSDOCTOR === 'true';
 
@@ -220,11 +202,7 @@ export default async function createConfigAsync(): Promise<Config> {
         footnoteLabel: getLocalizedConfigValue('remarkRehypeOptions_footnotes'),
       },
       parseFrontMatter: async (params) => {
-        const result = await params.defaultParseFrontMatter(params);
-        return {
-          ...result,
-          frontMatter: dogfoodingTransformFrontMatter(result.frontMatter),
-        };
+        return params.defaultParseFrontMatter(params);
       },
       preprocessor: ({filePath, fileContent}) => {
         let result = fileContent;
@@ -268,14 +246,8 @@ export default async function createConfigAsync(): Promise<Config> {
       description:
         'An optimized site generator in React. Docusaurus helps you to move fast and write content. Build documentation websites, blogs, marketing pages, and more.',
     },
-    staticDirectories: [
-      'static',
-      path.join(__dirname, '_dogfooding/_asset-tests'),
-      // Adding a non-existent static directory. If user deleted `static`
-      // without specifying `staticDirectories: []`, build should still work
-      path.join(__dirname, '_dogfooding/non-existent'),
-    ],
-    themes: ['live-codeblock', ...dogfoodingThemeInstances],
+    staticDirectories: ['static'],
+    themes: ['live-codeblock'],
     plugins: [
       function disableExpensiveBundlerOptimizationPlugin() {
         return {
@@ -306,90 +278,6 @@ export default async function createConfigAsync(): Promise<Config> {
           },
         },
       ],
-      [
-        './src/plugins/changelog/index.ts',
-        {
-          blogTitle: 'Docusaurus changelog',
-          // Not useful, but permits to run git commands earlier
-          // Otherwise the sitemap plugin will run them in postBuild()
-          showLastUpdateAuthor: showLastUpdate,
-          showLastUpdateTime: showLastUpdate,
-          blogDescription:
-            'Keep yourself up-to-date about new features in every release',
-          blogSidebarCount: 'ALL',
-          blogSidebarTitle: 'Changelog',
-          routeBasePath: '/changelog',
-          showReadingTime: false,
-          postsPerPage: 20,
-          archiveBasePath: null,
-          authorsMapPath: 'authors.json',
-          feedOptions: {
-            type: 'all',
-            title: 'Docusaurus changelog',
-            description:
-              'Keep yourself up-to-date about new features in every release',
-            copyright: `Copyright © ${new Date().getFullYear()} Facebook, Inc.`,
-            language: defaultLocale,
-          },
-          onInlineAuthors: 'warn',
-        },
-      ],
-      [
-        'content-docs',
-        {
-          id: 'community',
-          path: 'community',
-          routeBasePath: 'community',
-          editUrl: ({locale, versionDocsDirPath, docPath}) => {
-            if (locale !== defaultLocale) {
-              return `https://crowdin.com/project/docusaurus-v2/${locale}`;
-            }
-            return `https://github.com/facebook/docusaurus/edit/main/website/${versionDocsDirPath}/${docPath}`;
-          },
-          remarkPlugins: [npm2yarn],
-          editCurrentVersion: true,
-          sidebarPath: './sidebarsCommunity.js',
-          showLastUpdateAuthor: showLastUpdate,
-          showLastUpdateTime: showLastUpdate,
-        } satisfies DocsOptions,
-      ],
-      !process.env.DOCUSAURUS_SKIP_BUNDLING &&
-        !isArgosBuild && [
-          'client-redirects',
-          {
-            fromExtensions: ['html'],
-            createRedirects(routePath) {
-              // Redirect to /docs from /docs/introduction (now docs root doc)
-              if (routePath === '/docs' || routePath === '/docs/') {
-                return [`${routePath}/installation`];
-              }
-              return [];
-            },
-            redirects: [
-              {
-                from: ['/docs/support', '/docs/next/support'],
-                to: '/community/support',
-              },
-              {
-                from: ['/docs/team', '/docs/next/team'],
-                to: '/community/team',
-              },
-              {
-                from: ['/docs/resources', '/docs/next/resources'],
-                to: '/community/resources',
-              },
-              {
-                from: '/docs/api/misc/docusaurus-init',
-                to: '/docs/api/misc/create-docusaurus',
-              },
-              {
-                from: '/',
-                to: '/docs/next/installation',
-              },
-              ...dogfoodingRedirects,
-            ],
-          } satisfies ClientRedirectsOptions,
-        ],
       [
         'ideal-image',
         {
@@ -463,9 +351,6 @@ export default async function createConfigAsync(): Promise<Config> {
         },
       ],
       '@docusaurus/theme-mermaid',
-      './src/plugins/featureRequests/FeatureRequestsPlugin.js',
-      ...dogfoodingPluginInstances,
-      argosBuildPlugin,
     ],
     presets: [
       [
@@ -473,7 +358,7 @@ export default async function createConfigAsync(): Promise<Config> {
         {
           debug: true, // force debug plugin usage
           docs: {
-            // routeBasePath: '/',
+            routeBasePath: '/',
             path: 'docs',
             sidebarPath: 'sidebars.ts',
             // sidebarCollapsible: false,
@@ -521,56 +406,8 @@ export default async function createConfigAsync(): Promise<Config> {
               },
             },
           },
-          blog: {
-            // routeBasePath: '/',
-            path: 'blog',
-            showLastUpdateAuthor: showLastUpdate,
-            showLastUpdateTime: showLastUpdate,
-            editUrl: ({locale, blogDirPath, blogPath}) => {
-              if (locale !== defaultLocale) {
-                return `https://crowdin.com/project/docusaurus-v2/${locale}`;
-              }
-              return `https://github.com/facebook/docusaurus/edit/main/website/${blogDirPath}/${blogPath}`;
-            },
-            remarkPlugins: [npm2yarn],
-            postsPerPage: 5,
-            feedOptions: {
-              type: 'all',
-              description:
-                'Keep up to date with upcoming Docusaurus releases and articles by following our feed!',
-              copyright: `Copyright © ${new Date().getFullYear()} Facebook, Inc.`,
-              xslt: true,
-            },
-            blogTitle: 'Docusaurus blog',
-            blogDescription: 'Read blog posts about Docusaurus from the team',
-            blogSidebarCount: 'ALL',
-            blogSidebarTitle: 'All our posts',
-            onUntruncatedBlogPosts:
-              process.env.DOCUSAURUS_CURRENT_LOCALE !== defaultLocale
-                ? 'warn'
-                : 'throw',
-            onInlineTags:
-              process.env.DOCUSAURUS_CURRENT_LOCALE !== defaultLocale
-                ? 'warn'
-                : 'throw',
-          } satisfies BlogOptions,
-          pages: {
-            remarkPlugins: [npm2yarn],
-            editUrl: ({locale, pagesPath}) => {
-              if (locale !== defaultLocale) {
-                return `https://crowdin.com/project/docusaurus-v2/${locale}`;
-              }
-              return `https://github.com/facebook/docusaurus/edit/main/website/src/pages/${pagesPath}`;
-            },
-            showLastUpdateAuthor: showLastUpdate,
-            showLastUpdateTime: showLastUpdate,
-          } satisfies PageOptions,
           theme: {
-            customCss: [
-              './src/css/custom.css',
-              // relative paths are relative to site dir
-              './_dogfooding/dogfooding.css',
-            ],
+            customCss: ['./src/css/custom.css'],
           },
           gtag: !(isDeployPreview || isBranchDeploy)
             ? {
@@ -578,11 +415,8 @@ export default async function createConfigAsync(): Promise<Config> {
               }
             : undefined,
           sitemap: {
-            ignorePatterns: isArgosBuild
-              ? undefined
-              : // Note: /tests/docs already has noIndex: true
-                // Don't index the root path: it's just a redirect to /docs/next
-                ['/tests/{blog,pages}/**', '/'],
+            // Root is now the docs home (not a redirect), so index it.
+            ignorePatterns: [],
             lastmod: showLastUpdate ? 'date' : null,
           },
         } satisfies Preset.Options,
@@ -651,14 +485,6 @@ export default async function createConfigAsync(): Promise<Config> {
               },
             }
           : {}),
-
-        replaceSearchResultPathname:
-          isDev || isDeployPreview
-            ? {
-                from: /^\/docs\/next/g.source,
-                to: '/docs',
-              }
-            : undefined,
       },
       navbar: {
         hideOnScroll: true,
@@ -676,41 +502,6 @@ export default async function createConfigAsync(): Promise<Config> {
             position: 'left',
             docId: 'installation',
             label: '文档',
-          },
-          // Right
-          {
-            type: 'docsVersionDropdown',
-            position: 'right',
-            dropdownActiveClassDisabled: true,
-            dropdownItemsAfter: [
-              {
-                type: 'html',
-                value: '<hr class="dropdown-separator">',
-              },
-              {
-                type: 'html',
-                className: 'dropdown-archived-versions',
-                value: '<b>Archived versions</b>',
-              },
-              ...ArchivedVersionsDropdownItems.map(
-                ([versionName, versionUrl]) => ({
-                  label: versionName,
-                  href: versionUrl,
-                }),
-              ),
-              {
-                href: 'https://v1.docusaurus.io',
-                label: '1.x.x',
-              },
-              {
-                type: 'html',
-                value: '<hr class="dropdown-separator">',
-              },
-              {
-                to: '/versions',
-                label: 'All versions',
-              },
-            ],
           },
           {
             type: 'localeDropdown',
@@ -746,15 +537,15 @@ export default async function createConfigAsync(): Promise<Config> {
             items: [
               {
                 label: '开始',
-                to: 'docs/installation',
+                to: '/installation',
               },
               {
                 label: '安装',
-                to: 'docs/installation',
+                to: '/installation',
               },
               {
                 label: '升级',
-                to: 'docs/migration',
+                to: '/migration',
               },
             ],
           },

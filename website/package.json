@@ -19,8 +19,6 @@
     "write-heading-ids": "docusaurus write-heading-ids",
     "start:baseUrl": "cross-env BASE_URL='/build/' pnpm start",
     "build:baseUrl": "cross-env BASE_URL='/build/' pnpm build",
-    "start:blogOnly": "cross-env pnpm start --config=docusaurus.config-blog-only.js",
-    "build:blogOnly": "cross-env pnpm build --config=docusaurus.config-blog-only.js",
     "build:fast": "cross-env BUILD_FAST=true pnpm build --locale en",
     "build:fast:rsdoctor": "cross-env BUILD_FAST=true RSDOCTOR=true pnpm build --locale en",
     "profile:bundle:cpu": "DOCUSAURUS_EXIT_AFTER_BUNDLING=true node --cpu-prof --cpu-prof-dir .cpu-prof ./node_modules/.bin/docusaurus build --locale en",
