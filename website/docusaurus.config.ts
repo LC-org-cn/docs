@@ -144,7 +144,7 @@ export default async function createConfigAsync(): Promise<Config> {
   let i18nLocales: string[];
   i18nLocales = [defaultLocale];
   return {
-    title: 'Docusaurus',
+    title: 'Cloudreve-Worker',
     tagline: getLocalizedConfigValue('tagline'),
     organizationName: 'facebook',
     projectName: 'docusaurus',
@@ -352,7 +352,7 @@ export default async function createConfigAsync(): Promise<Config> {
         {
           debug: true, // force debug plugin usage
           docs: {
-            routeBasePath: '/',
+            routeBasePath: 'docs',
             path: 'docs',
             sidebarPath: 'sidebars.ts',
             // sidebarCollapsible: false,
@@ -473,14 +473,7 @@ export default async function createConfigAsync(): Promise<Config> {
       },
       navbar: {
         hideOnScroll: true,
-        title: 'Docusaurus',
-        logo: {
-          alt: '',
-          src: 'img/docusaurus.svg',
-          srcDark: 'img/docusaurus_keytar.svg',
-          width: 32,
-          height: 32,
-        },
+        title: 'Cloudreve-Worker',
         items: [
           {
             type: 'doc',
@@ -499,6 +492,23 @@ export default async function createConfigAsync(): Promise<Config> {
           .filter(Boolean) as NonNullable<
           Preset.ThemeConfig['navbar']
         >['items'],
+      },
+      footer: {
+        style: 'dark',
+        links: [
+          {
+            title: '文档',
+            items: [
+              {label: '快速开始', to: '/docs/教程/getting-started'},
+              {label: '安装与配置', to: '/docs/项目/cloudreve-worker'},
+            ],
+          },
+          {
+            title: '项目',
+            items: [{label: 'GitHub', href: 'https://github.com/LC-org-cn/docs'}],
+          },
+        ],
+        copyright: `Copyright © ${new Date().getFullYear()} Cloudreve-Worker.`,
       },
     } satisfies ThemeConfig,
   } satisfies Config;

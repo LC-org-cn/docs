@@ -1,6 +1,6 @@
 {
   "tagline": {
-    "zh-CN": "快速构建优化的网站，专注你的内容",
+    "zh-CN": "在 Cloudflare Workers 上运行你的私有云盘",
     "en": "Build optimized websites quickly, focus on your content"
   },
   "remarkRehypeOptions_footnotes": {
