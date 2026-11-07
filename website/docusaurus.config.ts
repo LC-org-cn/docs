@@ -363,20 +363,11 @@ export default async function createConfigAsync(): Promise<Config> {
             sidebarPath: 'sidebars.ts',
             // sidebarCollapsible: false,
             // sidebarCollapsed: true,
-            editUrl: ({locale, docPath}) => {
-              if (locale !== defaultLocale) {
-                return `https://crowdin.com/project/docusaurus-v2/${locale}`;
-              }
-              // We want users to submit updates to the upstream/next version!
-              // Otherwise we risk losing the update on the next release.
-              const nextVersionDocsDirPath = 'docs';
-              return `https://github.com/facebook/docusaurus/edit/main/website/${nextVersionDocsDirPath}/${docPath}`;
-            },
             admonitions: {
               keywords: ['my-custom-admonition'],
             },
-            showLastUpdateAuthor: showLastUpdate,
-            showLastUpdateTime: showLastUpdate,
+            showLastUpdateAuthor: false,
+            showLastUpdateTime: false,
             remarkPlugins: [[npm2yarn, {sync: true}], remarkMath, configTabs],
             rehypePlugins: [rehypeKatex],
             disableVersioning: isVersioningDisabled,
