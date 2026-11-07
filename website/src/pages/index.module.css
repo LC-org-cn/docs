@@ -1,12 +1,25 @@
 .heroBanner {
-  padding: 4.5rem 0;
+  padding: 5rem 0 4rem;
   text-align: center;
   position: relative;
   overflow: hidden;
+  background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(77, 107, 254, 0.18), transparent 70%);
+}
+.heroTitle {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+.heroSubtitle {
+  font-size: clamp(1rem, 2.2vw, 1.35rem);
+  margin: 1rem auto 0;
+  max-width: 640px;
+  opacity: 0.85;
 }
 @media screen and (max-width: 996px) {
   .heroBanner {
-    padding: 2rem;
+    padding: 3rem 1.5rem 2rem;
   }
 }
 .buttons {

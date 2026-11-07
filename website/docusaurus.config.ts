@@ -419,9 +419,9 @@ export default async function createConfigAsync(): Promise<Config> {
         },
       },
       colorMode: {
-        defaultMode: 'light',
+        defaultMode: 'dark',
         disableSwitch: false,
-        respectPrefersColorScheme: true,
+        respectPrefersColorScheme: false,
       },
       prism: {
         additionalLanguages: [
