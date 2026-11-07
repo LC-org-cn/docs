@@ -500,7 +500,7 @@ export default async function createConfigAsync(): Promise<Config> {
           {
             type: 'doc',
             position: 'left',
-            docId: 'installation',
+            docId: 'cloudreve-worker',
             label: '文档',
           },
           {
@@ -537,11 +537,11 @@ export default async function createConfigAsync(): Promise<Config> {
             items: [
               {
                 label: '开始',
-                to: '/installation',
+                to: '/cloudreve-worker',
               },
               {
                 label: '安装',
-                to: '/installation',
+                to: '/cloudreve-worker',
               },
               {
                 label: '升级',
