@@ -7,20 +7,20 @@ import styles from './index.module.css';
 
 const features = [
   {
-    title: '部署于 Cloudflare Workers',
-    description: '无需服务器，分钟级上线一个运行在边缘网络的 Cloudreve 后端。',
+    title: '多项目文档中心',
+    description: '一个站点集中托管多个开源项目的文档，按需扩展。',
   },
   {
-    title: '兼容 S3 存储',
-    description: '对接 R2 等任意 S3 兼容对象存储，文件就近存取、弹性扩展。',
+    title: '自动分类',
+    description: '侧边栏按文件夹结构自动生成，新增项目与文档无需改动配置。',
   },
   {
-    title: '原生 WebDAV',
-    description: '通过 WebDAV 把网盘挂载到本地，像本地磁盘一样使用。',
+    title: '深色阅读',
+    description: '内置深色主题，长时间阅读更舒适，也支持浅色切换。',
   },
   {
-    title: '轻量专注',
-    description: '无传统后端负担，专注内容与你自己的私有数据。',
+    title: '全文搜索',
+    description: '集成搜索引擎，快速定位所需内容与接口。',
   },
 ];
 
@@ -36,8 +36,8 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/项目/cloudreve-worker">
-            开始使用 →
+            to="/docs">
+            浏览文档 →
           </Link>
           <Link
             className="button button--outline button--secondary button--lg"

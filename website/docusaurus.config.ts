@@ -144,7 +144,7 @@ export default async function createConfigAsync(): Promise<Config> {
   let i18nLocales: string[];
   i18nLocales = [defaultLocale];
   return {
-    title: 'Cloudreve-Worker',
+    title: 'LC 文档',
     tagline: getLocalizedConfigValue('tagline'),
     organizationName: 'facebook',
     projectName: 'docusaurus',
@@ -473,12 +473,11 @@ export default async function createConfigAsync(): Promise<Config> {
       },
       navbar: {
         hideOnScroll: true,
-        title: 'Cloudreve-Worker',
+        title: 'LC 文档',
         items: [
           {
-            type: 'doc',
+            to: '/docs',
             position: 'left',
-            docId: '项目/cloudreve-worker',
             label: '文档',
           },
           {
@@ -498,17 +497,14 @@ export default async function createConfigAsync(): Promise<Config> {
         links: [
           {
             title: '文档',
-            items: [
-              {label: '快速开始', to: '/docs/教程/getting-started'},
-              {label: '安装与配置', to: '/docs/项目/cloudreve-worker'},
-            ],
+            items: [{label: '文档中心', to: '/docs'}],
           },
           {
             title: '项目',
             items: [{label: 'GitHub', href: 'https://github.com/LC-org-cn/docs'}],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Cloudreve-Worker.`,
+        copyright: `Copyright © ${new Date().getFullYear()} LC 文档.`,
       },
     } satisfies ThemeConfig,
   } satisfies Config;
