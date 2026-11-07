@@ -1,0 +1,42 @@
+---
+sidebar_position: 2
+title: 常见问题（FAQ）
+description: Cloudreve-Worker 部署、配置与使用中的常见问题解答。
+---
+
+# 常见问题（FAQ）
+
+## 部署相关
+
+### 一定要用 Cloudflare Workers 吗？
+是的。Cloudreve-Worker 是运行在 Cloudflare Workers 上的 TypeScript 实现，依赖 Workers 运行时、KV 与绑定存储（R2 等）。它不提供独立服务器二进制。
+
+### 免费版 Workers 够用吗？
+个人小流量通常够用。需要注意：免费套餐有每日请求数、CPU 时间（10ms/请求）与单请求内存上限。文件上传/下载走 R2 直传可显著减少 Worker 自身流量。
+
+### 数据库必须用 Neon 吗？
+后端需要 Postgres。配置示例用 Neon serverless Postgres，你也可以换成任何可公网访问的 Postgres（Supabase、Railway、自建等），只要连接串可稳定访问。
+
+## 存储相关
+
+### 支持哪些存储？
+R2 / S3 / OSS / COS / OBS / KS3 / 七牛 / OneDrive / 又拍云，以及从节点本地磁盘。在存储策略里按需添加对应驱动与凭据即可。
+
+### 大文件上传怎么处理？
+建议启用分片上传，前端直传对象存储，后端只负责签发凭证与元数据。直传可避免流量经过 Worker，大幅降低 CPU 与请求耗时。
+
+## WebDAV 与前端
+
+### 支持 WebDAV 吗？
+支持。WebDAV 由后端提供，客户端（Windows 网络位置、macOS 访达、Infuse、RaiDrive 等）可直接挂载。
+
+### 前端怎么部署？
+使用官方前端，随 Worker 一起发布。构建产物作为静态资源托管，前端通过 API 地址访问 Worker。
+
+## 升级与维护
+
+### 如何对齐上游版本？
+当前实现对齐上游 Cloudreve v4 `4.19.1`。升级时关注上游发版说明，按变更调整驱动与配置；数据库结构变更请走迁移脚本。
+
+### 会话与缓存在哪里？
+会话、缓存、部分状态存放在 Workers KV，按命名空间区分。多实例部署共享同一 KV 即可保持一致。
