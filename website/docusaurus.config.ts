@@ -502,14 +502,10 @@ export default async function createConfigAsync(): Promise<Config> {
                 type: 'html',
                 value: '<hr style="margin: 0.3rem 0;">',
               },
-              {
-                href: 'https://github.com/facebook/docusaurus/issues/3526',
-                label: 'Help Us Translate',
-              },
             ],
           },
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/LC-org-cn/docs',
             position: 'right',
             className: 'header-github-link',
             'aria-label': 'GitHub repository',
