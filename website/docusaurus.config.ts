@@ -529,28 +529,6 @@ export default async function createConfigAsync(): Promise<Config> {
           Preset.ThemeConfig['navbar']
         >['items'],
       },
-      footer: {
-        style: 'dark',
-        links: [
-          {
-            title: '文档',
-            items: [
-              {
-                label: '开始',
-                to: '/cloudreve-worker',
-              },
-              {
-                label: '安装',
-                to: '/cloudreve-worker',
-              },
-              {
-                label: '升级',
-                to: '/migration',
-              },
-            ],
-          },
-        ],
-      },
     } satisfies ThemeConfig,
   } satisfies Config;
 }
