@@ -142,13 +142,7 @@ export default async function createConfigAsync(): Promise<Config> {
   // Staging locales: https://docusaurus-i18n-staging.netlify.app/
   // Production locales
   let i18nLocales: string[];
-  if (isDeployPreview || isBranchDeploy) {
-    i18nLocales = [defaultLocale];
-  } else if (isI18nStaging) {
-    i18nLocales = [defaultLocale, 'ja'];
-  } else {
-    i18nLocales = [defaultLocale, 'en'];
-  }
+  i18nLocales = [defaultLocale];
   return {
     title: 'Docusaurus',
     tagline: getLocalizedConfigValue('tagline'),
@@ -493,16 +487,6 @@ export default async function createConfigAsync(): Promise<Config> {
             position: 'left',
             docId: 'cloudreve-worker',
             label: '文档',
-          },
-          {
-            type: 'localeDropdown',
-            position: 'right',
-            dropdownItemsAfter: [
-              {
-                type: 'html',
-                value: '<hr style="margin: 0.3rem 0;">',
-              },
-            ],
           },
           {
             href: 'https://github.com/LC-org-cn/docs',
