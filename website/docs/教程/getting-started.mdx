@@ -1,14 +1,48 @@
 ---
 sidebar_position: 1
 title: 快速开始
-description: Cloudreve-Worker 的快速开始教程，从零完成首次部署。
+description: 5 分钟在 Cloudflare Workers 上跑起 Cloudreve-Worker，完成首次部署、存储配置与登录验证。
 ---
 
 # 快速开始
 
-本页演示「按文件夹自动生成」分类的效果。
+本指南帮助你在 5 分钟内完成 Cloudreve-Worker 的首次部署并得到一个可用的私有网盘。
 
-把文档放进 `docs/教程/` 文件夹、加上 `_category_.yml` 定义分类名，
-侧边栏就会自动出现「教程」分类，无需改动 `sidebars.ts`。
+## 环境要求
 
-更多内容待补充。
+- 一个 Cloudflare 账号（免费版即可）
+- 一个已接入 Cloudflare 的域名（用于自定义站点地址，可选；也可用 `*.workers.dev` 默认地址）
+- 一个 S3 兼容的对象存储（推荐 Cloudflare R2，用于存放用户上传的文件）
+
+## 第一步：部署 Worker
+
+1. 进入 Cloudflare 控制台 **Workers & Pages**，新建一个 Worker。
+2. 将 Cloudreve-Worker 的运行脚本部署到该 Worker。
+3. 记下生成的 `https://<sub>.<your-sub>.workers.dev` 地址，后面用它访问站点与后台。
+
+## 第二步：配置存储
+
+Cloudreve-Worker 把用户文件存放在 S3 兼容存储中。请在 Worker 的
+**Settings → Variables / Bindings** 中填入以下信息：
+
+| 配置项 | 说明 |
+| --- | --- |
+| 存储端点（endpoint） | 对象存储的 S3 兼容地址 |
+| 存储桶（bucket） | 用于存放文件的桶名称 |
+| Access Key | 具有读写该桶权限的访问密钥 |
+| Secret Key | 对应的密钥 |
+
+## 第三步：初始化管理员
+
+首次访问上一步得到的站点地址，按页面引导创建第一个管理员账号。
+创建完成后即可登录后台。
+
+## 第四步：验证部署
+
+- 上传一个测试文件，确认它出现在你所配置存储桶的对应路径中。
+- 尝试通过 WebDAV 访问，确认接口可用。
+
+## 下一步
+
+- 阅读《Cloudreve-Worker 安装与配置》了解全部配置项（存储、站点、WebDAV 等）。
+- 如需正式对外服务，建议绑定自定义域名并开启 HTTPS。
