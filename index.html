@@ -19,9 +19,9 @@
 
 
 
-<link rel="stylesheet" href="./katex/katex.min.css" type="text/css"><link rel="stylesheet" href="./assets/css/styles.ba44483996.css" />
-<script src="./assets/js/runtime~main.2caed42bcd.js" defer></script>
-<script src="./assets/js/main.e2b21644b8.js" defer></script>
+<link rel="stylesheet" href="./katex/katex.min.css" type="text/css"><link rel="stylesheet" href="./assets/css/styles.4865475fdc.css" />
+<script src="./assets/js/runtime~main.dab29ac655.js" defer></script>
+<script src="./assets/js/main.0a58cd7722.js" defer></script>
 </head>
 <body >
 <svg style="display: none;"><defs>
@@ -43,8 +43,8 @@
     } catch (err) {}
   }
   var initialTheme = getQueryStringTheme() || getStoredTheme();
-  document.documentElement.setAttribute('data-theme', initialTheme || 'dark');
-  document.documentElement.setAttribute('data-theme-choice', initialTheme || 'dark');
+  document.documentElement.setAttribute('data-theme', initialTheme || getSystemColorMode());
+  document.documentElement.setAttribute('data-theme-choice', initialTheme || 'system');
 })();
 
 (function() {
