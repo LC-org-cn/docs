@@ -485,7 +485,7 @@ export default async function createConfigAsync(): Promise<Config> {
           {
             type: 'doc',
             position: 'left',
-            docId: '项目/cloudreve-worker',
+            docId: '首页/index',
             label: '文档',
           },
           {
