@@ -1,0 +1,8 @@
+{
+  "label": "Cloudreve 原版部署",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "上游官方 Cloudreve v4（Go 实现）的部署、配置、存储、节点与维护。"
+  }
+}
