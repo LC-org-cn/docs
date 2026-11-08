@@ -144,7 +144,7 @@ export default async function createConfigAsync(): Promise<Config> {
   let i18nLocales: string[];
   i18nLocales = [defaultLocale];
   return {
-    title: 'LC 文档',
+    title: 'Docusaurus',
     tagline: getLocalizedConfigValue('tagline'),
     organizationName: 'facebook',
     projectName: 'docusaurus',
@@ -352,7 +352,7 @@ export default async function createConfigAsync(): Promise<Config> {
         {
           debug: true, // force debug plugin usage
           docs: {
-            routeBasePath: 'docs',
+            routeBasePath: '/',
             path: 'docs',
             sidebarPath: 'sidebars.ts',
             // sidebarCollapsible: false,
@@ -419,9 +419,9 @@ export default async function createConfigAsync(): Promise<Config> {
         },
       },
       colorMode: {
-        defaultMode: 'dark',
+        defaultMode: 'light',
         disableSwitch: false,
-        respectPrefersColorScheme: false,
+        respectPrefersColorScheme: true,
       },
       prism: {
         additionalLanguages: [
@@ -473,11 +473,19 @@ export default async function createConfigAsync(): Promise<Config> {
       },
       navbar: {
         hideOnScroll: true,
-        title: 'LC 文档',
+        title: 'Docusaurus',
+        logo: {
+          alt: '',
+          src: 'img/docusaurus.svg',
+          srcDark: 'img/docusaurus_keytar.svg',
+          width: 32,
+          height: 32,
+        },
         items: [
           {
-            to: '/docs',
+            type: 'doc',
             position: 'left',
+            docId: '项目/cloudreve-worker',
             label: '文档',
           },
           {
@@ -491,20 +499,6 @@ export default async function createConfigAsync(): Promise<Config> {
           .filter(Boolean) as NonNullable<
           Preset.ThemeConfig['navbar']
         >['items'],
-      },
-      footer: {
-        style: 'dark',
-        links: [
-          {
-            title: '文档',
-            items: [{label: '文档中心', to: '/docs'}],
-          },
-          {
-            title: '项目',
-            items: [{label: 'GitHub', href: 'https://github.com/LC-org-cn/docs'}],
-          },
-        ],
-        copyright: `Copyright © ${new Date().getFullYear()} LC 文档.`,
       },
     } satisfies ThemeConfig,
   } satisfies Config;
