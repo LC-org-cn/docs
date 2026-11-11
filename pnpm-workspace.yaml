@@ -32,7 +32,7 @@ catalog:
   '@babel/preset-react': ^8.0.1
   '@babel/preset-typescript': ^7.29.7
   '@babel/runtime': ^7.29.7
-  '@babel/traverse': ^7.29.8
+  '@babel/traverse': ^8.0.7
   '@crowdin/crowdin-api-client': ^1.57.0
   '@docsearch/react': ^4.7.0
   '@docusaurus/responsive-loader': ^1.7.1
